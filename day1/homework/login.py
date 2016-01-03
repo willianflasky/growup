@@ -20,10 +20,10 @@ while counter < 3:
 
     if os.path.exists('%s.lock'%username):
         sys.exit("\033[31;5myour account locked by system! contact administrator.\033[0m")
-    elif username in dict_passwd.keys():
-        if dict_passwd.get(username) == password:
-            print('\033[33;5mBingo!\033[0m')
-            break
+    elif username in dict_passwd.keys() and dict_passwd.get(username) == password:
+        print('\033[33;5mBingo!\033[0m')
+        break
+
     else:
         print('\033[31;1merrors %s OR %s\033[0m'%(username,password))
 
