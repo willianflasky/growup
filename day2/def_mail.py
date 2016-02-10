@@ -3,7 +3,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.utils import formataddr
 
-
+"""
 def mail():
     ret=True
     try:
@@ -25,3 +25,12 @@ if ret:
     print('发送成功')
 else:
     print("发送失败")
+    """
+def show():
+    print('a')
+    if 1==2:
+        return [11,22]
+    print('b')
+
+ret=show()
+print(ret)
