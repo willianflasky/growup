@@ -9,12 +9,12 @@ def mail():
     try:
         msg = MIMEText('邮件内容', 'plain', 'utf-8')
         msg['From'] = formataddr(["吴老师",'wptawy@126.com'])
-        msg['To'] = formataddr(["willian",'13552791537@qq.com'])
+        msg['To'] = formataddr(["willian",'@qq.com'])
         msg['Subject'] = "主题"
 
         server = smtplib.SMTP("smtp.126.com", 25)
-        server.login("wptawy@126.com", "WW.3945.59")
-        server.sendmail('wptawy@126.com', ['13552791537@qq.com',], msg.as_string())
+        server.login("wptawy@126.com", "passwd")
+        server.sendmail('wptawy@126.com', ['@qq.com',], msg.as_string())
         server.quit()
     except Exception:
         ret=False
