@@ -13,3 +13,8 @@ dest_file=ConfigObj(args.dest)
 
 src_file.merge(dest_file)
 src_file.write()
+
+#不要空格版
+#with open('a.conf','w') as f:
+#    for k in src_file:
+#        f.write(k+"="+ret[k]+"\n")
