@@ -1,33 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a866511-7480-4642-ac89-b1673f4d3544" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day4/90度.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day4/iter_yield迭代器.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day4/多参数装饰器.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day4/装饰器.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day4/递归.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day5/dj/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day5/dj/backend/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day5/dj/backend/db/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day5/dj/backend/db/sql_api.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day5/dj/backend/logic/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day5/dj/backend/logic/handle.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day5/dj/config/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day5/dj/config/settings.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day5/dj/frontend/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day5/dj/frontend/user_main.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day5/os-sys模块.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day5/progress_bar.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day5/冒泡.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day5/序列化.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day5/序列化个人.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day5/模块.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day5/随机数.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/day3/homework/ha.txt" afterPath="$PROJECT_DIR$/day3/homework/ha" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/day3/homework/ha.py" afterPath="$PROJECT_DIR$/day3/homework/ha.py" />
-    </list>
+    <list default="true" id="6a866511-7480-4642-ac89-b1673f4d3544" name="Default" comment="" />
     <ignored path="s12_python3.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -90,7 +64,7 @@
       <file leaf-file-name="os-sys模块.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/day5/os-sys模块.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3110048">
+            <state vertical-scroll-proportion="0.28846154">
               <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding />
             </state>
@@ -177,7 +151,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="724" />
+    <option name="height" value="773" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -223,8 +197,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -637,7 +611,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="724" extended-state="6" />
+    <frame x="0" y="23" width="1280" height="773" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
@@ -1032,7 +1006,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/day5/os-sys模块.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3110048">
+        <state vertical-scroll-proportion="0.28846154">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding />
         </state>
