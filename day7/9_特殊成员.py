@@ -61,3 +61,15 @@ del obj1[1:4]
 
 obj1=Foo('alex',73)
 
+"""
+class bar(object):
+    def __iter__(self):
+        return iter([11,22,33])
+        #yield 1
+        #yield 1
+b=bar()
+
+for i in b:
+    print(i)
+
+"""
