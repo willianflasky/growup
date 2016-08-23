@@ -28,7 +28,7 @@ class Student(SchoolMember):
     def __init__(self,name,age,sex,course,tuition):
         super(Student,self).__init__(name,age,sex)
         self.course=course
-        self.tuition=tuition
+        self.tuition=tuition()
 
     def pay_tuition(self):
         print('cao,student paying [%s] tuition %s'%(self.name,self.tuition))

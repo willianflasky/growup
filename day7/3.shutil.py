@@ -47,7 +47,6 @@ tar = tarfile.open('your.tar','w')
 tar.add('xo1.xml', arcname='x1.log')
 tar.add('xo2.xml', arcname='x2.log')
 tar.close()
-
 """
 tar = tarfile.open('your.tar','r')
 #tar.extractall()
