@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a866511-7480-4642-ac89-b1673f4d3544" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day7/4-subprocess.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day7/5_字段.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day7/6_method.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day7/7_property.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day7/8_私有属性.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day7/9_特殊成员.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day7/homework_course.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day7/homework_student.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day7/homework_teacher.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/day6_class/schoolClass.py" afterPath="$PROJECT_DIR$/day6_class/schoolClass.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/day7/3.shutil.py" afterPath="$PROJECT_DIR$/day7/3.shutil.py" />
-    </list>
+    <list default="true" id="6a866511-7480-4642-ac89-b1673f4d3544" name="Default" comment="" />
     <ignored path="s12_python3.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
