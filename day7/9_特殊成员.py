@@ -42,8 +42,10 @@ class Foo:
     def __delitem__(self, key):         #del obj1['k1']
         print(type(key))
 
-
-
+    def __iter__(self):
+        #return iter([11,22,33,44])     #迭代器
+        yield [11,22,33]            #生成器
+        yield  [44,55,66]
 """
 p=Foo()
 print(p.__doc__)
@@ -60,6 +62,10 @@ del obj1[1:4]
 """
 
 obj1=Foo('alex',73)
+
+for i in obj1:
+    for x in i:
+        print(x)
 
 """
 class bar(object):
