@@ -16,7 +16,7 @@ obj1=Foo()
 ret=isinstance(obj1,Bar)
 print(ret)
 
-ret=issubclass(Bar,Foo)
+ret=issubclass(Bar,Foo)s
 print(ret)
 
 
