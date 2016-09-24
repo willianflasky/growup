@@ -2,4 +2,3 @@
 #coding:utf8
 #Author: willianflasky
 
-#some to threading

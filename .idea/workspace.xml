@@ -2,23 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a866511-7480-4642-ac89-b1673f4d3544" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/day12_线程/10_theading_pool.py" afterPath="$PROJECT_DIR$/day11_线程_进程/10_theading_pool.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/day12_线程/11_进程.py" afterPath="$PROJECT_DIR$/day11_线程_进程/11_进程.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/day12_线程/12_进程共享数据.py" afterPath="$PROJECT_DIR$/day11_线程_进程/12_进程共享数据.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/day12_线程/13_进程共享数据mangers_dict.py" afterPath="$PROJECT_DIR$/day11_线程_进程/13_进程共享数据mangers_dict.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/day12_线程/14_进程锁.py" afterPath="$PROJECT_DIR$/day11_线程_进程/14_进程锁.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/day12_线程/16_进程池.py" afterPath="$PROJECT_DIR$/day11_线程_进程/16_进程池.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/day12_线程/17_协程.py" afterPath="$PROJECT_DIR$/day11_线程_进程/17_协程.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/day12_线程/18_mem_redis.py" afterPath="$PROJECT_DIR$/day11_线程_进程/18_mem_redis.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/day12_线程/1_threading.py" afterPath="$PROJECT_DIR$/day11_线程_进程/1_threading.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/day12_线程/2_queue.py" afterPath="$PROJECT_DIR$/day11_线程_进程/2_queue.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/day12_线程/3_生产消费.py" afterPath="$PROJECT_DIR$/day11_线程_进程/3_生产消费.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/day12_线程/4_GIL.py" afterPath="$PROJECT_DIR$/day11_线程_进程/4_GIL.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/day12_线程/5_event.py" afterPath="$PROJECT_DIR$/day11_线程_进程/5_event.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/day12_线程/6_条件锁.py" afterPath="$PROJECT_DIR$/day11_线程_进程/6_条件锁.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/day12_线程/7_condition.py" afterPath="$PROJECT_DIR$/day11_线程_进程/7_condition.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/day12_线程/8_timer.py" afterPath="$PROJECT_DIR$/day11_线程_进程/8_timer.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/day12_线程/9_theading_pool.py" afterPath="$PROJECT_DIR$/day11_线程_进程/9_theading_pool.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day12_db_mq/10_tag_消费者.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day12_db_mq/10_tag_消费者2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day12_db_mq/11_tag_发布者.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day12_db_mq/12_pymysql.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day12_db_mq/13_orm_create.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day12_db_mq/14_paramiko.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day12_db_mq/15_paramiko_sftp.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day12_db_mq/1_thread_pool_上下文管理.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day12_db_mq/21_alex_AqlAlchemy.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day12_db_mq/2_上下文管理.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day12_db_mq/6_mq_send.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day12_db_mq/7_mq_recv.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day12_db_mq/8_exchange.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day12_db_mq/9_exchange_send.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day12_db_mq/RedisHelper.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day12_db_mq/Redis_发布者.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/day12_db_mq/Redis_订阅者.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/day11_线程_进程/14_进程锁.py" afterPath="$PROJECT_DIR$/day11_线程_进程/14_进程锁.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/day11_线程_进程/18_mem_redis.py" afterPath="$PROJECT_DIR$/day11_线程_进程/18_mem_redis.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/day11_线程_进程/9_theading_pool.py" afterPath="$PROJECT_DIR$/day11_线程_进程/9_theading_pool.py" />
     </list>
     <ignored path="s12_python3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,6 +36,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/s12_python3$10_tag_2.coverage" NAME="10_tag_消费者2 Coverage Results" MODIFIED="1474366408716" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_db_mq" />
     <SUITE FILE_PATH="coverage/s12_python3$socker_client1.coverage" NAME="socker_client1 Coverage Results" MODIFIED="1472514838335" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day9_socket/simple_ssh" />
     <SUITE FILE_PATH="coverage/s12_python3$progress_bar.coverage" NAME="progress_bar Coverage Results" MODIFIED="1458087245487" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day5" />
     <SUITE FILE_PATH="coverage/s12_python3$json.coverage" NAME="json Coverage Results" MODIFIED="1458383209542" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day5" />
@@ -39,6 +44,7 @@
     <SUITE FILE_PATH="coverage/s12_python3$file_operation.coverage" NAME="file_operation Coverage Results" MODIFIED="1451657852667" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day1" />
     <SUITE FILE_PATH="coverage/s12_python3$t.coverage" NAME="t Coverage Results" MODIFIED="1456327704079" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day3/homework" />
     <SUITE FILE_PATH="coverage/s12_python3$hello.coverage" NAME="hello Coverage Results" MODIFIED="1451639791826" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day1" />
+    <SUITE FILE_PATH="coverage/s12_python3$2_.coverage" NAME="2_上下文管理 Coverage Results" MODIFIED="1474244981496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_" />
     <SUITE FILE_PATH="coverage/s12_python3$thread_socket_server.coverage" NAME="thread_socket_server Coverage Results" MODIFIED="1472636373745" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day9_socket/socke_server" />
     <SUITE FILE_PATH="coverage/s12_python3$schoolClass.coverage" NAME="schoolClass Coverage Results" MODIFIED="1469973339898" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day6" />
     <SUITE FILE_PATH="coverage/s12_python3$5_event.coverage" NAME="5_event Coverage Results" MODIFIED="1473924485518" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_线程" />
@@ -47,14 +53,18 @@
     <SUITE FILE_PATH="coverage/s12_python3$17_.coverage" NAME="17_协程 Coverage Results" MODIFIED="1473990488124" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_线程" />
     <SUITE FILE_PATH="coverage/s12_python3$4_subprocess.coverage" NAME="4-subprocess Coverage Results" MODIFIED="1471690103640" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day7" />
     <SUITE FILE_PATH="coverage/s12_python3$9_theading_pool.coverage" NAME="9_theading_pool Coverage Results" MODIFIED="1473944350437" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_线程" />
+    <SUITE FILE_PATH="coverage/s12_python3$7_mq_recv.coverage" NAME="7_mq_recv Coverage Results" MODIFIED="1474358693775" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_db_mq" />
     <SUITE FILE_PATH="coverage/s12_python3$loop_conntinue.coverage" NAME="loop_conntinue Coverage Results" MODIFIED="1451657015624" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day1" />
     <SUITE FILE_PATH="coverage/s12_python3$iter.coverage" NAME="iter Coverage Results" MODIFIED="1456667507173" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day4" />
+    <SUITE FILE_PATH="coverage/s12_python3$Redis___1_.coverage" NAME="Redis_发布者 (1) Coverage Results" MODIFIED="1474345375536" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_" />
     <SUITE FILE_PATH="coverage/s12_python3$.coverage" NAME="冒泡 Coverage Results" MODIFIED="1469963788127" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day5" />
     <SUITE FILE_PATH="coverage/s12_python3$thread_socket_client.coverage" NAME="thread_socket_client Coverage Results" MODIFIED="1472636414272" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day9_socket/socke_server" />
     <SUITE FILE_PATH="coverage/s12_python3$defMail.coverage" NAME="defMail Coverage Results" MODIFIED="1455245317451" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day3" />
     <SUITE FILE_PATH="coverage/s12_python3$login.coverage" NAME="login Coverage Results" MODIFIED="1452389516853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day1/homework" />
+    <SUITE FILE_PATH="coverage/s12_python3$16___1_.coverage" NAME="16_进程池 (1) Coverage Results" MODIFIED="1474081727918" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day11_线程_进程" />
     <SUITE FILE_PATH="coverage/s12_python3$thread_socket_client__1_.coverage" NAME="thread_socket_client (1) Coverage Results" MODIFIED="1472804953034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day9_socket/simple_http" />
     <SUITE FILE_PATH="coverage/s12_python3$def.coverage" NAME="def Coverage Results" MODIFIED="1455114738952" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day2" />
+    <SUITE FILE_PATH="coverage/s12_python3$Redis_.coverage" NAME="Redis_发布者 Coverage Results" MODIFIED="1474345365060" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_" />
     <SUITE FILE_PATH="coverage/s12_python3$handle.coverage" NAME="handle Coverage Results" MODIFIED="1457870151430" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day5/dj/backend/logic" />
     <SUITE FILE_PATH="coverage/s12_python3$7xml.coverage" NAME="7xml Coverage Results" MODIFIED="1471184551508" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day7" />
     <SUITE FILE_PATH="coverage/s12_python3$5_.coverage" NAME="5_字段 Coverage Results" MODIFIED="1471787643626" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day7" />
@@ -78,13 +88,15 @@
     <SUITE FILE_PATH="coverage/s12_python3$guess_number_limit.coverage" NAME="guess_number_limit Coverage Results" MODIFIED="1451643569528" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day1" />
     <SUITE FILE_PATH="coverage/s12_python3$4_.coverage" NAME="4_多线程 Coverage Results" MODIFIED="1473326236395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day10_多路复用" />
     <SUITE FILE_PATH="coverage/s12_python3$11_.coverage" NAME="11_进程 Coverage Results" MODIFIED="1473945431821" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_线程" />
+    <SUITE FILE_PATH="coverage/s12_python3$18_mem_redis.coverage" NAME="18_mem_redis Coverage Results" MODIFIED="1474083555886" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day11_线程_进程" />
     <SUITE FILE_PATH="coverage/s12_python3$homework_course.coverage" NAME="homework-course Coverage Results" MODIFIED="1471763290852" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day7" />
     <SUITE FILE_PATH="coverage/s12_python3$city.coverage" NAME="city Coverage Results" MODIFIED="1452397665339" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day1/homework" />
     <SUITE FILE_PATH="coverage/s12_python3$index.coverage" NAME="index Coverage Results" MODIFIED="1472033319073" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day7/项目扩展练习" />
     <SUITE FILE_PATH="coverage/s12_python3$ftp_server.coverage" NAME="ftp_server Coverage Results" MODIFIED="1472640825083" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day9_socket/ftp_project" />
+    <SUITE FILE_PATH="coverage/s12_python3$15_paramiko_sftp.coverage" NAME="15_paramiko_sftp Coverage Results" MODIFIED="1474696102827" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_db_mq" />
     <SUITE FILE_PATH="coverage/s12_python3$city_list.coverage" NAME="city_list Coverage Results" MODIFIED="1452902301954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day1/homework" />
     <SUITE FILE_PATH="coverage/s12_python3$def_args.coverage" NAME="def_args Coverage Results" MODIFIED="1455452130687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day3" />
-    <SUITE FILE_PATH="coverage/s12_python3$10_theading_pool.coverage" NAME="10_theading_pool Coverage Results" MODIFIED="1473944382672" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_线程" />
+    <SUITE FILE_PATH="coverage/s12_python3$10_theading_pool.coverage" NAME="10_theading_pool Coverage Results" MODIFIED="1474096553496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day11_线程_进程" />
     <SUITE FILE_PATH="coverage/s12_python3$13_mangers_dict.coverage" NAME="13_进程共享数据mangers_dict Coverage Results" MODIFIED="1473947642110" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_线程" />
     <SUITE FILE_PATH="coverage/s12_python3$socker_server__1_.coverage" NAME="socker_server (1) Coverage Results" MODIFIED="1472518434556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day9_socket/simple_ssh" />
     <SUITE FILE_PATH="coverage/s12_python3$2_create_xml.coverage" NAME="2-create_xml Coverage Results" MODIFIED="1471188249650" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day7" />
@@ -93,18 +105,24 @@
     <SUITE FILE_PATH="coverage/s12_python3$2_queue.coverage" NAME="2_queue Coverage Results" MODIFIED="1473637780580" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_线程" />
     <SUITE FILE_PATH="coverage/s12_python3$wb_server.coverage" NAME="wb_server Coverage Results" MODIFIED="1473084643653" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day9_socket/ftp_project" />
     <SUITE FILE_PATH="coverage/s12_python3$socker_server.coverage" NAME="socker_server Coverage Results" MODIFIED="1472426908737" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day9_socket" />
+    <SUITE FILE_PATH="coverage/s12_python3$21_alex_AqlAlchemy.coverage" NAME="21_alex_AqlAlchemy Coverage Results" MODIFIED="1474679981289" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_db_mq" />
     <SUITE FILE_PATH="coverage/s12_python3$os_sys.coverage" NAME="os-sys模块 Coverage Results" MODIFIED="1458083738958" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day5" />
     <SUITE FILE_PATH="coverage/s12_python3$sql_api.coverage" NAME="sql_api Coverage Results" MODIFIED="1457869485528" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day5/dj/backend/db" />
     <SUITE FILE_PATH="coverage/s12_python3$wb_client.coverage" NAME="wb_client Coverage Results" MODIFIED="1473085034923" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day9_socket/ftp_project" />
-    <SUITE FILE_PATH="coverage/s12_python3$3_.coverage" NAME="3_生产消费 Coverage Results" MODIFIED="1473908369425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_线程" />
     <SUITE FILE_PATH="coverage/s12_python3$4_GIL.coverage" NAME="4_GIL Coverage Results" MODIFIED="1473924308653" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_线程" />
+    <SUITE FILE_PATH="coverage/s12_python3$3_.coverage" NAME="3_订阅者 Coverage Results" MODIFIED="1474340161661" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_" />
+    <SUITE FILE_PATH="coverage/s12_python3$10_tag_.coverage" NAME="10_tag_消费者 Coverage Results" MODIFIED="1474366182240" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_db_mq" />
+    <SUITE FILE_PATH="coverage/s12_python3$14_paramiko.coverage" NAME="14_paramiko Coverage Results" MODIFIED="1474696041481" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_db_mq" />
+    <SUITE FILE_PATH="coverage/s12_python3$8_exchange.coverage" NAME="8_exchange Coverage Results" MODIFIED="1474364368207" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_db_mq" />
     <SUITE FILE_PATH="coverage/s12_python3$2_socket_server.coverage" NAME="2_socket_server Coverage Results" MODIFIED="1473145707410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day10" />
     <SUITE FILE_PATH="coverage/s12_python3$12_.coverage" NAME="12_进程共享数据 Coverage Results" MODIFIED="1473946228119" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_线程" />
     <SUITE FILE_PATH="coverage/s12_python3$2_server.coverage" NAME="2_server多路 Coverage Results" MODIFIED="1473168545651" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day10_多路复用" />
+    <SUITE FILE_PATH="coverage/s12_python3$1_thread_pool.coverage" NAME="1_thread_pool Coverage Results" MODIFIED="1474209608357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_" />
     <SUITE FILE_PATH="coverage/s12_python3$shop.coverage" NAME="shop Coverage Results" MODIFIED="1452095106573" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day1/homework" />
     <SUITE FILE_PATH="coverage/s12_python3$13_except.coverage" NAME="13_except Coverage Results" MODIFIED="1472083934482" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day7" />
     <SUITE FILE_PATH="coverage/s12_python3$16_.coverage" NAME="16_进程池 Coverage Results" MODIFIED="1473985113675" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_线程" />
     <SUITE FILE_PATH="coverage/s12_python3$9_.coverage" NAME="9_特殊成员 Coverage Results" MODIFIED="1471996769315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day7" />
+    <SUITE FILE_PATH="coverage/s12_python3$6_mq.coverage" NAME="6_mq Coverage Results" MODIFIED="1474358695666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_db_mq" />
     <SUITE FILE_PATH="coverage/s12_python3$homework_class.coverage" NAME="homework-class Coverage Results" MODIFIED="1471757840403" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day7" />
     <SUITE FILE_PATH="coverage/s12_python3$user_main.coverage" NAME="user_main Coverage Results" MODIFIED="1457869305555" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day5/dj/frontend" />
     <SUITE FILE_PATH="coverage/s12_python3$socker_client2.coverage" NAME="socker_client2 Coverage Results" MODIFIED="1472426970893" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day9_socket" />
@@ -112,6 +130,8 @@
     <SUITE FILE_PATH="coverage/s12_python3$7_property.coverage" NAME="7_property Coverage Results" MODIFIED="1471822638727" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day7" />
     <SUITE FILE_PATH="coverage/s12_python3$cs_game.coverage" NAME="cs_game Coverage Results" MODIFIED="1469972863847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day6" />
     <SUITE FILE_PATH="coverage/s12_python3$8_timer.coverage" NAME="8_timer Coverage Results" MODIFIED="1473925765557" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_线程" />
+    <SUITE FILE_PATH="coverage/s12_python3$9_exchange.coverage" NAME="9_exchange Coverage Results" MODIFIED="1474364390251" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_db_mq" />
+    <SUITE FILE_PATH="coverage/s12_python3$11_tag_.coverage" NAME="11_tag_发布者 Coverage Results" MODIFIED="1474366690102" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/day12_db_mq" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -121,30 +141,7 @@
     <favorites_list name="s12_python3" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="17_协程.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/day11_线程_进程/17_协程.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
-              <folding>
-                <element signature="e#122#148#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="18_mem_redis.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/day11_线程_进程/18_mem_redis.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8848315">
-              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -162,33 +159,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/day7/7_property.py" />
-        <option value="$PROJECT_DIR$/day7/6_method.py" />
-        <option value="$PROJECT_DIR$/day7/8_私有属性.py" />
-        <option value="$PROJECT_DIR$/day7/9_特殊成员.py" />
-        <option value="$PROJECT_DIR$/day7/10_isinstence.py" />
-        <option value="$PROJECT_DIR$/day7/项目扩展练习/backend/commons.py" />
-        <option value="$PROJECT_DIR$/day7/项目扩展练习/lib.py" />
-        <option value="$PROJECT_DIR$/day7/项目扩展练习/settings.py" />
-        <option value="$PROJECT_DIR$/day7/项目扩展练习/index.py" />
-        <option value="$PROJECT_DIR$/day7/11_有序字典.py" />
-        <option value="$PROJECT_DIR$/day7/12_单利模式.py" />
-        <option value="$PROJECT_DIR$/day7/13_except.py" />
-        <option value="$PROJECT_DIR$/day7/homework_course.py" />
-        <option value="$PROJECT_DIR$/day7/14_作业.py" />
-        <option value="$PROJECT_DIR$/day9_socket/socker_client.py" />
-        <option value="$PROJECT_DIR$/day9_socket/socker_server.py" />
-        <option value="$PROJECT_DIR$/day9_socket/simple_ssh/socker_client1.py" />
-        <option value="$PROJECT_DIR$/day9_socket/simple_ssh/socker_server.py" />
-        <option value="$PROJECT_DIR$/day9_socket/socke_server/thread_socket_client.py" />
-        <option value="$PROJECT_DIR$/day9_socket/socke_server/thread_socket_server.py" />
-        <option value="$PROJECT_DIR$/day9_socket/ftp_project/ftp_server.py" />
-        <option value="$PROJECT_DIR$/day9_socket/ftp_project/ftp_client.py" />
-        <option value="$PROJECT_DIR$/day9_socket/simple_http/thread_socket_server.py" />
-        <option value="$PROJECT_DIR$/day9_socket/ftp_project/wb_server.py" />
-        <option value="$PROJECT_DIR$/day9_socket/ftp_project/wb_client.py" />
-        <option value="$PROJECT_DIR$/day9_socket/simple_http/wb_client.py" />
-        <option value="$PROJECT_DIR$/day10/1_块级作用域.py" />
         <option value="$PROJECT_DIR$/day10/2_多路.py" />
         <option value="$PROJECT_DIR$/day10/3_socket_client.py" />
         <option value="$PROJECT_DIR$/day10/2_socket_server.py" />
@@ -213,6 +183,33 @@
         <option value="$PROJECT_DIR$/day12_线程/16_进程池.py" />
         <option value="$PROJECT_DIR$/day12_线程/17_协程.py" />
         <option value="$PROJECT_DIR$/day12_线程/18_mem_redis.py" />
+        <option value="$PROJECT_DIR$/day11_线程_进程/14_进程锁.py" />
+        <option value="$PROJECT_DIR$/day11_线程_进程/10_theading_pool.py" />
+        <option value="$PROJECT_DIR$/day11_线程_进程/18_mem_redis.py" />
+        <option value="$PROJECT_DIR$/day12_/1_thread_pool.py" />
+        <option value="$PROJECT_DIR$/day12_/1_thread_pool_上下文管理.py" />
+        <option value="$PROJECT_DIR$/day12_/2_上下文管理.py" />
+        <option value="$PROJECT_DIR$/day12_/3_发布订阅.py" />
+        <option value="$PROJECT_DIR$/day12_/3_订阅者.py" />
+        <option value="$PROJECT_DIR$/day12_/4_发布者.py" />
+        <option value="$PROJECT_DIR$/day12_/redis_发布者.py" />
+        <option value="$PROJECT_DIR$/day12_/Redis_订阅者.py" />
+        <option value="$PROJECT_DIR$/day12_/RedisHelper.py" />
+        <option value="$PROJECT_DIR$/day12_/Redis_发布者.py" />
+        <option value="$PROJECT_DIR$/day12_db_mq/6_mq.py" />
+        <option value="$PROJECT_DIR$/day12_db_mq/6_mq_send.py" />
+        <option value="$PROJECT_DIR$/day12_db_mq/7_mq_recv.py" />
+        <option value="$PROJECT_DIR$/day12_db_mq/9_exchange.py" />
+        <option value="$PROJECT_DIR$/day12_db_mq/8_exchange.py" />
+        <option value="$PROJECT_DIR$/day12_db_mq/10_tag_消费者2.py" />
+        <option value="$PROJECT_DIR$/day12_db_mq/11_tag_发布者.py" />
+        <option value="$PROJECT_DIR$/day12_db_mq/10_tag_消费者.py" />
+        <option value="$PROJECT_DIR$/day12_db_mq/12_pymysql.py" />
+        <option value="$PROJECT_DIR$/day12_db_mq/13_orm_create.py" />
+        <option value="$PROJECT_DIR$/day12_db_mq/21_alex_AqlAlchemy.py" />
+        <option value="$PROJECT_DIR$/day12_db_mq/14_paramiko.py" />
+        <option value="$PROJECT_DIR$/day12_db_mq/15_paramiko_sftp.py" />
+        <option value="$PROJECT_DIR$/day11_线程_进程/9_theading_pool.py" />
       </list>
     </option>
   </component>
@@ -223,7 +220,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="1920" />
+    <option name="width" value="1280" />
     <option name="height" value="773" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -271,16 +268,13 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="s12_python3" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -293,15 +287,35 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="s12_python3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="s12_python3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="day12_db_mq" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/day12_db_mq" />
+      <recent name="$PROJECT_DIR$/day9_socket/ftp_project" />
+      <recent name="$PROJECT_DIR$/day9_socket/simple_http" />
+      <recent name="$PROJECT_DIR$/day9_socket/simple_ssh" />
+      <recent name="$PROJECT_DIR$/day9_socket" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/day9_socket/simple_http" />
       <recent name="$PROJECT_DIR$/day9_socket/simple_ssh" />
@@ -309,101 +323,94 @@
       <recent name="$PROJECT_DIR$/day5/dj/frontend" />
       <recent name="$PROJECT_DIR$/day5" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/day9_socket/ftp_project" />
-      <recent name="$PROJECT_DIR$/day9_socket/simple_http" />
-      <recent name="$PROJECT_DIR$/day9_socket/simple_ssh" />
-      <recent name="$PROJECT_DIR$/day9_socket" />
-      <recent name="$PROJECT_DIR$/day1/homework" />
-    </key>
   </component>
-  <component name="RunManager" selected="Python.17_协程">
-    <configuration default="false" name="11_进程" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.15_paramiko_sftp">
+    <configuration default="false" name="10_tag_消费者2" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/day12_线程" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/day12_db_mq" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="s12_python3" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/day12_线程/11_进程.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/day12_db_mq/10_tag_消费者2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="12_进程共享数据" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="11_tag_发布者" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/day12_线程" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/day12_db_mq" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="s12_python3" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/day12_线程/12_进程共享数据.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/day12_db_mq/11_tag_发布者.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="13_进程共享数据mangers_dict" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="21_alex_AqlAlchemy" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/day12_线程" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/day12_db_mq" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="s12_python3" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/day12_线程/13_进程共享数据mangers_dict.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/day12_db_mq/21_alex_AqlAlchemy.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="16_进程池" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="14_paramiko" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/day12_线程" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/day12_db_mq" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="s12_python3" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/day12_线程/16_进程池.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/day12_db_mq/14_paramiko.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="17_协程" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="15_paramiko_sftp" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/day12_线程" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/day12_db_mq" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="s12_python3" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/day12_线程/17_协程.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/day12_db_mq/15_paramiko_sftp.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -640,19 +647,19 @@
     <list size="7">
       <item index="0" class="java.lang.String" itemvalue="Python.city_list" />
       <item index="1" class="java.lang.String" itemvalue="Python.guess_number_limit_for" />
-      <item index="2" class="java.lang.String" itemvalue="Python.11_进程" />
-      <item index="3" class="java.lang.String" itemvalue="Python.12_进程共享数据" />
-      <item index="4" class="java.lang.String" itemvalue="Python.13_进程共享数据mangers_dict" />
-      <item index="5" class="java.lang.String" itemvalue="Python.16_进程池" />
-      <item index="6" class="java.lang.String" itemvalue="Python.17_协程" />
+      <item index="2" class="java.lang.String" itemvalue="Python.10_tag_消费者2" />
+      <item index="3" class="java.lang.String" itemvalue="Python.11_tag_发布者" />
+      <item index="4" class="java.lang.String" itemvalue="Python.21_alex_AqlAlchemy" />
+      <item index="5" class="java.lang.String" itemvalue="Python.14_paramiko" />
+      <item index="6" class="java.lang.String" itemvalue="Python.15_paramiko_sftp" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.17_协程" />
-        <item index="1" class="java.lang.String" itemvalue="Python.16_进程池" />
-        <item index="2" class="java.lang.String" itemvalue="Python.13_进程共享数据mangers_dict" />
-        <item index="3" class="java.lang.String" itemvalue="Python.12_进程共享数据" />
-        <item index="4" class="java.lang.String" itemvalue="Python.11_进程" />
+        <item index="0" class="java.lang.String" itemvalue="Python.15_paramiko_sftp" />
+        <item index="1" class="java.lang.String" itemvalue="Python.14_paramiko" />
+        <item index="2" class="java.lang.String" itemvalue="Python.21_alex_AqlAlchemy" />
+        <item index="3" class="java.lang.String" itemvalue="Python.11_tag_发布者" />
+        <item index="4" class="java.lang.String" itemvalue="Python.10_tag_消费者2" />
       </list>
     </recent_temporary>
   </component>
@@ -670,27 +677,27 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="773" extended-state="0" />
+    <frame x="0" y="23" width="1280" height="773" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20833333" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23203126" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45454547" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40198863" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38920453" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934928" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.328125" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4005682" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -713,144 +720,11 @@
           <option name="timeStamp" value="120" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="123" />
+      <option name="time" value="132" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/day7/7_property.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5612903">
-          <caret line="29" column="10" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/day7/6_method.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.67741936">
-          <caret line="35" column="11" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/day7/8_私有属性.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/day7/9_特殊成员.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="13" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/day7/10_isinstence.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/day7/项目扩展练习/libbbb.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/day7/项目扩展练习/backend/commons.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16544117">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/day7/项目扩展练习/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11029412">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/day7/项目扩展练习/index.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2757353">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/day7/12_单利模式.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.091019414">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/day7/11_有序字典.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49150485">
-          <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/day7/13_except.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="21" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/day6_class/cs_game.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/day7/cousre.db">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/day7/14.db">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/day7/14_作业.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6005917">
-          <caret line="93" column="7" selection-start-line="93" selection-start-column="7" selection-end-line="93" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/day9_socket/socker_client1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2689655">
-          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/day9_socket/socker_client2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/day9_socket/socke_server/thread_socket_client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37292817">
-          <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/day9_socket/simple_ssh/socker_server.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8562992">
@@ -977,9 +851,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding>
-            <element signature="e#60#76#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1018,26 +889,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/day11_线程_进程/9_theading_pool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
-          <folding>
-            <element signature="e#58#70#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/day11_线程_进程/10_theading_pool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.1240876">
-          <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
-          <folding>
-            <element signature="e#59#71#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/day11_线程_进程/11_进程.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1049,34 +900,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding>
-            <element signature="e#61#102#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/day11_线程_进程/13_进程共享数据mangers_dict.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52554744">
-          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/day11_线程_进程/14_进程锁.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/day11_线程_进程/16_进程池.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding>
-            <element signature="e#60#92#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1084,16 +907,186 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
-          <folding>
-            <element signature="e#122#148#0" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/day11_线程_进程/14_进程锁.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/day11_线程_进程/13_进程共享数据mangers_dict.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.011236">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/day11_线程_进程/16_进程池.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5555556">
+          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/site-packages/threadpool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="16" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/day11_线程_进程/18_mem_redis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8848315">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/day12_db_mq/1_thread_pool_上下文管理.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/day12_db_mq/2_上下文管理.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4964539">
+          <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/day12_db_mq/Redis_订阅者.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/day12_db_mq/Redis_发布者.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/day12_db_mq/RedisHelper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45899633">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/day12_db_mq/6_mq_send.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/day12_db_mq/7_mq_recv.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42227662">
+          <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/day12_db_mq/9_exchange_send.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31343284">
+          <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/day12_db_mq/8_exchange.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4477612">
+          <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/day12_db_mq/13_orm_create.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.1862068">
+          <caret line="154" column="0" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
+          <folding>
+            <element signature="e#59#114#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/day12_db_mq/12_pymysql.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2689655">
+          <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/day12_db_mq/14_paramiko.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="66" column="34" selection-start-line="66" selection-start-column="34" selection-end-line="66" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/day12_db_mq/15_paramiko_sftp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.1460674">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/day12_db_mq/21_alex_AqlAlchemy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13483146">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/day11_线程_进程/9_theading_pool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.14606741">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/day11_线程_进程/10_theading_pool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49438202">
+          <caret line="125" column="12" selection-start-line="125" selection-start-column="12" selection-end-line="125" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/day12_db_mq/11_tag_发布者.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37078652">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/day12_db_mq/10_tag_消费者2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.53932583">
+          <caret line="23" column="43" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/day12_db_mq/10_tag_消费者.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13483146">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/day12_db_mq/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.06741573">
+          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
           <folding />
         </state>
       </provider>

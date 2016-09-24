@@ -3,6 +3,7 @@
 #Author: willianflasky
 import queue
 import threading,time
+#basic edition
 
 class ThreadPool(object):
     def __init__(self,maxsize=5):
