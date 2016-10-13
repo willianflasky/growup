@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id='i1' style="display: inline-block;background-color: red;color: white">欢迎宝强来临指导!</div>
+
+    <script>
+        setInterval("f1();",1000);
+        function f1() {
+            //获取id=i1的标签
+            var tag = document.getElementById('i1');
+            //获取标签的内容
+            var text = tag.innerText;
+            var a = text.charAt(0);
+            var sub = text.substring(1, text.length - 1);
+            var new_str = sub + a;
+            tag.innerText = new_str;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <script>
+        var url="http://www.etiantian.org?n=王宝强"
+        var ret = encodeURI(url)
+        var u= decodeURI(ret)
+//        alert(ret)
+//        alert(u)
+        console.log(ret)
+        console.log(u)
+
+//        特殊字符全部转义
+        var r2=encodeURIComponent(url);
+        console.log(r2)
+    </script>
+</body>
+</html>

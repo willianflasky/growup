@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .inp{
+            height: 25px;
+            border: 0;
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+            margin: 0;
+            padding: 0;
+            float:left;
+        }
+
+        .sp{
+            display: inline-block;
+            text-align: center;
+            width: 25px;
+            height: 25px;
+            line-height: 25px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div style="border: 1px solid black;display: inline-block">
+        <span class="sp">-</span>
+        <input class="inp" type="text"/>
+        <span class="sp">+</span>
+    </div>
+    <input value="default value" />
+
+</body>
+</html>
+<!--
+HTML:
+1.img标签默认IE有边框
+2.inline-block默认 3px;
+3.input参数:
+    text
+    textarea
+    password
+    checkbox    checked="checked"默认值
+            name相头,value不同
+    radio,名字相头,互斥   checked="checked"
+    file
+    button 无效果
+    submit 提交当前Form表单
+    reset  重置当前form表单
+
+4.select下拉框  selected="selected"
+-->
+
+<!--
+CSS:
+1. color:red !important;
+
+-->

@@ -20,3 +20,6 @@ channel.basic_publish(exchange='',
 
 print(" [x] Sent 'Hello World!'")
 connection.close()
+
+#durable=True 声明了队列需要持久化，delivery_mode = 2 声明了队列的消息需要持久化。
+

@@ -46,7 +46,7 @@ class ssh(object):
         transport.close()
 
 
-ssh=ssh('192.168.3.6',22,'root','100200')
+ssh=ssh('192.168.3.6',22,'root','123456')
 ssh.run('df -h')
 """
 
