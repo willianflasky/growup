@@ -30,9 +30,9 @@ def sync():
     cmd=('gzip %s/%s.gor'%(base_dir,curr_time))
     ret=commands.getstatusoutput(cmd)
     if ret[0] == 0:
-        ret_scp=commands.getstatusoutput('scp %s.gor.gz 54.222.222.47:/root/vipkid/datafile'%curr_time)
+        ret_scp=commands.getstatusoutput('scp %s.gor.gz x.x.x.x:/root/vipkid/datafile'%curr_time)
         if ret_scp[0] == 0:
-            commands.getstatusoutput('ssh 54.222.222.47 gunzip /root/vipkid/datafile/%s.gor.gz'%curr_time)
+            commands.getstatusoutput('ssh x.x.x.x gunzip /root/vipkid/datafile/%s.gor.gz'%curr_time)
         else:
             print 'scp error!\n'
             print ret[0],ret[1]
