@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input id="i1" type="test" value="请输入关键字" onfocus="Focus();" onblur="Blur()"/>
+
+    <script type="text/javascript">
+
+        function Focus(){
+            var tag=document.getElementById("i1");
+            if(tag.value=="请输入关键字") {
+                tag.value = "";
+            }
+        }
+
+        function Blur(){
+            var tag=document.getElementById('i1');
+            if(tag.value.trim().length==0){
+                tag.value="请输入关键字";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div id="p1">
+        <p>1</p>
+        <p>2</p>
+    </div>
+
+    <script>
+        var p1=document.getElementById('p1')
+        var tag=document.createElement('p')
+        tag.innerText='pppp'
+//        p1.appendChild(tag)
+        p1.insertBefore(tag,p1.children[0])
+    </script>
+</body>
+</html>

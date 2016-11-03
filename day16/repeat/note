@@ -1,0 +1,63 @@
+
+
+JQuery
+    1.模块,Dom and JavaScript
+        version:1.12
+                2.x
+
+    2.查找:
+        选择器:
+            id选择器   $('#il')
+            标签选择器  $('div')
+            类选择器    $('.item')
+            组合选择器   $('.item a,$i2')
+            层级选择器   $('.item a')
+        筛选器:
+            $('.item:first')
+            $('.item:last')
+            $('.item:eq(1)') #索引位置
+            $('#i1').eq(1)   #一样
+            $('.item:odd')
+            $('.item:even')
+            $('#i1').find('.item')
+            $('#i1').is('div')
+
+        属性:
+            $('div[id]')
+            $('div[name="tom"]')
+
+        表单:
+            $(':text')
+            $('input[type="text"]')
+            $(':selected')
+            $(':checked')
+            $(':disabled')
+            $(':enabled')
+    3.操作:
+        CSS:
+            addClass()
+            removeClass()
+            toggleClass('hide')
+        属性:
+            $(':checked').prop('checked');  //获取
+            $(':checked').prop('checked',true); //设置
+            $('#i1').html()     //获取HTML内容;
+            $('#i1').html("<span>123</span>") //设置HTML内容;
+            $('#i1').css('fontSize')      //获取
+            $('#i1').css('fontSize','18px'); //设置
+            $('#i1').scrollTop();
+            $('#i1').scrollTop(0);
+
+        文档:
+            $('#i1').append('<a>abc</a>')
+            $('div').empty()
+            $('div').remove()
+    4.事件:
+        <1>如果使用jQuery绑定click.
+        <2>当文档加载完毕后自动执行.
+            $(function(){ ... });
+        <3>延迟绑定.
+            delegate
+
+    5.扩展:
+
