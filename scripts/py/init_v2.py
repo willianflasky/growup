@@ -63,7 +63,7 @@ import hashlib
 
 #install wget
 if not os.path.exists('/usr/bin/wget'):
-	ret=subprocess.Popen('yum install wget epel-release -y',shell=True,stderr=subprocess.PIPE)
+	ret=subprocess.Popen('yum install wget -y',shell=True,stderr=subprocess.PIPE)
 	if ret.stderr.read():
 		print("安装wget失败.")
 		exit()
