@@ -1,0 +1,87 @@
+#for django
+
+1.install
+    pip3 install Django
+
+2.create project    运维系统
+    django-admin startproject mysite
+
+    mysite
+        mysite
+            - sittings.py   #配置文件
+            - urls.py       #路由系统
+            - wsgi.py       #WSGI socket
+
+        manage.py           #启动文件
+
+3.create app
+    cd mysite
+    python manage.py startapp cmdb
+
+    cmdb
+        - models.py     #db相关
+        - views.py      #用户请求
+        - tests.py      #单元测试
+        - admin.py      #后台管理
+        - apps.py       #本app的配置文件
+
+4.编写代码
+    urls.py     #写路由
+    views.py    #写函数
+
+5.启动程序
+    python manage.py runserver 127.0.0.1:8000
+
+6.使用模版
+
+    1>settings.py
+        TEMPLATES=[
+                'DIRS': [os.path.join(BASE_DIR,'templates')],
+                ]
+    2>使用rander返回html
+    3>mkdir mysite_django/templeates
+7.静态目录的配置
+    1>settings.py
+        STATIC_URL = '/static/'
+        STATICFILES_DIRS=(
+            os.path.join(BASE_DIR,'statics'),
+        )
+    2>其它可以引入:
+        <script src="/static/jquery-1.12.4.js"></script>
+    3>mkdir mysite_django/static
+
+8.关闭跨站请求安全
+    settings.py
+        #django.middleware.csrf.CsrfViewMiddleware
+
+9.连接数据库和操作数据库
+    ORM
+    settings.py (default)
+
+    1>modals.py
+        class UserInfo(models.Model):
+        user = models.CharField(max_length=32)
+        email = models.CharField(max_length=32)
+    2>注册APP
+        INSTALL_APPS=[
+            'cmdb',
+        ]
+    3>创建DB
+        python manage.py makemigrations
+        python manage.py migrate
+    4>操作DB
+        创建:
+            models.类名.objects.create(user=u,email=e)
+        获取:
+            models.类名.objects.all()
+
+        检测:
+            ret=models.类名.objects.filter(user='alex').count()
+            #获取用户名等于alex数据个数.
+
+        登录:
+            测: ret=models.类名.objects.filter(user='alex').count()
+            成功:跳转   redirect
+
+            失败:当前页面
+

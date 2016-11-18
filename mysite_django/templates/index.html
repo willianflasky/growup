@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h1>用户输入:</h1>
+
+    <form action="/index/" method="POST">
+        <input type="text" name="user" />
+        <input type="text" name="email" />
+        <input type="submit" value="提交" />
+
+    </form>
+    <h1 style="background-color: blue;color: white">123</h1>
+
+    <h1>数据展示:</h1>
+    <table border="1">
+        <tr>
+            <th>用户名</th>
+            <th>邮箱</th>
+        </tr>
+        {% for line in data %}
+            <tr>
+                <td>{{ line.user }}</td>
+                <td>{{ line.email }}</td>
+            </tr>
+
+        {% endfor %}
+    </table>
+    <script src="/static/jquery-1.12.4.js"></script>
+</body>
+</html>
