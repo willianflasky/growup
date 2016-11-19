@@ -3,19 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        span{
+            color: red;
+        }
+
+    </style>
 </head>
 <body>
+    <h1 style="color: red">{{ info }}</h1>
 
     <h1>用户输入:</h1>
 
-    <form action="/index/" method="POST">
-        <input type="text" name="user" />
-        <input type="text" name="email" />
+    <form id="form1" action="/index/" method="POST">
+        <div>用户名:</div>
+        <input id="item" type="text" name="user"  name="user" label="用户名" require="true"/>
+        <div>邮箱:</div>
+        <input id="item" type="text" name="email" name="user" label="用户名" require="true"/>
         <input type="submit" value="提交" />
 
     </form>
-    <h1 style="background-color: blue;color: white">123</h1>
-
     <h1>数据展示:</h1>
     <table border="1">
         <tr>
@@ -31,5 +38,11 @@
         {% endfor %}
     </table>
     <script src="/static/jquery-1.12.4.js"></script>
+    <script src="/static/commons.js"></script>
+    <script>
+        $(function(){
+            $.valid('#form1');
+        })
+    </script>
 </body>
 </html>

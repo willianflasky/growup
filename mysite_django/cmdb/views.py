@@ -11,6 +11,9 @@ def home(request):
         m=models.UserInfo.objects.filter(user=u).count()
         if m >= 1:
             return redirect('/index/')
+        else:
+            return HttpResponse(status=403)
+
     return render(request,'home.html')
 
 
@@ -21,8 +24,14 @@ def index(request):
     if request.method=='POST':
         u = request.POST.get('user',None)
         e = request.POST.get('email',None)
-        models.UserInfo.objects.create(user=u,email=e)
-
+        ret=models.UserInfo.objects.filter(user=u).count()
+        if ret >= 1:
+            return redirect('/index/')
+        else:
+            if len(u) == 0 or len(e) == 0:
+                return redirect('/index/')
+            else:
+                models.UserInfo.objects.create(user=u,email=e)
 
     data_list=models.UserInfo.objects.all()
 

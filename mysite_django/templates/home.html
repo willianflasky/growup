@@ -3,14 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        span{
+            color: red;
+        }
+    </style>
 </head>
 <body>
 
-    <h1>主页:</h1>
-    <form action="/home/" method="POST">
-        <input type="text" name="user" />
-        <input type="text" name="email" />
+    <h1 style="color:red">Mysite主页:</h1>
+    <form id="form1" action="/home/" method="POST">
+        <div>用户名:</div>
+        <input  id="item" type="text" name="user" label="用户名" require="true"/>
+        <div>邮箱:</div>
+        <input  id="item" type="text" name="email" label="邮箱" require="true" />
+        <br />
         <input type="submit" value="提交" />
     </form>
+
+    <script src="/static/jquery-1.12.4.js"></script>
+    <script src="/static/commons.js"></script>
+
+
+    <script>
+       $(function(){
+            $.valid('#form1');
+        })
+
+    </script>
+
 </body>
 </html>
