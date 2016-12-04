@@ -1,0 +1,15 @@
+1.路由系统
+    project:
+        django-admin startproject mysite
+        cd mysite
+        python manage.py startapp app01
+
+
+    普通关系:
+        /index/  --> 函数
+
+    动态关系:
+        /index/(\d+)/ --> 函数+参数
+
+    路由分发:
+        /index/  --> include('cmdb.url') ;cmdb urls.py

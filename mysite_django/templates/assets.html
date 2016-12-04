@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <table>
+        {% for item in assets_list %}
+            <tr>
+                <td>{{ item.hostname }}</td>
+                <td>{{ item.port }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
+
+
+{% block js %}
+
+    <script>
+        document.getElementsById('assets').className('active')
+    </script>
+{% endblock %}

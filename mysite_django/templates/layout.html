@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .pg-header{
+            height: 48px;
+            background-color: cadetblue;
+        }
+        .pg-body{
+            min-height: 500px;
+        }
+        .pg-body .body-menu{
+            width: 20%;
+            float: left;
+        }
+        .pg-body .body-content{
+            width: 80%;
+            float: left;
+        }
+        .pg-footer{
+            height: 100px;
+            background-color: brown;
+        }
+        .active{
+            background-color: pink;
+            color: white;
+        }
+    </style>
+
+    {% block css %} {% endblock %}
+
+</head>
+<body>
+    <div class="pg-header">后台管理系统</div>
+
+    <div class="pg-body">
+        <div class="body-menu">
+            <ul>
+                <li><a class="active" href="/userinfo">用户管理</a></li>
+                <li><a href="/assets">资产管理</a></li>
+            </ul>
+        </div>
+
+        <div class="body-content">
+            {% block body %} {% endblock %}
+        </div>
+
+    </div>
+    <div class="pg-footer"></div>
+
+    {% block js %}{% endblock %}
+</body>
+</html>

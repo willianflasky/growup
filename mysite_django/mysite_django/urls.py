@@ -13,12 +13,26 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url,include
 from django.contrib import admin
 from cmdb import views
 
+
 urlpatterns = [
-    #url(r'^admin/', admin.site.urls),
-    url(r'^index/', views.index),
-    url(r'^home/',views.home),
+    url(r'^admin/', admin.site.urls),
+    url(r'^web/', include('cmdb.urls')),
+    # url(r'^index/(\d+)/', views.index),
+    # url(r'^detail/(\d+)/', views.detail),
+
+    # url(r'^home/',views.home),
+    # url(r'^delete/',views.delete),
+    # url(r'^time/plus/(\d{1,2})/$',views.hours_ahead),
+    url(r"^$",views.first),
+    # # rul(r'^detail1/(\d+)/(\d+)/'),
+    # url(r"^detail/(?P<p1>\d+)/(?P<p2>\d+)/",views.detail),
+    url(r"template/",views.template),
+    url(r"assets/",views.assets),
+    url(r"userinfo/",views.userinfo),
+    url(r"ajax_demo/",views.ajax_demo),
+
 ]

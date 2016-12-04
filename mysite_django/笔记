@@ -1,0 +1,186 @@
+#for django
+
+1.install
+    pip3 install Django
+
+2.create project    运维系统
+    django-admin startproject mysite
+
+    mysite
+        mysite
+            - sittings.py   #配置文件
+            - urls.py       #路由系统
+            - wsgi.py       #WSGI socket
+
+        manage.py           #启动文件
+
+3.create app
+    cd mysite
+    python manage.py startapp cmdb
+
+    cmdb
+        - models.py     #db相关
+        - views.py      #用户请求
+        - tests.py      #单元测试
+        - admin.py      #后台管理
+        - apps.py       #本app的配置文件
+
+4.编写代码
+    urls.py     #写路由
+    views.py    #写函数
+
+5.启动程序
+    python manage.py runserver 127.0.0.1:8000
+
+6.使用模版
+
+    1>settings.py
+        TEMPLATES=[
+                'DIRS': [os.path.join(BASE_DIR,'templates')],
+                ]
+    2>使用rander返回html
+    3>mkdir mysite_django/templeates
+7.静态目录的配置
+    1>settings.py
+        STATIC_URL = '/static/'
+        STATICFILES_DIRS=(
+            os.path.join(BASE_DIR,'statics'),
+        )
+    2>其它可以引入:
+        <script src="/static/jquery-1.12.4.js"></script>
+    3>mkdir mysite_django/static
+
+8.关闭跨站请求安全
+    settings.py
+        #django.middleware.csrf.CsrfViewMiddleware
+
+9.连接数据库和操作数据库
+    ORM
+    settings.py (default)
+
+    1>modals.py
+        class UserInfo(models.Model):
+        user = models.CharField(max_length=32)
+        email = models.CharField(max_length=32)
+    2>注册APP
+        INSTALL_APPS=[
+            'cmdb',
+        ]
+    3>创建DB
+        python manage.py makemigrations
+        python manage.py migrate
+    4>操作DB
+        创建:
+            models.类名.objects.create(user=u,email=e)
+        获取:
+            models.类名.objects.all()
+
+        检测:
+            ret=models.类名.objects.filter(user='alex').count()
+            #获取用户名等于alex数据个数.
+
+        登录:
+            测: ret=models.类名.objects.filter(user='alex').count()
+            成功:跳转   redirect
+
+            失败:当前页面
+
+10.路由系统
+    project:
+        django-admin startproject mysite
+        cd mysite
+        python manage.py startapp app01
+
+    普通关系:
+        /index/  --> 函数
+
+    动态关系:
+        /index/(\d+)/ --> 函数+参数
+
+    路由分发:
+        /index/  --> include('cmdb.url') ;cmdb urls.py
+
+11.模板
+    1.模板渲染的过程.
+    2.{{ k1.0 }}  索引用.
+    3.{{% for item in  k2 %}}
+            <p>{{ item }},{{ forloop.counter }},{{ forloop.counter0 }},{{ forloop.first }},{{ forloop.last }},{{ forloop.revcounter }}</p>
+      {{% endfor %}}
+    4.模板语言的内置方法.
+    5.自定义方法
+        filter
+        simple_tag
+        <1>创建文件夹,名字不能改,templatetags
+        <2>建创xx.py
+                from django import template
+                from django.utils.safestring import mark_safe
+                from django.template.base import resolve_variable,Node,TemplateSyntaxError
+                register=template.Library()
+        <3>创建函数
+            @register.filter
+            def f1(value):
+                return value + "666"
+
+            @register.simple_tag
+            def f2(s1,s2,s3,s4):
+                return s1+s2+s3+s4
+
+        <4>在HTML模版的头部执行
+            {% load xx %}
+        <5>使用
+            {{ k1|f1 }}
+            {% f2 1 2 3 4 %}
+
+        <6>filter
+            限制:传参1个.
+            支持:模版语言的if条件.
+        <7>simple_tag
+            不支持:模版语言的if条件.
+
+        <8>模版的继承
+                base:
+                    {% block body %} {% endblock %}
+                son:
+                    {% extends "base.html" %}
+
+                    {% block body % {% endblock %}
+        <9>引用
+            {% include "x.html" %}
+
+12.ajax
+    1.下载
+    2.放在static
+    3.settings设置.
+    4.html导入
+
+    $.ajax({
+            url:"/index/",
+            type:"POST",
+            data:{'username':'alex','password':'123'},
+            success:function(data){
+                        //当后台return之后,访函数自动执行.
+                        //data就是后台返回的数据.
+                    }
+        })
+
+    <1>XMLHttpRequest对象(原生 ajax)
+    <2>jQuery - XMLHttpRequet(jQuery ajax)
+    <3>跨域ajax
+
+13.model,ORM
+    <1>创建操作数据表
+        code.first
+        db.first
+
+        python3 manage.py makemigrations
+        python3 mange.py migrate
+
+    <2>表类型
+        a.单表
+        b.一对多  forigkey
+        c.多对多
+        d.一对一
+        
+
+14.Form验证(用于用户提交数据的验证)
+
