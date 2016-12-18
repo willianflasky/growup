@@ -182,5 +182,81 @@
         d.一对一
         
 
-14.Form验证(用于用户提交数据的验证)
+14.Form验证
+       - 用于用户提交数据的验证
+            --定义规则
+            --数据提交
+       - 生成HTML标签
 
+15.CSRF
+    -内兜(cookie),外兜(标签)
+    form提交
+    ajax提交
+
+16.model操作补充
+    - 基本操作
+    - 进阶
+    - 双下滑线
+
+
+
+    class UserInfo(models.Mode):
+        user=models.CharField(max_length=32)
+        pwd=models.CharField(max_length=32)
+
+    #单表操作:
+    queryset=UserInfo.objects.all()
+    print(queryset.query)  --SQL语句
+    [UserInfo对象,UserInfo对象,UserInfo对象]
+
+    queryset=UserInfo.objects.all().values('user')
+    [{'user':'alex'},{'user':'eric'}]
+
+    queryset=UserInfo.objects.all().value_list('user')
+    [('alex'),('eric')]
+
+
+    #一对多:
+
+    class something(models.Model):
+        name = models.CharField(max_length=32)
+
+    class UserType(models.Model)
+        catption=models.CharField(max_length=32)
+        s=models.ForignKey('something')
+
+        #超级管理员,普通用户,游客
+
+    class UserInfo(models.Mode):
+        user=models.CharField(max_length=32)
+        pwd=models.CharField(max)length=32)
+        user_type=models.ForignKey('UserType')
+
+    创建UserInfo
+        1.UserInfo.objects.create(user='alex',pwd='123',user_type=UserType.objects.get(id=2))
+        2.UserInfo.objects.create(user='alex',pwd='123',user_type_id=2)
+    查询
+        1.UserInfo.objects.filter(user='alex')  #单表查询
+        2.查询所有用户类型等于普通用户的所有用户名和密码
+            uid=UserType.objects.get(caption="普通用户").id
+            UserInfo.objects.fileter(user_type_id=uid)
+
+            queryset=UserInfo.objects.filter(user_type__caption='普通用户')
+                [UserInfo对象,UserInfo对象,UserInfo对象]
+            row=queryset[0]
+            row.user
+            row.pwd
+            row.user_type.id
+            row.user_type.caption
+            ### objects
+            ### row.外建字段.外建表的字段
+
+             queryset=UserInfo.objects.filter(user_type__caption='普通用户').values('user','user_type__caption')
+                [{'user':'alex','user_type__cation':'普通用户'},{'user':'eric','user_type__cation':'普通用户'}]
+             row=queryset[0]
+             row['user']
+             row['user_type__caption']
+
+    #夸二张表
+        UserInfo.objects.filter(user_type__s__name='xx')
+        

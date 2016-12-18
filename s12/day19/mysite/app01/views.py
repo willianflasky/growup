@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,HttpResponse,redirect
 
 # Create your views here.
 from django import forms
@@ -40,3 +40,107 @@ def login(request):
         objGet=LoginForm()
     return render(request, 'login.html',{'obj1':objGet})
 
+
+
+def csrf(request):
+    return render(request,'csrf.html')
+
+def cookie(request):
+    print(request.COOKIES)
+    obj= HttpResponse(request,'cookie.html')
+    obj.set_cookie('k1','v1')
+    return obj
+
+
+def log(request):
+    if request.method == 'POST':
+        u = request.POST.get('user')
+        p = request.POST.get('pwd')
+        if u=='alex' and p =='123':
+            red=redirect('/index/')
+            red.set_cookie('username',u)
+            return red
+        else:
+            return render(request,'log.html')
+
+    else:
+        return render(request,'log.html')
+
+def index(request):
+    user=request.COOKIES.get('username')
+    if user:
+        return render(request,'index.html',{'user':user})
+    else:
+        return redirect('/log/')
+
+
+def session_login(request):
+    if request.method == 'POST':
+        u=request.POST.get('user',None)
+        p=request.POST.get('pwd',None)
+        if u =='alex' and p =='123':
+            request.session['user']=u
+            return  redirect('/session_index/')
+
+    return render(request,'session_login.html')
+
+"""
+def session_index(request):
+    user=request.session.get('user',None)
+    if not user:
+        return redirect('/session_login/')
+    else:
+        return render(request,'session_index.html',{'user':user})
+"""
+
+def auth(func):
+    def inner(request,*args,**kwargs):
+        user=request.session.get('user',None)
+        if not user:
+            return redirect('/session_login')
+        return func(request,*args,**kwargs)
+    return inner
+
+
+@auth
+def session_index(request):
+    user=request.session.get('user',None)
+    return render(request,'session_index.html',{'user':user})
+
+@auth
+def session_logout(request):
+    del request.session['user']
+    return redirect('/session_login/')
+
+
+
+
+class AddForm(forms.Form):
+    a=forms.IntegerField()
+    b=forms.IntegerField()
+
+def calc_index(request):
+    if request.method == 'POST':
+        form = AddForm(request.POST)
+
+        if form.is_valid():
+            a=form.cleaned_data['a']
+            b=form.cleaned_data['b']
+            return HttpResponse(str(int(a)+int(b)))
+    else:
+
+        form=AddForm()
+    return render(request,'calc_index.html',{'form':form})
+
+
+def form(request):
+    error=False
+    if 'q' in request.GET:
+        q=request.GET['q']
+        if not q:
+            error=True
+        else:
+            books=UserInfo.objects.filter(user_icontains=q)
+            return render(request,'form.html',{'books':books})
+
+    return render(request,'form.html',{'error':error})

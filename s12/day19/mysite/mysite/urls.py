@@ -15,10 +15,20 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from app01 import views_ajax
+from app01 import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^login/', views_ajax.login),
+    url(r'^login/', views.login),
+    url(r'^csrf/',views.csrf),
+    url(r'^cookie/',views.cookie),
+    url(r'^index/',views.index),
+    url(r'^log/',views.log),
 
+    url(r'^session_login/',views.session_login),
+    url(r'^session_index/',views.session_index),
+    url(r'^session_logout/',views.session_logout),
+
+    url(r'^$',views.calc_index,name='home'),
+    url(r'^form/',views.form,name='form'),
 ]
