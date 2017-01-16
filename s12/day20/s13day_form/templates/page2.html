@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+{% load custom_tags %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .pager a{
+            display: inline-block;
+            padding: 5px;
+            background: cadetblue;
+            margin:2px;
+        }
+        .active{
+            background: gold;
+        }
+    </style>
+</head>
+<body>
+    <table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>name</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in customer_list %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.caption }}</td>
+        </tr>
+
+    {% endfor %}
+
+    </tbody>
+    </table>
+<br>
+    <div class="pagination">
+    <nav>
+                {% if  customer_list.has_previous %}
+                    <span class="#"><a href="?p={{ customer_list.previous_page_number }}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></span>
+                {% endif %}
+
+                {% for page_num in customer_list.paginator.page_range  %}
+                    {% guess_page customer_list.number page_num %}
+                {% endfor %}
+
+                {% if customer_list.has_next %}
+                    <span class="#"><a href="?p={{ customer_list.next_page_number }}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></span>
+                {% endif %}
+    </nav>
+    </div>
+</body>
+</html>

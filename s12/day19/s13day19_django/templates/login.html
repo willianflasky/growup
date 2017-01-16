@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    .error-msg{
+        color:red;
+    }
+    </style>
+
+</head>
+<body>
+    <form action="/login/" method="post">
+    <div>
+        <div>
+            {{ obj1.user }}
+            {% if obj1.errors.user %}
+                <span class="error-msg">{{ obj1.errors.user.0 }}</span>
+            {% endif %}
+        </div>
+        <div>
+            {{ obj1.pwd }}
+            {% if obj1.errors.pwd %}
+                <span class="error-msg">{{ obj1.errors.pwd.0 }}</span>
+            {% endif %}
+        </div>
+        <div>
+            {{ obj1.num }}
+            {% if obj1.errors.num %}
+                <span class="error-msg">{{ obj1.errors.num.0 }}</span>
+            {% endif %}
+        </div>
+        <div>
+            {{ obj1.phone }}
+            {% if obj1.errors.phone %}
+                    <span class="error-msg">{{ obj1.errors.phone.0 }}</span>
+            {% endif %}
+        </div>
+
+        <div>
+            {{ obj1.test }}
+        </div>
+        <input type="submit" value="提交">
+    </div>
+    </form>
+    <script src="/static/jquery-1.12.4.js"></script>
+
+</body>
+</html>

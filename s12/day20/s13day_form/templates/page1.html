@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .pager a{
+            display: inline-block;
+            padding: 5px;
+            background: cadetblue;
+            margin:2px;
+        }
+        .active{
+            background: greenyellow;
+        }
+    </style>
+</head>
+<body>
+    <table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>name</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in customer_list %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.caption }}</td>
+        </tr>
+
+    {% endfor %}
+
+    </tbody>
+    </table>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if customer_list.has_previous %}
+                <a href="?p={{ customer_list.previous_page_number }}">上一页</a>
+            {% endif %}
+            <span class="active">
+                Page {{ customer_list.number }} of {{ customer_list.paginator.num_pages }}.
+            </span>
+
+            {% if customer_list.has_next %}
+                <a href="?p={{ customer_list.next_page_number }}">下一页</a>
+            {% endif %}
+
+        </span>
+    </div>
+</body>
+</html>
