@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="POST" action="/upload/" enctype="multipart/form-data">
+        <input type="text" id="user" name="user"/>
+        <input type="file" id="img" name="img"/>
+        <input type="submit" />
+    </form>
+
+    <a onclick="uploadFile();">XMLHttpResquest上传</a>
+
+    <a onclick="uploadAjax();">jQuery上传</a>
+
+    <script src="/static/jquery-1.12.4.js"></script>
+    <script>
+        //基于原生xml上传文件
+        function uploadFile(){
+            var form = new FormData();
+            form.append('user', document.getElementById('user').value);
+            var fileObj = document.getElementById('img').files[0];
+            form.append('img', fileObj);
+
+            var xhr =new XMLHttpRequest();
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4){
+                    var data = xhr.responseText;
+                    console.log(data);
+                }
+            }
+            xhr.open('post','/upload/', true);
+            xhr.send(form);
+        }
+
+        //基于jquery上传文件
+        function uploadAjax(){
+            // jquery obj and dom obj
+            //var i = document.getElementById('a');
+            //var j = $('#a')
+
+            //$(i)      #dom--> jquery
+            //j[0]      #jquery--> dom
+
+            var fileObj = $('#img')[0].files[0];
+            var form = new FormData();
+            form.append('img', fileObj);
+            form.append('user', 'tom');
+
+            $.ajax({
+                type:"POST",
+                url:'/upload/',
+                data:form,
+                processData:false,
+                contentType:false,
+                success: function (arg) {
+                    console.log(arg);
+                }
+            })
+        }
+
+        //基于ifreme上传
+    </script>
+</body>
+</html>
