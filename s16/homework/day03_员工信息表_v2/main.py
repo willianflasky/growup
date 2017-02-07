@@ -88,101 +88,112 @@ class BASE(object):
         self.data = data
         self.title = title
 
-    def select(self, select, column, FROM, table, where, c1, symbol, d1):
-        num = self.map1.get(c1)
-        if not num:
-            print("输入条件错误!")
-            raise Exception
+    def check_sql(self, sql):
+        tmp_tuple = None
+        if re.search("select +(.*) +from +(.*) +where +(.*)", sql):
+            tmp_tuple = re.search("select +(.*) +from +(.*) +where +(.*)", sql).groups()
 
-        for_display = []
-        if column == "*":
-            if symbol == 'like':
-                count = 0
-                r = re.compile(d1)
-                for row in self.data:
-                    row_list = row.split(',')
-                    result = r.findall(row_list[num])
-                    if result:
-                        count += 1
-                        for_display.append(row)
-                title = self.title.split(',')
-                display(title, for_display)
-                print("count:", count)
+        elif re.search("select +(.*) +from +(.*)", sql):
+            tmp_tuple = re.search("select +(.*) +from +(.*)", sql).groups()
+        else:
+            print("sql syntax error!")
+            raise AssertionError
+        return tmp_tuple
 
-            elif symbol == '=':
-                count = 0
-                for row in self.data:
-                    row_list = row.split(',')
-                    if row_list[num] == d1:
-                        count += 1
-                        for_display.append(row)
-                title = self.title.split(',')
-                display(title, for_display)
-                print("count:", count)
+    def __column_process(self, sql):
+        column_list = sql.split(",")
+        column_number = []
+        for column in column_list:
+            column_number.append(self.map1.get(column))
+
+        if None in column_number or len(column_number) == 0:
+            print("字段错误!")
+            raise AssertionError
+
+        return column_list, column_number
+
+    def __where_process(self, sql):
+        if re.search("(.*) +(like|>|<|=) +(.*)", sql[-1]):
+            condition_list = sql[-1].split(" ")
+            condition_num = self.map1.get(condition_list[0])
+            r = re.compile(condition_list[-1].strip())
+            for_display = []
+            count = 0
+            if sql[0] == "*":
+                column_number = []
+                column_list = []
+                ret = self.__where_sub(sql[0], r, condition_num, condition_list, column_number, for_display, count)
+                return ret[0], ret[1]
             else:
-                count = 0
-                for row in self.data:
-                    row_list = row.split(',')
-                    result = row_list[num] + symbol + d1
-                    if eval(result):
-                        count += 1
-                        for_display.append(row)
-                title = self.title.split(',')
-                display(title, for_display)
-                print("count:", count)
+                result = self.__column_process(sql[0])
+                column_list, column_number = result[0], result[1]
+                ret = self.__where_sub(sql[0], r, condition_num, condition_list, column_number, for_display, count)
+                return column_list, ret[0], ret[1]
 
-        elif column != "*":
-            column_list = column.split(',')
-            column_num = []
-            for column in column_list:
-                column_num.append(self.map1.get(column))
-            if None in column_num:
-                print("字段输入错误!")
-                raise Exception
+        else:
+            print("condition error!")
+            raise AssertionError
 
-            if symbol == "like":
-                count = 0
-                r = re.compile(d1)
-                for row in self.data:
-                    row_list = row.split(',')
-                    result = r.findall(row_list[num])
-                    if result:
-                        count += 1
-                        tmp = ""
-                        for n in column_num:
-                            tmp = tmp + ',' + row_list[n]
-                            tmp = tmp.lstrip(',')
-                        for_display.append(tmp)
-                display(column_list, for_display, column_list[0])
-                print("count:", count)
-
-            elif symbol == '=':
-                count = 0
-                for row in self.data:
-                    row_list = row.split(',')
-                    if row_list[num] == d1:
-                        count += 1
-                        tmp = ""
-                        for n in column_num:
-                            tmp = tmp + "," + row_list[n]
-                            tmp = tmp.lstrip(',')
-                        for_display.append(tmp)
-                display(column_list, for_display, column_list[0])
-                print("count:", count)
+    def __where_sub(self, star, r, condition_num, condition_list, column_number, for_display=[], count=0):
+        for line in self.data:
+            line_list = line.split(',')
+            if condition_list[1] == "like":
+                result = r.findall(line_list[condition_num])
+            elif condition_list[1] == "=":
+                if line_list[condition_num] == condition_list[-1]:
+                    result = True
+                else:
+                    result = False
             else:
-                count = 0
-                for row in self.data:
-                    row_list = row.split(',')
-                    result = row_list[num] + symbol + d1
-                    if eval(result):
-                        count += 1
-                        temp = ""
-                        for n in column_num:
-                            temp = temp + "," + row_list[n]
-                            temp = temp.lstrip(',')
-                        for_display.append(temp)
-                display(column_list, for_display, column_list[0])
-                print("count:", count)
+                calc = line_list[condition_num] + condition_list[1].strip() + condition_list[2].strip()
+                if eval(calc):
+                    result = True
+                else:
+                    result = False
+
+            if result:
+                count += 1
+                tmp = ""
+                if star == "*":
+                    for_display.append(line)
+                else:
+                    for num in column_number:
+                        tmp = tmp + "," + line_list[num]
+                        tmp = tmp.lstrip(',')
+                    for_display.append(tmp)
+        return for_display, count
+
+    def not_where(self, sql):
+        if sql[0] == "*":
+            title = self.title.split(',')
+            count = len(self.data)
+            display(title, self.data)
+            print("count:", count)
+        else:
+            result = self.__column_process(sql[0])
+            column_list, column_number = result[0], result[1]
+            for_display = []
+            count = 0
+            for line in self.data:
+                count += 1
+                tmp = ""
+                line_list = line.split(',')
+                for num in column_number:
+                    tmp = tmp + "," + line_list[num]
+                    tmp = tmp.lstrip(',')
+                for_display.append(tmp)
+            display(column_list, for_display)
+
+    def with_where(self, sql):
+        if sql[0] == "*":
+            result = self.__where_process(sql)
+            display(self.title.split(','), result[0])
+            print("count:", result[-1])
+        else:
+            result = self.__where_process(sql)
+            column_list, for_display, count = result[0], result[1], result[2]
+            display(column_list, for_display, column_list[0])
+            print("count:", count)
 
     def insert(self, new_line, data, phone):
         # get_max_id
@@ -246,12 +257,21 @@ def main():
         if len(choice) == 0:
             continue
         elif choice.startswith('select') or choice.startswith('SELECT'):
-            sql = choice.split(' ')
-            if len(sql) != 8:
+            sql_tuple = OBJ.check_sql(choice)
+            if len(sql_tuple) == 0:
                 continue
-            try:
-                OBJ.select(select=sql[0], column=sql[1], FROM=sql[2], table=sql[3], where=sql[4], c1=sql[5], symbol=sql[6], d1=sql[-1])
-            except Exception as e:
+            elif len(sql_tuple) == 2:
+                try:
+                    OBJ.not_where(sql_tuple)
+                except AssertionError:
+                    continue
+            elif len(sql_tuple) == 3:
+                try:
+                    OBJ.with_where(sql_tuple)
+                except AssertionError:
+                    continue
+            else:
+                print("error!")
                 continue
 
         elif choice.startswith('insert') or choice.startswith('INSERT'):
