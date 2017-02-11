@@ -59,7 +59,7 @@ def getdata(file):
     :param file:
     :return:
     """
-    f = open(file, 'r')
+    f = open(file, 'r', encoding='utf8')
     data1 = f.readlines()
     f.close()
     data = []
