@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^upload/', views.upload),
     url(r'^ajax/', views.ajax),
     url(r'^xhr_ajax/', views.xhr_ajax),
-
+    url(r'^login/', views.login),
+    url(r'^check_code/', views.check_code),
 ]
