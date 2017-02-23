@@ -5,17 +5,11 @@
 import os
 import sys
 import logging
-base_dir = os.path.normpath(os.path.join(os.path.abspath(__file__),
-                                         os.pardir,
-                                         os.pardir,
-                                         os.pardir,
-                                         ))
-sys.path.insert(0, base_dir)
-
+base_dir = os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir, os.pardir, os.pardir,))
 DATABASE = {
     'engine': 'file_storage',
     'name': 'accounts',
-    'path': "%s/db" % base_dir
+    'path': "%s/atm/db" % base_dir
 }
 
 LOG_LEVEL = logging.INFO

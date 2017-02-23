@@ -1,0 +1,10 @@
+2017-02-20 17:39:00,835 - transaction - INFO - account:1234 action:withdraw amount:100.0 interest:5.0
+2017-02-20 17:39:00,836 - transaction - INFO - account:1388 action:repay amount:100.0 interest:0.0
+2017-02-20 17:40:18,361 - transaction - INFO - account:1388 action:withdraw amount:100.0 interest:5.0
+2017-02-20 17:40:18,362 - transaction - INFO - account:1234 action:repay amount:100.0 interest:0.0
+2017-02-21 17:14:45,139 - transaction - INFO - account:1234 action:consume amount:2000.0 interest:0.0
+2017-02-21 17:14:45,139 - transaction - INFO - account:1234 action:consume amount:2000.0 interest:0.0
+2017-02-21 17:17:19,489 - transaction - INFO - account:1388 action:consume amount:2000.0 interest:0.0
+2017-02-21 17:17:19,489 - transaction - INFO - account:1388 action:consume amount:2000.0 interest:0.0
+2017-02-21 17:18:05,934 - transaction - INFO - account:1388 action:consume amount:2000.0 interest:0.0
+2017-02-21 17:18:05,934 - transaction - INFO - account:1388 action:consume amount:2000.0 interest:0.0

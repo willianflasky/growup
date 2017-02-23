@@ -3,24 +3,31 @@
 # __author__ = "willian"
 import os
 import sys
-from shop import shop
-from core import main
 
-
-base_dir = os.path.normpath(os.path.join(os.path.abspath(__file__),
-                                         os.pardir,
-                                         ))
+base_dir = os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir, os.pardir, os.pardir,))
 sys.path.insert(0, base_dir)
 
+from atm.shop import shop
+from atm.core import main
+from atm.bin import manage
+
+
 message = """\033[32;1m
-<===================super market=================>
+[super market]
         请选择:
         1.ATM办理业务
         2.购物
+        3.管理信用卡
         \033[0m
 """
 
 print(message)
+
+entry_menu = {
+    1: main.run,
+    2: shop.run,
+    3: manage.run,
+}
 
 
 def run():
@@ -29,11 +36,10 @@ def run():
         if len(choice) == 0:
             continue
         if choice.isdigit():
-            if int(choice) == 1:
-                main.run()
-            elif int(choice) == 2:
-                shop.run()
-            else:
+            try:
+                entry_menu[int(choice)]()
+            except KeyError as e:
+                print("not found!")
                 continue
         else:
             if choice == 'exit':
@@ -43,3 +49,4 @@ def run():
 
 if __name__ == '__main__':
     run()
+
