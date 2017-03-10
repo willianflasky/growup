@@ -71,27 +71,36 @@ class FtpClient:
 
     def get(self, file_path):
         seek = 0
-        if os.path.exists(file_path):
-            with open(file_path, 'rb') as file:
-                seek = file.seek(0, 2)
+        file_name = os.path.basename(file_path)
+        if os.path.exists(file_name):
+            fa = open(file_name, 'rb')
+            seek = fa.seek(0, 2)
+            fa.close()
 
         head_dict = {
             'cmd': 'get',
             'file_path': file_path,
             'file_seek': seek,
         }
+
+        head_dict['file_seek'] = seek   # 为解决字典中的变量修改后不变,真坑
         # 发送4字节
         self.send_head(head_dict)
         # 收
         head4 = self.client.recv(4)
         head_size = struct.unpack('i', head4)[0]
         recv_head_dict = json.loads(self.client.recv(head_size).decode('utf8'))
+        if recv_head_dict['file_size'] == 0:
+            print("\033[32;1m已经存在.\033[0m".center(60, '-'))
+            return
+
         data_size = recv_head_dict['file_size']
-        file = open('{0}'.format(os.path.basename(file_path)), 'wb')
+        file = open('{0}'.format(os.path.basename(file_path)), 'a+b')
         recv_size = 0
         while recv_size < data_size:
             ret = self.client.recv(settings.BUFFER_SIZE)
             file.write(ret)
+            file.flush()
             recv_size += len(ret)
         file.close()
         check_sum = active.md5sum(os.path.basename(file_path))

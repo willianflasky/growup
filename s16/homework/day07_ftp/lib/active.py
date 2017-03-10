@@ -38,16 +38,27 @@ def get(conn, cmd, file_path, file_seek):
     if os.path.exists(file_path):
         md5_value = md5sum(file_path)
         file_size = os.path.getsize(file_path)
+        if file_size == file_seek:
+            head_dict = {
+                "file_hash": md5_value,
+                'file_size': 0,
+            }
+            send_head(conn, head_dict)
+            return
+        if file_seek != 0 and file_size > file_seek:
+            file_size = file_size - file_seek
+
         head_dict = {
             "file_hash": md5_value,
-            'file_size': file_size,
+            'file_size': file_size,     # 138
         }
         # 发送头长度和头部字典
         send_head(conn, head_dict)
 
         with open(file_path, 'rb') as fx:
-                for line in fx:
-                    conn.sendall(line)
+            fx.seek(file_seek)
+            data = fx.read()
+            conn.sendall(data)
 
 
 def send_head(conn, head_dict):
