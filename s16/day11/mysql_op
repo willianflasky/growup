@@ -1,0 +1,39 @@
+CREATE TABLE `class` (
+  `cid` int(11) NOT NULL AUTO_INCREMENT,
+  `caption` varchar(32) NOT NULL,
+  PRIMARY KEY (`cid`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `student` (
+  `sid` int(11) NOT NULL AUTO_INCREMENT,
+  `gender` char(1) NOT NULL,
+  `class_id` int(11) NOT NULL,
+  `sname` varchar(32) NOT NULL,
+  PRIMARY KEY (`sid`),
+  KEY `fk_class` (`class_id`),
+  CONSTRAINT `fk_class` FOREIGN KEY (`class_id`) REFERENCES `class` (`cid`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `class` VALUES ('1', '三年二班'), ('2', '三年三班'), ('3', '一年二班'), ('4', '二年九班');
+
+
+INSERT INTO `student` VALUES ('1', '男', '1', '理解'), ('2', '女', '1', '钢蛋'), ('3', '男', '1', '张三'), ('4', '男', '1', '张一'), ('5', '女', '1', '张二'), ('6', '男', '1', '张四'), ('7', '女', '2', '铁锤'), ('8', '男', '2', '李三'), ('9', '男', '2', '李一'), ('10', '女', '2', '李二'), ('11', '男', '2', '李四'), ('12', '女', '3', '如花'), ('13', '男', '3', '刘三'), ('14', '男', '3', '刘一'), ('15', '女', '3', '刘二'), ('16', '男', '3', '刘四');
+
+
+1.分组
+    mysql> select class_id,count(class_id) from student group by class_id;      #分组
+    mysql> select class_id,count(class_id) from student group by class_id having count(class_id) > 5;   #分组后筛选
+2.联合查询
+    - left join:  以左表为主,有多少显示多少,如果右表没有对应项,则显示为空.
+    - inner join: 永远不会出现null.
+    mysql> select A.sid as SSS, A.sname,B.caption from student as A left join class as B on A.class_id = B.cid;
+
+3.终极联合查询
+    mysql> select score.sid,num,cname,tname,sname,caption from score
+    left join student on score.student_id = student.sid
+    left join class on student.class_id = class.cid
+    left join course on score.course_id = course.cid
+    left join teacher on course.teacher_id = teacher.tid
+

@@ -11,9 +11,10 @@ import time
 # print(time.strftime("%Y-%m-%d %H:%M:%S"))
 # print(time.strftime("%Y-%m-%d %H:%M:%S"), time.localtime())
 
-import datetime
+# import datetime
+#
+# print(datetime.datetime.now() - datetime.timedelta(3, hours=3))     # 默认天
+# print(datetime.datetime.now().replace(year=2016, month=3))      #时间替换
 
-print(datetime.datetime.now() - datetime.timedelta(3, hours=3))     # 默认天
-print(datetime.datetime.now().replace(year=2016, month=3))      #时间替换
 
 

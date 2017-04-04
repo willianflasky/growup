@@ -1,0 +1,43 @@
+
+
+-- usertype
+CREATE TABLE `usertype` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` char(6) NOT NULL DEFAULT '普通用户',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8
+
+-- users
+ CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` char(10) NOT NULL,
+  `password` char(10) NOT NULL DEFAULT '123456',
+  `usertype_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_usertype_id` (`usertype_id`),
+  CONSTRAINT `fk_usertype_id` FOREIGN KEY (`usertype_id`) REFERENCES `usertype` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8
+
+-- hosts
+CREATE TABLE `hosts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ip` char(15) NOT NULL,
+  `port` int(5) NOT NULL DEFAULT '22',
+  `username` char(10) NOT NULL,
+  `password` char(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8
+
+-- users2hosts
+CREATE TABLE `users2hosts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `users_id` int(11) NOT NULL,
+  `hosts_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_users_id` (`users_id`),
+  KEY `fk_hosts_id` (`hosts_id`),
+  CONSTRAINT `fk_hosts_id` FOREIGN KEY (`hosts_id`) REFERENCES `hosts` (`id`),
+  CONSTRAINT `fk_users_id` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8
+
+

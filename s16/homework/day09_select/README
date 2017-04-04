@@ -1,0 +1,18 @@
+
+1.select2client(完成聊天,上传)
+   select2client/
+    ├── client.py
+    └── select_server.py
+
+2.select2select(完成聊天,还是问题)
+    问题1:input写在什么位置都有问题,收发数据的时候.
+    问题2:我如果用多线程收数据,比如worker函数里面的Return值怎么获取.
+    select2select/
+    ├── select_client.py
+    └── select_server.py
+
+3.cnblogs
+    a.多线程
+        http://www.cnblogs.com/weibiao/p/6558657.html
+    b.select
+        http://www.cnblogs.com/weibiao/p/6598514.html
