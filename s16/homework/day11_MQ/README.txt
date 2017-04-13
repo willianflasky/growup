@@ -1,8 +1,9 @@
 
 1.cnblogs
     http://www.cnblogs.com/weibiao/p/6664553.html
-2.流程图
+2.流程图和安装模块
     python16_day11_MQ.png
+    requirements.txt
 3.主程序
     ├── agent
     │   └── agent.py            # agent: python3 agent.py -h

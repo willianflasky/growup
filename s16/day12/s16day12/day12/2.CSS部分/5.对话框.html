@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+    .hide{
+        display: none;
+    }
+
+    .mid{
+        position: fixed;
+        opacity: 0.3;
+        z-index: 90;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: black;
+        }
+
+    .modal{
+        position: fixed;
+        z-index: 99;
+        width: 400px;
+        height: 300px;
+        right: 50%;
+        margin-right: -200px;;
+        background-color: green;
+        top: 50%;
+        margin-top: -150px;
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <input type="button" value="出来" onclick="showDiv()">
+        <div>text</div>
+    </div>
+    <!--mid-->
+    <div id="i1" class="mid hide">111</div>
+    <!--modal-->
+    <div id="i2" class="modal hide">
+        <input type="button" value="取消" onclick="hideDiv()">
+    </div>
+
+
+    <script>
+        function showDiv() {
+            document.getElementById('i1').classList.remove('hide');
+            document.getElementById('i2').classList.remove('hide');
+        }
+        function hideDiv() {
+            document.getElementById('i1').classList.add('hide');
+            document.getElementById('i2').classList.add('hide');
+        }
+    </script>
+</body>
+</html>

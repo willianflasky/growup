@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--编码-->
+    <meta charset="UTF-8">
+    <!--title-->
+    <title>EEOEDU</title>
+    <!--5秒后跳转百度-->
+    <!--<meta http-equiv="refresh" content="5; url=http://www.baidu.com"; >-->
+    <!--网站关键字搜索-->
+    <meta name="keywords" content="开发者,教育" />
+    <!--网站描述-->
+    <meta name="description" content="....xxxxx....." />
+    <!--IE最新的引擎去渲染HTML,兼容IE-->
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=Edge" />
+    <!--头部图标-->
+    <link rel="shortcut icon" href="favicon.ico" />
+
+</head>
+<body>
+    <!--块级标签-->
+    <h1>h1</h1>
+    <div></div>
+
+    <!--内联标签-->
+    <a>a&nbspb</a>
+    <span>span</span>
+
+    <!--p标签-->
+    <p>this is a p <br> ....</p>
+    <p>this is a p</p>
+
+    <!--a标签 跳转,重定向,锚-->
+    <a href="http://www.eeo.cn" target="_blank">eeo.cn</a>
+
+    <!--锚
+    <a href="#c1">第一章</a>
+    <a href="#c2">第二章</a>
+    <a href="#c3">第三章</a>
+
+    <div id="c1" style="height: 700px; background-color: gray">
+        content one
+    </div>
+
+    <div id="c2" style="height: 700px; background-color: palevioletred">
+        content two
+    </div>
+
+    <div id="c3" style="height: 700px; background-color: green">
+        content three
+    </div> -->
+
+    <!--h1~6
+    <h1>h1</h1>
+    <h2>h2</h2>
+    <h3>h3</h3>
+    <h4>h4</h4>
+    <h5>h5</h5>
+    <h6>h6</h6> -->
+
+
+    <!--列表
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+
+    <ol>
+        <li>...</li>
+        <li>...</li>
+        <li>...</li>
+    </ol>
+
+
+    <dl>
+        <dt>标题一:</dt>
+        <dd>1</dd>
+        <dd>1</dd>
+        <dd>1</dd>
+        <dt>标题二:</dt>
+        <dd>1</dd>
+        <dd>1</dd>
+        <dd>1</dd>
+    </dl>       -->
+
+
+    <!--表格
+    <table border="1">
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th colspan="2">主机名</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>c1.com</td>
+                <td>80</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>c2.com</td>
+                <td>80</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td rowspan="2">c3.com</td>
+                <td>80</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>81</td>
+            </tr>
+        </tbody>
+    </table> -->
+
+    <!--label点击文件,自动选中input-->
+    <div>
+        <label for="user">用户名:<input id="user" type="text" /></label>
+        密码:<input type="text" />
+    </div>
+
+    <!--框-->
+    <fieldset>
+        <legend>login:</legend>
+        username:<input type="text">
+        password:<input type="password">
+    </fieldset>
+
+    <!--A标签和img-->
+    <a href="http://www.eeo.cn">
+        <img src="2.jpg" alt="tom" title="i am tom ,choice me...">
+    </a>
+
+    <!--表单-->
+    <form action="http://192.168.12.120:8000/index/" method="POST" enctype="multipart/form-data">
+        username:<input type="text" name="username" placeholder="请输入内容"/>
+        <br>
+        email:<input type="email" name="email">
+        <br>
+        password:<input type="password" name="password">
+        <!--单选框 name一样才会相排斥-->
+        <div>
+            <input type="radio" name="gender" value="1" checked="checked">男
+            <input type="radio" name="gender" value="2">女
+        </div>
+
+        <!--多选框-->
+        <div>
+            <input type="checkbox" name="hobby" value="11" checked="checked"/>学习
+            <input type="checkbox" name="hobby" value="12" />运动
+            <input type="checkbox" name="hobby" value="12" />户外
+        </div>
+
+        <!--文件上传-->
+        <div>
+            <input name="tofile" type="file">
+        </div>
+
+        <!--select选择-->
+        <div>
+            <select name="city">
+                <option vlaue="bj">北京</option>
+                <option vlaue="sh" selected="selected">上海</option>
+                <option vlaue="ss">沙河</option>
+            </select>
+            <br>
+            <select name="city2" multiple>
+                <option value="bj">bj</option>
+                <option value="sh" selected="selected">sh</option>
+                <option value="ss" selected="selected">ss</option>
+            </select>
+        </div>
+
+        <!--文字块-->
+        <div>
+            <textarea name="memo">默认值</textarea>
+        </div>
+
+        <input type="submit" value="submit提交">
+        <input type="button" value="button提交">
+        <input type="reset" value="重置">
+    </form>
+</body>
+</html>

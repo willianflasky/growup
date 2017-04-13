@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .c1{
+            color: red;
+            font-size: 30px;
+        }
+        .hide{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="出现吧" onclick="showDiv();" />
+    <input type="button" value="小时吧" onclick="hideDiv();" />
+    <div id="i1" class="c1 hide">aaaaaaaaaaaaaa</div>
+    
+    <script>
+        function showDiv() {
+            document.getElementById('i1').classList.remove('hide');
+        }
+        function hideDiv() {
+            document.getElementById('i1').classList.add('hide');
+        }
+    </script>
+</body> 
+</html>

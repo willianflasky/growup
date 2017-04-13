@@ -1,0 +1,183 @@
+/*解决边框留白*/
+body{
+    margin: auto;
+}
+
+/*头部高,颜色,菜单文字行间距*/
+.pg-header {
+    /*div高度*/
+    height: 44px;
+    background-color: #2459a2;
+    /*漂浮上面的字的行间距*/
+    line-height: 44px;
+}
+
+/*float起来*/
+.left{
+    float: left;
+}
+
+.right{
+    float: right;
+}
+
+.pg-header .menus a{
+    /*内边距上右下左,不然字体都挤在一起*/
+    padding: 0 10px 0 16px;
+    /*A标签本来是内联,让其有块标签的属性, hover时面积大*/
+    display: inline-block;
+    color: #c0cddf;
+    font-size: 12px;
+    /*去掉A标签下划线*/
+    text-decoration: none;
+}
+/*菜单的hover*/
+.pg-header .menus a:hover{
+    color: #fff;
+    background-color: #396bb3;
+}
+/*中间内容*/
+.w{
+    height: 1000px;
+    margin: 0 auto;
+    width: 1016px;
+}
+
+.content1{
+    background-color: white;
+    display: inline-block;
+    float: left;
+    height: 1000px;
+    width: 700px;
+    margin-top: -2px;
+}
+.content2{
+    background-color: gray;
+    display: inline-block;
+    float: left;
+    height: 1000px;
+    width: 316px;
+    margin-top: -2px;
+}
+
+.new{
+    height: 43px;
+    width: 630px;
+    line-height: 43px;
+    border-bottom: 1px solid #ccdcef;
+
+}
+.new a{
+    text-decoration: none;
+    display: inline-block;
+    padding: 0 10px 0 35px;
+}
+.new a:hover{
+    text-decoration-line: underline;
+}
+.release{
+    background-color: #84a42b;
+    border: 1px solid #8eb030;
+    height: 30px;
+    text-align: center;
+    width: 100px;
+    line-height: 30px;
+    font-size: 14px;
+    color: white;
+    display: inline-block;
+    margin-top: 3px;
+}
+.release:hover{
+    text-decoration: none !important;
+    background-color: #8eb031;
+    border: 1px solid #8eb030;
+}
+
+.text{
+    color: #369;
+    width: 560px;
+    float: left;
+    word-wrap: break-word;
+}
+.text span{
+    color: grey;
+    font-size: 12px;
+}
+.img{
+    float: right;
+}
+
+.digit{
+    width: 630px;
+    height: 64px;
+    margin-top: 10px;
+}
+
+.func{
+    width: 630px;
+    height: 25px;
+}
+.func span{
+    float: left;
+    text-decoration: none;
+    color: gray;
+    padding-left: 5px;
+    margin-top: 3px;
+    font-size: 13px;
+
+}
+.func span:hover{
+    color: #2459a2;
+    text-decoration-line: underline;
+}
+
+.hand{
+    background: url(../img/icon_18_118.png) no-repeat 0 -40px;
+}
+.hand:hover{
+    background: url(../img/icon_18_118.png) no-repeat 0 -20px;
+
+}
+
+.chat{
+    background: url(../img/icon_18_118.png) no-repeat 0 -100px;
+    margin-left: 30px;
+}
+.chat:hover{
+    background: url(../img/icon_18_118.png) no-repeat 0 -80px;
+    margin-left: 30px;
+}
+
+.heart{
+    background: url(../img/icon_18_118.png) no-repeat 0 -160px;
+    margin-left: 30px;
+}
+.heart:hover{
+    background: url(../img/icon_18_118.png) no-repeat 0 -140px;
+    margin-left: 30px;
+}
+
+.source{
+    margin-left: 30px;
+}
+
+
+.time{
+    font-size: 12px;
+    color: #e59373;
+    margin-left: 30px;
+    text-decoration: none;
+    float: left;
+    margin-top: 3px;
+}
+.time:hover{
+    text-decoration-line: underline;
+}
+.hand-icon{
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    float: left;
+    margin-top: 3px;
+}
+

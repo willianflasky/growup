@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<form action="http://192.168.12.120:8000/index/" method="POST" enctype="multipart/form-data">
+    <!--普通文本框-->
+    <div>
+        <span>username:</span>
+        <!--<input type="text" name="username"  value='alex' />-->
+        <input type="text" name="username"  placeholder="please input content"/>
+        <span>password:</span>
+        <input type="password" name="password"/>
+    </div>
+
+    <!--单选框-->
+    <div>
+        <input type="radio" name="gender" value="1" checked="checked" />男
+        <input type="radio" name="gender" value="0" />女
+    </div>
+
+    <!--多选框-->
+    <div>
+        <input type="checkbox" name="hobby" value="11">读书
+        <input type="checkbox" name="hobby" value="12">运动
+        <input type="checkbox" name="hobby" value="13">女
+        <input type="checkbox" name="hobby" value="14">学习
+    </div>
+
+    <!--下拉框,多选和单选-->
+    <div>
+        <select name="city">
+            <option value="bj">北京</option>
+            <option value="sh">上海</option>
+            <option value="sb">沙河</option>
+        </select>
+    </div>
+
+    <div>
+        <select name="city1" multiple>
+            <option value="bj">雄县</option>
+            <option value="sh">安县</option>
+            <option value="sb">蓉县</option>
+        </select>
+    </div>
+
+
+    <div>
+        <textarea name="memo">default value</textarea>
+    </div>
+
+
+    <!--必须enctype="multipart/form-data"-->
+    <div>
+        <input type="file" name="filename">
+    </div>
+
+    <input type="submit" value="submit提交" />
+    <input type="reset" value="reset" />
+    <input type="button" value="button提交"  onclick="alert('what a fuck!')"/>
+</form>
+
+
+<div>
+    <!--关联-->
+    <label for="user">用户名</label> <input id="user" type="text" />
+</div>
+
+    <!--框-->
+<fieldset>
+    <legend>登录</legend>
+    <span>用户名:</span><input type="text">
+    <span>密码:</span><input type="text">
+</fieldset>
+
+    <!--img和A标签-->
+<a href="http://www.xiaohuar.com">
+    <img src="timg.jpeg" alt="贺磊" title="我是贺磊，旋涡选我选我">
+</a>
+
+</body>
+</html>
