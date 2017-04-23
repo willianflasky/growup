@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+    .info{
+        width:400px;
+    }
+    .item{
+        /*height:34px;*/
+    }
+    .header{
+        /*line-height: 34px;*/
+        background-color: burlywood;
+        cursor: pointer;
+    }
+    .content{
+        display: none;
+    }
+</style>
+<body>
+    <div class="info">
+        <div class="item">
+            <div class="header">菜单一</div>
+            <div class="content">内容一</div>
+            <div class="content">内容一</div>
+            <div class="content1">内容一</div>
+        </div>
+        <div class="item">
+            <div class="header">菜单二</div>
+            <div class="content">内容二</div>
+            <div class="content">内容二</div>
+            <div class="content">内容二</div>
+        </div>
+        <div class="item">
+            <div class="header">菜单三</div>
+            <div class="content">内容三</div>
+            <div class="content">内容三</div>
+            <div class="content">内容三</div>
+        </div>
+    </div>
+</body>
+<script src="jquery.js"></script>
+<script>
+    $(".header").click(function(){
+        $(this).nextAll().css("display","block");
+        $(this).parent('.item').siblings('.item').children('.content').css("display","none");
+    });
+</script>
+</html>

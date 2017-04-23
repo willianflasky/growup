@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="i1">欢迎李磊今天来上课</div>
+
+    <script>
+        /*
+        function func() {
+            // 获取标签中间的文字
+            var txt = document.getElementById('i1').innerText; // "欢迎李磊今天来上课"
+            var a = txt.charAt(0);
+            var b = txt.substring(1,txt.length);
+            var new_txt = b + a;
+            // 对指定标签中间内容进行重新赋值
+            document.getElementById('i1').innerText = new_txt;
+        }
+        // 定时器，每500毫秒执行一次
+        setInterval(func,500);
+        */
+
+        setInterval(function(){
+            var txt = document.getElementById('i1').innerText;
+            var a = txt.charAt(0);var b = txt.substring(1,txt.length);
+            var new_txt = b + a;
+            document.getElementById('i1').innerText = new_txt;},500);
+
+
+    </script>
+</body>
+</html>

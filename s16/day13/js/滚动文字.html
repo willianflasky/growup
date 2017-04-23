@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div id="i1" style="color: greenyellow; background-color: black;line-height: 100px;font-size: 50px">欢迎来做大保贱 !!!</div>
+
+    <script>
+        /*使用匿名函数*/
+        setInterval(function(){
+            var txt = document.getElementById('i1').innerText;
+            var a = txt.charAt(0)
+            var b = txt.substring(1, txt.length)
+            var new_txt = b + a
+            document.getElementById('i1').innerText = new_txt;
+        },200)
+    </script>
+</body>
+</html>

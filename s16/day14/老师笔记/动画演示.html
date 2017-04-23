@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<img src="ju.jpg" alt="" style="display: none">
+</body>
+<script src="jquery.js"></script>
+<script>
+//    $("img").show(1000);
+//    $("img").hide(1000);
+//    $("img").toggle("slow");
+//    $("img").fadeIn(1000);
+//    $("img").fadeOut(1000);
+    function test(){
+        $("img").slideToggle(1000)
+    }
+    setInterval(test,3000);
+</script>
+</html>

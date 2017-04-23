@@ -1,0 +1,193 @@
+        body{
+            margin: 0;
+        }
+
+        .pg-header{
+            background-color: #2459a2;
+            height: 44px;
+            line-height: 44px;
+        }
+        .left{
+            float: left;
+        }
+        .right{
+            float: right;
+        }
+        .hide{
+            display: none;
+        }
+
+        .pg-header .logo{
+            height: 44px;
+            line-height: 44px;
+            padding: 2px;
+        }
+        .pg-header .avatar{
+            height: 40px;
+            width: 40px;
+            padding: 2px 10px 2px 0;
+        }
+        .pg-header .avatar img{
+            /*overflow: hidden;*/
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+        }
+        .pg-header .user-info a.item{
+            /*内联标签没有行高, inline-block就有行高了*/
+            display: inline-block;
+            /*间距拉开*/
+            padding: 0 10px;
+        }
+
+        .pg-header .user-info a input{
+            border: 0;
+            background-color: transparent;
+            color: black;
+            font-size: 15px
+        }
+        .pg-header .user-info a.item:hover{
+            background-color: green;
+            color: white;
+        }
+        .pg-header .avatar .user-menu{
+            position: absolute;
+            border: 1px solid black;
+            width: 150px;
+            top: 44px;
+            right: 0px;
+            display: none;
+            z-index: 91;
+        }
+        .pg-header .avatar .user-menu a{
+            display: block;
+            text-decoration: none;
+        }
+        .pg-header .avatar:hover .user-menu{
+            display: block;
+        }
+
+
+
+        /*pg-body----------------------*/
+        .pg-body{
+            min-width: 1000px;
+        }
+
+        .pg-body .menus{
+            border: 1px solid gray;
+            width: 200px;
+            background-color: #292929;
+            top:44px;
+            left: 0px;
+            bottom: 0;
+            position: absolute;
+        }
+
+        .pg-body .content{
+        /*最小宽度,小于800就出滚动条*/
+        min-width: 300px;
+        /*定住*/
+        position: absolute;
+        top: 44px;
+            /*因为左边的菜单就200px*/
+        left: 200px;
+        bottom: 0;
+        right: 0;
+        /*内容超出范围,出滚动条*/
+        overflow: scroll;
+            /*解决BUG*/
+            z-index: 90;
+        }
+
+        /*莫泰对话框*/
+        .pg-header .mid{
+            position: fixed;
+            opacity: 0.5;
+            z-index: 95;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: black;
+        }
+
+        .pg-header .modal{
+            position: fixed;
+            z-index: 96;
+            width: 400px;
+            height: 300px;
+            margin-left: -550px;
+            background-color: darkgreen;
+            top:50%;
+            margin-top: -150px;
+        }
+
+        .pg-header .modal_register{
+            position: fixed;
+            z-index: 96;
+            width: 400px;
+            height: 300px;
+            margin-left: -550px;
+            background-color: darkgreen;
+            top:50%;
+            margin-top: -150px;
+        }
+
+        .pg-header .modal input[type='button']{
+            margin-left: 100px;
+        }
+        .pg-header .modal_register input[type='button']{
+            margin-left: 100px;
+        }
+
+        /*菜单选择*/
+        .pg-body .menus .item .title{
+            border: 1px solid green;
+            height: 40px;
+            background-color: darkslategray;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 10%;
+            color: white;
+        }
+
+        .pg-body .c1 a{
+            display: block;
+            left: 0px;
+            text-align: center;
+            color: pink;
+        }
+
+        .pg-body .content .search{
+            height: 30px;
+            line-height: 30px;
+            position: fixed;
+            top:44px;
+            left: 202px;
+            right: 0px;
+        }
+
+        .pg-body .table {
+            height: 100px;
+            top:74px;
+            position: fixed;
+            left: 202px;
+            right: 0px;
+        }
+
+        /*点赞*/
+        .click_good{
+            padding: 10px;
+            position: relative;
+        }
+        .click_good a{
+            text-decoration: none;
+        }
+        .click_good span{
+            font-size: 18px;
+            position: absolute;
+            top:10px;
+            left: 50px;
+            opacity: 1;
+        }

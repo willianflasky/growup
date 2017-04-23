@@ -1,0 +1,149 @@
+一、函数变量的作用域：
+        变量的作用域是在声明时决定的而不是调用执行时决定
+    作用域链：
+
+二、词法分析：
+        函数执行前，会进行预编译，这个预编译的过程就是词法分析
+        会形成一个活动对象，Active Object AO
+        分析三个内容：
+        1.分析函数的参数
+          AO.age = undefined
+          1.2 AO.age = 5
+        2.分析函数的变量声明
+            如果有，不做任何处理，如果没有的话，AO增加这个属性
+        3.分析函数内函数声明表达式
+            AO.age = function(){}
+
+三、JQuery：
+        DOM：
+        1.直接查找：
+        2.间接查找
+
+    3.1 Jquery是什么？
+        其实python中的模块  类库
+         import time
+        time.sleep()
+    3.2 Jquery的特点？
+        1. 强大选择器 --- 类似于css的选择器
+        2. DOM操作
+        3. Ajax封装
+        4. 版本兼容性好
+    3.3 JQuery的版本：
+        1.x.x   ----  1.12.4
+        2.x.x
+        3.x.x
+    3.4 基本选择器：
+        ps:
+           jquery --> DOM   $("#test")[0]
+           DOM ----->jquery $(DOM对象)
+          1.id选择器：
+            $('#test')  === document.getElementById('test')
+          2.标签选择器
+            $("div")
+          3.class选择器
+            $('.class')
+          4.组合选择器
+            $('div,p,span')
+          5. 祖先 --- 子孙
+            $('form input')
+          6. parent > child
+            $('form > input')
+          7. :first  :last :eq()
+
+          8.属性选择器
+            <input type="text" name='username'/>
+            $("input[type='text']")
+
+          实例：表格的全选 反选和取消
+
+    3.5 筛选器：
+            1.next ---- 获取紧邻的下一个元素
+              nextAll
+              nextUtil
+            2.prev ----- 获取紧邻上一个元素
+              prevAll
+              prevUtil
+            3.children() --- 获取所有的子元素
+            4.parent() ---- 获取父元素
+            5.silbings --- 获取兄弟元素
+           实例：左侧菜单选择
+
+    3.6 动画
+            fadeIn()
+            fadeOut()
+            slideDown()
+            slideUp()
+        实例：动画效果
+
+    3.7 样式操作：
+            $("xxx").css("display",none);
+            addClass() ---- 添加样式
+            removeClass() --- 移除样式
+            hasClass()  ---- 判断有没有样式
+        实例：开关灯效果
+
+    3.8 文本操作：
+           $("xxx").text("dsadsa")
+
+           input系列框里面的值，
+           $("xxx").val("dsadsa")
+           $("xxx").html()
+
+    3.9 属性操作
+           $("xxx").attr("alex","sb"); //赋值
+           $("xxx").attr("target");
+           $("xxx").removeAttr("target")
+
+           在操作关于input系列【radio checkbox】  我们选中或者取消，不能采用attr来进行设值 ---- 1.
+           3 版本修复了这个bug---
+           prop()专门是用来对input【radio checkbox】
+           $("xxx").prop()
+
+    3.10 文档操作：
+            append() --- 往选中的元素内部的后面添加元素
+            appendTo() --
+
+            prepend() --- 往选中的元素的前面添加元素
+            prependTo() ---
+
+            after   --- 往选中元素的外部得后面进行添加
+            before  --- 往选中元素的外部得前面进行添加
+
+            empty() --- 将元素内部的内容删除
+            remove() ---将元素的标签删除
+
+    3.11 事件
+        DOM:onclick   jquery：click
+        ondbclick
+        onblur
+        onfocus
+        onmouseover
+        onmouseout
+        onkeyup
+        onkeydown
+
+        $("xxx").on("click",function(){})
+        $("xxx").off("click",function(){})
+
+        $("xxx").bind("click",function(){})
+        $("xxx").unbind("click",function(){})
+
+        $("xxx").delegate("xx","click",function(){})
+
+        阻止事件发生：
+            return false
+        页面加载事件：
+             $(function(){
+               $("div").click(function(){
+                    console.log("dsadsadsa");
+                })
+            });
+
+            $(document).ready(function(){
+               $("div").click(function(){
+                    console.log("dsadsadsa");
+                })
+            });
+
+
+

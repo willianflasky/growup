@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="selectall" onclick="SelectAll();"/>
+<input type="button" value="cancelall" onclick="CancalAll();"/>
+<input type="button" value="reverseall" onclick="ReverseAll();"/>
+<table border="1px;">
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td><input type="checkbox"/> </td>
+</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td><input type="checkbox"/> </td>
+
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td><input type="checkbox"/> </td>
+
+    </tr>
+</table>
+
+
+<script src="jquery-1.12.4.js"></script>
+<script>
+    function SelectAll(){
+        $('input[type="checkbox"]').prop('checked',true);
+    }
+    function CancalAll(){
+        $('input[type="checkbox"]').prop('checked',false);
+    }
+
+    function ReverseAll(){
+        $('input[type="checkbox"]').each(function(){
+//            var res = $(this).prop('checked');
+//            if(res){
+//                $('input[type="checkbox"]').prop('checked',false);
+//            }else{
+//                $('input[type="checkbox"]').prop('checked',true);
+//            }
+        $(this).prop('checked') ? $(this).prop('checked',false) : $(this).prop('checked',true);
+        })
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <input type="text" id="inp" />
+    <input type="button" value="添加" onclick="addElement();" />
+
+    <ul id="container">
+        <li>内容一</li>
+    </ul>
+
+    <script>
+        function addElement() {
+            // 获取用户输入的内容
+            var val = document.getElementById('inp').value;
+
+
+            // 创建标签(对象) *****
+            var tag = document.createElement('li');
+            tag.innerHTML = val;
+
+            // 将对象添加到 append
+            document.getElementById('container').appendChild(tag);
+
+
+            /*
+            var tag = "<li>" + val +"</li>";
+            document.getElementById('container').insertAdjacentHTML("beforeEnd",tag);
+            */
+
+            document.getElementById('inp').value = "";
+        }
+    </script>
+</body>
+</html>

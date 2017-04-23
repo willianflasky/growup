@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="text" placeholder="qingshu" >
+</body>
+<script src="jquery.js"></script>
+<script>
+    $("input[type='text']").focus(function(){
+        var v = $(this).val();
+        if(v == "请输入关键字"){
+            $(this).val("");
+        }
+    });
+    $("input[type='text']").blur(function(){
+        var v = $(this).val();
+        if(v == ""){
+            $(this).val("请输入关键字");
+        }
+    })
+</script>
+</html>

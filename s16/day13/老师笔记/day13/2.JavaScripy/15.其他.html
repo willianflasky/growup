@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <input type="button" value="删除" onclick="removeEle();" />
+    <div id="i1"></div>
+
+    <script>
+        function removeEle() {
+            document.getElementById('i1').innerHTML = "删除成功";
+
+            var obj = setTimeout(function () {
+                document.getElementById('i1').innerHTML = "";
+            },5000);
+
+//            clearTimeout(obj);
+
+
+        }
+//        var obj1= setInterval(function () {
+//            console.log('1');
+//            clearInterval(obj1);
+//        },1000);
+//        var obj2= setInterval(function () {
+//            console.log('2');
+//            clearInterval(obj2);
+//        },1000)
+    </script>
+</body>
+</html>

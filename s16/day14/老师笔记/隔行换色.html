@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<table border="1" width="400px">
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+    </tr>
+</table>
+</body>
+<script src="jquery.js"></script>
+<script>
+    $("tr").mouseover(function(){
+        $(this).css("background-color","red");
+    });
+    $("tr").mouseout(function(){
+        $(this).css("background-color","white");
+    })
+</script>
+</html>

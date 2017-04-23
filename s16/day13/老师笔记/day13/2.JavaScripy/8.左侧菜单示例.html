@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .hide{
+            display: none;
+        }
+        .item .title{
+            height: 40px;
+            background-color: cadetblue;
+            line-height: 40px;
+        }
+        .item .content a{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 200px;height: 600px;border: 1px solid #dddddd">
+
+        <div class="item">
+            <div class="title" onclick="changeMenu(this);">菜单一</div>
+            <div class="content">
+                <a href="#">内容一</a>
+                <a href="#">内容一</a>
+                <a href="#">内容一</a>
+                <a href="#">内容一</a>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="title" onclick="changeMenu(this);" id="m2">菜单二</div>
+            <div class="content hide">
+                 <a href="#">内容二</a>
+                 <a href="#">内容二</a>
+                 <a href="#">内容二</a>
+                 <a href="#">内容二</a>
+                 <a href="#">内容二</a>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="title" onclick="changeMenu(this);">菜单三</div>
+            <div class="content hide">
+                 <a href="#">内容三</a>
+                 <a href="#">内容三</a>
+                 <a href="#">内容三</a>
+                 <a href="#">内容三</a>
+                 <a href="#">内容三</a>
+                 <a href="#">内容三</a>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+
+        function changeMenu(currentTagObj) {
+            // console.log(currentTagObj);
+            // currentTagObj当前点击的标签
+
+            // contentTagObj  当前点击的标签的弟弟
+            var contentTagObj = currentTagObj.nextElementSibling;
+            contentTagObj.classList.remove('hide');
+
+            // itemObjList  当前点击的标签的父亲的父亲的所有儿子
+            var itemObjList = contentTagObj.parentElement.parentElement.children;
+
+            // 循环当前标签的所有 父辈
+            for(var i=0;i<itemObjList.length;i++){
+                var loopItemObj = itemObjList[i];
+                // 只处理当前标签的大爷和叔叔
+                if(loopItemObj != contentTagObj.parentElement){
+                    loopItemObj.lastElementChild.classList.add('hide');
+                }
+            }
+        }
+    </script>
+</body>
+</html>

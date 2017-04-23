@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>运维平台</title>
+    <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="icon" href="img/logo.png">
+</head>
+<body>
+    <!--header-->
+    <div class="pg-header">
+        <!--LOGO-->
+        <div class="logo left"><img src="img/logo.png"></div>
+        <h4 id="h4" style="color: #292929;position: fixed; top: -20px; left: 150px"></h4>
+        <!--用户头像-->
+        <div class="avatar right" style="position: relative">
+            <a><img src="img/2.jpg" /></a>
+            <div class="user-menu">
+                <a href="#">个人资料</a>
+                <a href="#">注销</a>
+            </div>
+        </div>
+
+        <!--登录注册-->
+        <div class="user-info right">
+            <a class="item"><i class="fa fa-heart" aria-hidden="true"></i></a>
+            <a class="item"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+            <a class="item"><input type="button" value="登录" onclick="showLogin();"/></a>
+            <a class="item"><input type="button" value="注册" onclick="showRegister();"/></a>
+            <div id="i1" class="mid hide"></div>
+            <div id="i2" class="modal hide">
+                用户名:<input type="text" placeholder="请输入用户名">
+                密码:<input type="password" placeholder="请输入密码">
+                <input type="button" value="取消" onclick="hideLogin();">
+                <input type="button" value="确定" onclick="hideLogin()">
+            </div>
+
+            <div id="i3" class="modal_register hide">
+                名字:<input type="text"><br>
+                密码:<input type="password"><br>
+                手机:<input type="text"><br>
+                <input type="button" value="取消" onclick="hideRegister();">
+                <input type="button" value="确定" onclick="hideRegister()">
+            </div>
+        </div>
+    </div>
+
+    <!--body-->
+    <div class="pg-body">
+        <div class="menus left">
+            <div class="item">
+                <div class="title" onclick="changeMenu(this);">监控</div>
+                <div class="c1 hide">
+                    <a href="#">内容一</a>
+                    <a href="#">内容一</a>
+                    <a href="#">内容一</a>
+                </div>
+            </div>
+
+        <div class="item">
+            <div class="title" onclick="changeMenu(this);" id="m2">操作</div>
+            <div class="c1 hide">
+                 <a href="#">内容二</a>
+                 <a href="#">内容二</a>
+                 <a href="#">内容二</a>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="title" onclick="changeMenu(this);">日志</div>
+            <div class="c1 hide">
+                 <a href="#">内容三</a>
+                 <a href="#">内容三</a>
+                 <a href="#">内容三</a>
+            </div>
+        </div>
+            <h3 id="welcome" style="bottom: 0px;color: greenyellow; position: fixed">欢&nbsp迎&nbsp光&nbsp临!&nbsp</h3>
+        </div>
+        <div class="content left">
+            <!--search bar-->
+            <div class="search">
+                <form action="http://www.sogou.com/web" method="get">
+                    搜索:<input type="text" id="key" name="query" onfocus="keyFocus();" onblur="keyBlur();" placeholder="请输入关键字"/>
+                    <input style="border: 0px" type="submit" value="提交">
+                </form>
+            </div>
+            <!--table-->
+            <div class="table">
+                <HR style="width:100%" color=#987cb9 SIZE=3>
+
+                <input type="button" value="全选" onclick="checkAll();">
+                <input type="button" value="取消" onclick="removeAll();">
+                <input type="button" value="反选" onclick="reverseAll();"><br>
+                主机:<input id="host_numb" type="text"><br>
+                端口:<input id="host_port" type="text"><br>
+                <input type="button" value="增加主机" onclick="addElement();">
+                <input type="button" value="删除主机" onclick="delElement();">
+                <div>
+                    <table border="1px">
+                        <thead>
+                            <tr>
+                                <th>选择</th>
+                                <th>主机</th>
+                                <th>端口</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody1">
+                            <tr>
+                                <td><input class="option1" type="checkbox"/></td>
+                                <td>c1.com</td>
+                                <td>80</td>
+                            </tr>
+                            <tr>
+                                <td><input class="option1" type="checkbox"/></td>
+                                <td>c2.com</td>
+                                <td>80</td>
+                            </tr>
+                            <tr>
+                                <td><input class="option1" type="checkbox"/></td>
+                                <td>c3.com</td>
+                                <td>80</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="display_delete"></div>
+                </div>
+            </div>
+            <HR style="width: 100%; top:400px; position: fixed" color="#987cb9" size=3>
+            <div style="top:410px; position: fixed">
+                <div class="click_good">
+                    <a onclick="Favor(this);" href="#">点赞1</a>
+                </div>
+                <div class="click_good">
+                    <a onclick="Favor(this);" href="#">点赞2</a>
+                </div>
+                <div class="click_good">
+                    <a onclick="Favor(this);" href="#">点赞3</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--莫泰对话框-->
+    <script src="js/login.js"></script>
+    <!--菜单选择-->
+    <script src="js/menus_choice.js"></script>
+    <!--文字滚动-->
+    <script src="js/welcome.js"></script>
+    <!--时间-->
+    <script src="js/time.js"></script>
+    <!--搜索-->
+    <script src="js/search_key.js"></script>
+    <!--表格选择-->
+    <script src="js/table.js"></script>
+    <!--操作标签-->
+    <script src="js/add_host.js"></script>
+    <!--点赞-->
+    <script src="js/click_good.js"></script>
+</body>
+</html>

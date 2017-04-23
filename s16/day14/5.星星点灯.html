@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .on{
+            background-image: url(on.jpg);
+        }
+        .off{
+            background-image: url(off.jpg);
+        }
+
+        div{
+            width: 108px;
+            height: 144px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="myimg" class="on off"  onclick="bright();"></div>
+
+</body>
+<script src="jquery-1.12.4.js"></script>
+
+<script>
+    function bright(){
+        if($("#myimg").hasClass('off')){
+            $("#myimg").removeClass('off');
+
+        }else{
+            $("#myimg").addClass('off');
+        }
+    }
+</script>
+</html>

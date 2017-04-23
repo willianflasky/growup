@@ -8,4 +8,3 @@
     b.favicon.ico图标文件
     c.icon_18_118.png小图标集合
     d.2.jpg图片
-4.效果图.png

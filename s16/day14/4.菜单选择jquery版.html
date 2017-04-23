@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .hide{
+            display: none;
+        }
+        .item .title{
+            height: 40px;
+            background-color: cadetblue;
+            line-height: 40px;
+        }
+        .item .content a{
+            display: block;
+        }
+    </style>
+
+</head>
+<body>
+
+<div style="width: 200px;height: 600px;border: 1px solid #dddddd">
+        <div class="item">
+            <div class="title" onclick="changeMenu(this);">菜单一</div>
+            <div class="content hide">
+                <a href="#">内容一</a>
+                <a href="#">内容一</a>
+                <a href="#">内容一</a>
+                <a href="#">内容一</a>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="title" onclick="changeMenu(this);" id="m2">菜单二</div>
+            <div class="content hide">
+                 <a href="#">内容二</a>
+                 <a href="#">内容二</a>
+                 <a href="#">内容二</a>
+                 <a href="#">内容二</a>
+                 <a href="#">内容二</a>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="title" onclick="changeMenu(this);">菜单三</div>
+            <div class="content hide">
+                 <a href="#">内容三</a>
+                 <a href="#">内容三</a>
+                 <a href="#">内容三</a>
+                 <a href="#">内容三</a>
+                 <a href="#">内容三</a>
+                 <a href="#">内容三</a>
+            </div>
+        </div>
+    </div>
+
+<script src="jquery-1.12.4.js"></script>
+<script>
+    $('.title').click(function(){
+        $(this).next().css('display','block');
+//        $(this).nextAll().css('display','block');
+        $(this).parent('.item').siblings('.item').children('.content').css('display','none');
+    })
+</script>
+</body>
+</html>

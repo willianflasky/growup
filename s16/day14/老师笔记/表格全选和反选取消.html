@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="button" value="全选" onclick="SelectAll();">
+<input type="button" value="取消" onclick="CancelAll();">
+<input type="button" value="反选" onclick="ReverseAll();">
+<table border="1px" width="400px">
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td><input type="checkbox" /></td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+         <td><input type="checkbox" /></td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+         <td><input type="checkbox" /></td>
+    </tr>
+</table>
+</body>
+<script src="jquery.js"></script>
+<script>
+    function SelectAll(){
+        $("input[type='checkbox']").prop("checked",true);
+    }
+    function CancelAll(){
+        $("input[type='checkbox']").prop("checked",false);
+    }
+    function ReverseAll(){
+        /**
+         * js的循环：
+         * for(var i=0;i<length;i++){
+         * }
+         *
+         * for(var i in dict_info){
+         * }
+         * **/
+        $("input[type='checkbox']").each(function () {
+//            console.log(1);
+//            console.log($(this));
+            var s = $(this).prop("checked");
+//            console.log(s);
+            if(s){
+                $(this).prop("checked",false);
+            }else{
+                $(this).prop("checked",true);
+            }
+            /**
+             * s = 4 > 3 ? true : false
+             * **/
+            $(this).prop("checked") ? $(this).prop("checked",false) : $(this).prop("checked",true);
+        });
+    }
+</script>
+</html>

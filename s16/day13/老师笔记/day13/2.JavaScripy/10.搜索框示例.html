@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <input type="text" id="key" value="请输入关键字" onfocus="keyFocus();" onblur="keyBlur();" />
+
+    <script>
+        function keyFocus() {
+            console.log('获取焦点');
+            var val = document.getElementById('key').value;
+            if (val == "请输入关键字"){
+                document.getElementById('key').value = "";
+            }
+        }
+        
+        function keyBlur() {
+            console.log('失去焦点');
+            var val = document.getElementById('key').value;
+            if(val.length>0){
+
+            }else{
+                document.getElementById('key').value = "请输入关键字";
+            }
+
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        select{
+            width:150px;
+            height:300px;
+        }
+    </style>
+</head>
+<body>
+<select name="fruit" id="fruit" multiple></select>
+<input type="button" value="<---" onclick="toleft();">
+<input type="button" value="<===" onclick="totalleft();">
+<input type="button" value="--->" onclick="toright();">
+<input type="button" value="===>" onclick="totalright();">
+<select name="fish" id="fish" multiple>
+    <option value="">大鱼</option>
+    <option value="">小鱼</option>
+    <option value="">虾米</option>
+    <option value="">甲鱼</option>
+    <option value="">咸鱼</option>
+    <option value="">苹果</option>
+    <option value="">香蕉</option>
+    <option value="">菠萝</option>
+    <option value="">西瓜</option>
+</select>
+</body>
+<script src="jquery.js"></script>
+<script>
+    function toleft(){
+//        append()
+        $("#fish option:selected").appendTo("#fruit");
+    }
+
+    function totalleft(){
+        $("#fish option").appendTo("#fruit");
+    }
+
+    function toright(){
+        $("#fruit option:selected").appendTo("#fish");
+    }
+    function totalright(){
+         $("#fruit option").appendTo("#fish");
+    }
+</script>
+</html>

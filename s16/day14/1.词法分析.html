@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function t(age){
+        //console.log(age);
+        //var age = 99;
+        //console.log(age);
+        function age() {
+        }
+        //age();
+        //console.log(age)
+    }
+    t(5)
+
+/*
+* 一.词法分析
+*   1.有参数时
+*       age = undenfined
+*       age = 5
+*   2.发现age已经在AO上面,什么也不做.不会复盖age=5
+*   3.function age会复盖上面的age=5;
+*
+* 二.执行
+*   1.第一个console.log打印function age(){}
+*   2.第二个console.log打印10,因为var age=10把function age(){}复盖.
+*   3.第三个console.log打印10, function没有执行,如果执行的话,会报错.
+* */
+</script>
+</body>
+</html>

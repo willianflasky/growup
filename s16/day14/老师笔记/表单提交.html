@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<form action="http://www.baidu.com" id="info" method="get">
+    用户名：<input type="text" desc="username"><br>
+    密码：<input type="password" desc="password"><br>
+    邮箱：<input type="text" desc="mail"><br>
+    地址：<input type="text" desc="addr"><br>
+    <input type="submit" value="提交" >
+</form>
+</body>
+<script src="jquery.js"></script>
+<script>
+    $(":submit").click(function(){
+        var flag = true;
+        $(".err").remove();
+        $("input[type='text'],input[type='password']").each(function(){
+            var v = $(this).val();
+            if(v.length == 0 ){
+                flag = false;
+                var desc = $(this).attr("desc");
+                $(this).after($("<span class='err'>" + desc + "必填</span>"));
+                return false;
+            }
+        });
+        return flag;
+    })
+</script>
+</html>

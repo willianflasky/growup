@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <input type="button" value="全选" onclick="checkAll();" />
+    <input type="button" value="取消" onclick="removeAll();"/>
+    <input type="button" value="反选" onclick="reverseAll();"/>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>选择</th>
+                <th>主机名</th>
+                <th>端口</th>
+            </tr>
+        </thead>
+        <tbody id="tb">
+            <tr>
+                <td><input class="c1" type="checkbox" /></td>
+                <td>c1.com</td>
+                <td>80</td>
+            </tr>
+            <tr>
+                <td><input class="c1" type="checkbox" /></td>
+                <td>c2.com</td>
+                <td>80</td>
+            </tr>
+            <tr>
+                <td><input class="c1" type="checkbox" /></td>
+                <td>c3.com</td>
+                <td>80</td>
+            </tr>
+            <tr>
+                <td><input class="c1" type="checkbox" /></td>
+                <td>c4.com</td>
+                <td>80</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function checkAll() {
+            var trList = document.getElementById('tb').children;
+            for(var i=0;i<trList.length;i++){
+                var tr = trList[i];
+                tr.firstElementChild.firstElementChild.checked = true;
+            }
+        }
+        
+        function removeAll() {
+            var trList = document.getElementById('tb').children;
+            for(var i=0;i<trList.length;i++){
+                var tr = trList[i];
+                tr.firstElementChild.firstElementChild.checked = false;
+            }
+        }
+
+        function reverseAll(){
+            var trList = document.getElementById('tb').children;
+            for(var i=0;i<trList.length;i++){
+                var tr = trList[i];
+                if(tr.firstElementChild.firstElementChild.checked){
+                    tr.firstElementChild.firstElementChild.checked = false;
+                }else{
+                    tr.firstElementChild.firstElementChild.checked = true;
+                }
+            }
+
+        }
+    </script>
+</body>
+</html>

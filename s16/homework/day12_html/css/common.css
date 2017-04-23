@@ -26,10 +26,12 @@ body{
     padding: 0 10px 0 16px;
     /*A标签本来是内联,让其有块标签的属性, hover时面积大*/
     display: inline-block;
+    margin-left: -3px;
     color: #c0cddf;
     font-size: 12px;
     /*去掉A标签下划线*/
     text-decoration: none;
+
 }
 /*菜单的hover*/
 .pg-header .menus a:hover{
@@ -48,16 +50,27 @@ body{
     display: inline-block;
     float: left;
     height: 1000px;
-    width: 700px;
+    width: 680px;
     margin-top: -2px;
 }
 .content2{
-    background-color: gray;
     display: inline-block;
     float: left;
-    height: 1000px;
-    width: 316px;
-    margin-top: -2px;
+    height: 480px;
+    width: 298px;
+    /*margin-top: 2px;*/
+    border-radius: 4px;
+    border: 1px solid #efefef;
+    background: #f9f9f9;
+    text-align: center;
+}
+
+.content2 .public_chat{
+    width: 298px;
+    height: 25px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 25px
 }
 
 .new{

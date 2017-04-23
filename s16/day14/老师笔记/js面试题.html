@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+</body>
+<script>
+
+    var str = "global"; //AO1  AO1.str
+    function t(age){
+        console.log(str); // undefined
+        var str = "locale";
+//        console.log(str); // locale
+
+    }
+    t();
+// 预编译，形成AO对象：
+    /**
+     * 1.f分析函数的参数：
+     * 如果没有参数的话，AO对象上没有任何属性
+     *  Ao.age = undefined
+     * 2.分析函数的变量声明：
+     * AO.str = undefined
+     *
+     * 3.分析函数的函数声明表达式：
+     * 无
+     * AO.sum = functioon(){}
+     * **/
+/**
+ * AO.str = "lcoale"
+ * **/
+</script>
+</html>

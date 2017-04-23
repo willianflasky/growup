@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+    function t(age) {
+        console.log(age); // function age(){}
+        var age = 99;
+        console.log(age); // 99
+        function age() {
+        }
+
+        console.log(age); // 99
+    }
+//t(5);
+    // 预编译：activeobject  AO
+    /**
+     * 1.分析函数参数：
+     * AO.age = Undefined
+     *  1.2 AO.age = 5
+     *
+     * 2.分析函数变量：
+     * 如果AO上有值，则不做处理，没有，AO加上
+     *
+     * AO.age = 5
+     *
+     * 3.函数声明表达式
+     * AO.age = function(){}
+     * **/
+
+</script>
+</body>
+</html>

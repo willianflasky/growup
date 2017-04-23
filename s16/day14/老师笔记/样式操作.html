@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+    .on{
+        background-image: url('on.jpg');
+    }
+    .off{
+        background-image: url('off.jpg');
+    }
+    div{
+        width:108px;
+        height:144px;
+    }
+</style>
+<body>
+    <div id="myimg" class="on off" onclick="bright();">
+
+    </div>
+</body>
+<script src="jquery.js"></script>
+<script>
+    function bright(){
+
+//       $("#myimg").removeClass("off");
+//        $("#myimg").addClass("on");
+        /**
+         * 如果有off  去掉off  灯亮
+         * 如果没有off  加上off  灯灭
+         * **/
+        if($("#myimg").hasClass('off')){
+            $("#myimg").removeClass("off");
+        }else{
+            $("#myimg").addClass("off");
+        }
+
+    }
+</script>
+</html>

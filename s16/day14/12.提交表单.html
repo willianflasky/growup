@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="http://www.baidu.com" id="info" method="get">
+    用户名：<input type="text" desc="用户名"><br>
+    密码：<input type="password" desc="密码"><br>
+    邮箱：<input type="text" desc="电子邮件"><br>
+    地址：<input type="text" desc="地址"><br>
+    <input type="submit" value="提交" >
+    <input type="reset" value="清空" >
+</form>
+
+<script src="jquery-1.12.4.js"></script>
+<script>
+    $(":submit").click(function(){
+        var flag = true;
+        $(".err").remove();
+        $("input[type='text'], input[type='password']").each(function(){
+            var v = $(this).val();
+            if(v.length == 0){
+                flag = false;
+                var desc = $(this).attr('desc');
+                $(this).after($("<span style='color: red' class='err'>"  + desc + "必填</span>"));
+                return false; // 这块加不加是两种效果,只是循环跳出来. 并没有传给事件.
+            }
+        })
+        return flag;  // 阻止事件发生传给事件.
+    })
+</script>
+</body>
+</html>

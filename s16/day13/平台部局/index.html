@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.css">
+    <style>
+        body{
+            margin: 0;
+        }
+        .pg-header{
+            height: 48px;
+            background-color: cadetblue;
+            line-height: 48px;
+        }
+        .left{
+            float: left;
+
+        }
+        .right{
+            float: right;
+        }
+
+        .pg-header .logo{
+            width: 200px;
+            background-color: burlywood;
+            text-align: center;
+            color: white;
+            font-size: 26px;
+            /*font-family: "Apple LiSung";*/
+        }
+
+        .pg-header .user-info a.item{
+            /*内联标签没有行高,让内联变成块*/
+            display: inline-block;
+            /*距离*/
+            padding: 0 20px;
+        }
+        .pg-header .user-info a.item:hover{
+            background-color: burlywood;
+        }
+        .pg-header .avatar{
+            width: 40px;
+            height: 40px;
+            /*overflow: hidden;*/
+            /*margin-top: 4px;*/
+            /*解决BUG,padding属于自己,margin不属于自己*/
+            padding: 4px 10px;
+            /*右边和pg-header对齐*/
+            margin-right: 3px;
+        }
+
+        /*定义菜单*/
+      .pg-header .avatar .user-menu{
+          /*定住*/
+        position: absolute;
+        width: 180px;
+        border: 1px solid #dddddd;
+        top: 48px;
+        right: -3px;
+        display: none;
+          z-index: 100;
+        }
+
+      /*让A标签成为块标签*/
+      .pg-header .avatar .user-menu a{
+        display: block;
+      }
+      /*触发头像hover, 对下面的.user-menu增加display*/
+      .pg-header .avatar:hover .user-menu{
+        display: block;
+      }
+
+
+
+      .pg-body{
+          /*小于1000就出滚动条*/
+          min-width: 1000px;
+      }
+
+        .pg-body .menus{
+        /*定住*/
+        position: absolute;
+        /*留出头部的空间*/
+        top: 48px;
+        left: 0;
+        bottom: 0;
+        width: 200px;
+        background-color: mediumpurple;
+        }
+
+        .pg-body .content{
+        /*最小宽度,小于800就出滚动条*/
+        min-width: 800px;
+        /*定住*/
+        position: absolute;
+        top: 48px;
+        left: 200px;
+        bottom: 0;
+        right: 0;
+        /*background-color: black;*/
+        /*内容超出范围,出滚动条*/
+        overflow: scroll;
+            /*解决BUG*/
+            z-index: 90;
+        }
+    </style>
+</head>
+<body>
+    <div class="pg-header">
+        <div class="logo left">LNH运维平台</div>
+        <!--relative关联后面的absolute-->
+        <div class="avatar right" style="position: relative">
+            <!--头像-->
+            <!--width and height为了让图显示完整,由于他的存在,overflow:hidden不生效
+                1.没有overflow:hidden会被撑开.
+                2.overflow将多的不显示,这时候只能显示局部图片.
+                3.width:100%;height: 100%解决显示全部图片.
+            -->
+            <a style="overflow: hidden"><img style="width:100%;height: 100%; border-radius:50%" src="img/2.jpg"></a>
+            <!--用户菜单-->
+            <div class="user-menu">
+                <a href="#">个人资料</a>
+                <a href="#">注销</a>
+            </div>
+
+        </div>
+        <div class="user-info right">
+            <a class="item"><i class="fa fa-heart" aria-hidden="true"></i></a>
+            <a class="item"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+            <a class="item">登录</a>
+            <a class="item">注册</a>
+        </div>
+    </div>
+
+    <div class="pg-body">
+        <div class="menus">功能栏</div>
+        <div class="content">
+            <p>1111</p>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+    .hide{
+        display: none;
+    }
+    .show{
+        display: block;
+    }
+    .shadow{
+        position: fixed;
+        top:0;
+        right:0;
+        left:0;
+        bottom:0;
+        opacity:0.6;
+        background-color: #000;
+        z-index: 10;
+    }
+    .modal{
+        position: fixed;
+        top:10%;
+        left:20%;
+        right:20%;
+        bottom:30%;
+        background-color: wheat;
+        z-index: 11;
+    }
+
+</style>
+<body>
+<input type="button" onclick="addEle();" value="添加"/>
+<table border="1" width="400px" id="info">
+    <tr>
+        <td target="ip">192.168.1.1</td>
+        <td target="port">80</td>
+        <td>
+            <input type="button" value="编辑" class="edit"/>
+        </td>
+        <td>
+            <input type="button" value="删除"/>
+        </td>
+    </tr>
+    <tr>
+        <td target="ip">192.168.1.2</td>
+        <td target="port">81</td>
+        <td>
+            <input type="button" value="编辑" class="edit"/>
+        </td>
+        <td>
+            <input type="button" value="删除"/>
+        </td>
+    </tr>
+
+    <tr>
+        <td target="ip">192.168.1.3</td>
+        <td target="port">82</td>
+        <td>
+            <input type="button" value="编辑" class="edit"/>
+        </td>
+        <td>
+            <input type="button" value="删除"/>
+        </td>
+    </tr>
+</table>
+<div class="modal hide">
+    主机IP：<input type="text" value="" name="ip"/><p>
+    端口号：<input type="text" value="" name="port"/><p>
+    <input type="button" value="确认">
+    <input type="button" value="取消" onclick="cancelModel()">
+</div>
+<div class="shadow hide"></div>
+</body>
+<script src="jquery.js"></script>
+<script>
+    function addEle(){
+        $(".hide").css("display","block");
+    }
+    function cancelModel(){
+        $(".hide").css("display","none");
+    }
+
+    $(".edit").click(function(){
+        $(".hide").css("display","block");
+        var tds = $(this).parent().siblings('td');
+//        console.log(tds);
+        tds.each(function(){
+            var k = $(this).attr('target');
+            var v = $(this).text();
+            console.log(k + '---' + v);
+            var v1 = "input[name = '";
+            var v2 = "']";
+            var tmp = v1 + k + v2;
+//            console.log(tmp);
+            $(tmp).val(v);
+        });
+
+
+
+        //获取ip和port值
+//        var ip = $(tds[0]).text();
+//        var port = $(tds[1]).text();
+////        console.log(ip + '----' + port);
+//        // 设置ip和port到模态框内
+//        $("input[name='ip']").val(ip);
+//        $("input[name='port']").val(port);
+    })
+</script>
+</html>

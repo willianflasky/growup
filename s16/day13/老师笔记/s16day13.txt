@@ -1,0 +1,437 @@
+day13
+
+    1. CSS示例
+    2. JavaScript
+    3. DOM操作
+    
+上节内容回顾：
+    1. HTML标签
+        html/head/body/
+        input
+        div,span
+        a
+        p
+        br
+        span
+        table > tr行  th表头列  td表头列
+        h
+        form> action  method  enctype=;;;
+        select option 
+        input系列：
+            text
+            password
+            email
+            button
+            submit    
+            radio   name属性相同
+            checkbox
+            reset
+        textarea
+     2.CSS
+
+        a. 存在形式
+            - <div style='k1=v1;k2=v2;'>
+            - <style></style>
+            - <link ...>
+        b. 选择器
+            <style>
+                .c1{
+                    
+                }
+                #i1{
+                
+                }
+                
+                div{
+                
+                }
+                
+                .c1,#i2{
+                    
+                }
+                
+                .c1 .c2{
+                    
+                }
+                
+                .c1 > .c2{
+                
+                }
+                
+                .c1:hover{
+                    
+                }
+                input[type='text']{
+                    
+                }
+            </style>
+            
+       c. 样式
+       **** 田海龙 ****
+            color:
+            background-color:
+            font-size:
+            background-img:
+            background-position:
+            position:
+                fixed       - 永远固定在浏览器窗口的某个位置
+                absolute    - 固定在浏览器窗口的某个位置
+                relative    - 单独无用
+                                
+                                relative
+                                    
+                                       absolute
+                                       
+            padding:  内边距
+            margin:   外边距
+            top ...:
+            border: 1px shixu  yanse
+            height: 100%
+            width:
+            display:
+                none         隐藏
+                block        块
+                inline       内联
+                inlie-block  内联+块级
+            float:
+                left
+                right
+                <div style='background-color:red;'>
+                    <div style='float:left;'>adf</div>
+                    <div style='float:right;'>adf</div>
+                    <div style='clear:both'></div>
+                </div>
+                
+           text-align:
+           line-height:
+           cursor
+           
+           z-index:
+           opacity:
+                
+今日内容
+
+    一、后台管理示例
+    
+        
+    
+    二、JavaScript
+        1. 存在形式
+                        
+        2. 位置
+            <body>
+            
+            ...;.
+            </body>
+        3. 
+            a = 123;
+            var a = 123;
+        4. //  /* */
+        
+        5. 声明函数
+            // 普通函数
+            function func(arg){
+                alert(123);
+            }
+            func("alex")    
+            
+            // 普通函数，自执行函数
+            (function(arg){
+                alert(123);
+            })("alex")
+            
+            (function(arg){})("alex")
+            
+            // 匿名函数,当做参数传递
+            function(){
+                alert(123);
+            }
+                // 匿名函数的应用
+                function func(arg){
+                    arg()
+                }
+                func(function(){alert(123)})
+                
+            
+       
+        6. 基本数据类型
+            undefined     // 为定义 var age;
+                        function func(a1,a2){
+                            alert(a1);
+                            alert(a2);
+                        }
+                        func(1)
+            null          // 空值
+            
+            数字
+                        var age = 123.123;
+                        var v = typeof age; # number
+                        alert(v);
+                        
+                        isNaN
+                        parseInt()
+                        parseFloat(num)
+            字符串
+                        obj.length                           长度
+                        
+                        obj.trim()                           移除空白
+                        obj.trimLeft()
+                        obj.trimRight)
+                        obj.charAt(n)                        返回字符串中的第n个字符
+                        obj.concat(value, ...)               拼接
+                        obj.indexOf(substring,start)         子序列位置
+                        obj.lastIndexOf(substring,start)     子序列位置
+                        obj.substring(from, to)              根据索引获取子序列
+                        obj.slice(start, end)                切片
+                        obj.toLowerCase()                    大写
+                        obj.toUpperCase()                    小写
+                        obj.split(delimiter, limit)          分割
+            
+            数组
+            
+                obj.length          数组的大小
+ 
+                obj.push(ele)       尾部追加元素
+                obj.pop()           尾部获取一个元素
+                obj.unshift(ele)    头部插入元素
+                obj.shift()         头部移除元素
+                obj.splice(start, deleteCount, value, ...)  插入、删除或替换数组的元素
+                                    obj.splice(n,0,val) 指定位置插入元素
+                                    obj.splice(n,1,val) 指定位置替换元素
+                                    obj.splice(n,1)     指定位置删除元素
+                obj.slice( )        切片
+                obj.reverse( )      反转
+                obj.join(sep)       将数组元素连接起来以构建一个字符串
+                obj.concat(val,..)  连接数组
+                obj.sort( )         对数组元素进行排序
+                        
+            
+            字典
+                info = {name: 'alex',age: 18};
+            
+       7. 序列化
+            JSON.stringify
+            JSON.parse
+            
+       8. 转义
+       
+       
+       9. eval
+       
+       
+       10. 时间
+       
+            var da = new Date();
+            
+            
+       11. 条件&循环&异常处理
+       
+       12. 面向对象
+            
+            // 面向对象
+            function Foo(name,age){
+                this.Name = name;
+                this.Age = age;
+            }
+            
+            obj = new Foo('alex',18);
+            obj.Name
+            
+            
+            function Foo(name,age){
+                this.Name = name;
+                this.Age = age;
+            }
+            
+            // 利用原型实现方法重用
+            Foo.prototype.show = function(){
+                    alert(this.Name);
+            }
+            
+            obj1 = new Foo('alex',18);
+            obj1.show()
+            
+            obj2 = new Foo('alex',18);
+            obj2.show()
+       
+       
+      三、利用HTML文档+JavaScript+DOM实现操作HTML数据
+      
+      
+          1. 查找
+          
+            document.getElementById             根据ID获取一个标签
+            document.getElementsByName          根据name属性获取标签集合
+            document.getElementsByClassName     根据class属性获取标签集合
+            document.getElementsByTagName       根据标签名获取标签集合
+          2. 间接查找
+          
+            parentNode          // 父节点
+            childNodes          // 所有子节点
+            firstChild          // 第一个子节点
+            lastChild           // 最后一个子节点
+            nextSibling         // 下一个兄弟节点
+            previousSibling     // 上一个兄弟节点
+             
+            parentElement           // 父节点标签元素
+            children                // 所有子标签
+            firstElementChild       // 第一个子标签元素
+            lastElementChild        // 最后一个子标签元素
+            nextElementtSibling     // 下一个兄弟标签元素
+            previousElementSibling  // 上一个兄弟标签元素
+          
+          
+          3. HTML标签样式操作
+            
+            var tag = document.getElementById('i1');
+            tag.classList.add('c1')  //给标签添加样式
+            tag.classList.remove('c1')  //给标签移除样式
+            
+            <div class='c1 c2'></div>
+            tag.className    "c1 c2"
+            tag.classList    ['c1','c2']
+            
+          4. 文本操作
+          
+            innerText         只获取文本
+            innerHTML         获取文本以及标签
+          
+            innerText = "文本"
+            innerHTML = "HTML格式解析"
+            
+            input:
+                document.getElementById('username').value
+                document.getElementById('username').value = "asdf"
+                
+                
+            PS:
+                <input type="text" id="key" value="请输入关键字" onfocus="keyFocus();" onblur="keyBlur();" />
+          
+                onfocus: 获取焦点
+                onblur： 失去焦点
+      
+           5. 属性操作
+                
+                <div id='i1'></div>
+                
+                <input id='ck' type="checkbox" />
+                
+                自定义属性
+                    attributes                // 获取所有标签属性
+                    setAttribute(key,value)   // 设置标签属性
+                    getAttribute(key)         // 获取指定标签属性
+                           
+                内置属性：
+                    obj.id
+                    
+                        checkbox
+                            - obj.checked   true或false
+                            
+           6. 创建标签
+                对象方式 ***
+                
+           7. js提交表单
+           
+                document.getElementById('f1').submit();
+           8. 常用操作
+           
+                console.log(..)
+                alert(..)
+                confirm(...)
+                var v = confirm('是否要删除？');
+                console.log(v);
+                
+                
+                location.href    获取当前URL
+                location.href = "http://www.oldboyedu.com"  重定向
+                
+                location.reload()  刷新
+                
+                
+                
+                setInterval
+                clearInterval
+                
+                setTimeout
+                clearTimeout
+                
+                
+                var obj1= setInterval(function () {
+                    console.log('1');
+                    clearInterval(obj1);
+                },1000);
+                var obj2= setInterval(function () {
+                    console.log('2');
+                    clearInterval(obj2);
+                },1000)
+           
+         9. 事件
+
+                
+         
+           
+                1. 绑定事件
+                        <div id='i1' onkeydown='func(this,event,123);'> 点我 </div>
+                       function func(a,b,c){
+                            // a -> 当前被点击的标签对象  document.getElementById('i1')
+                            // b -> 当前事件相关的信息
+                            // c = 123
+                       }
+           
+                2. 绑定事件 ***************
+                        <div id='i1'> 点我 </div>
+                        
+                        <script>
+                            document.getElementById('i1).onclick = function(event){
+                                // event -> 当前事件相关的信息
+                                // this  -> 当前被点击的标签对象
+                            }
+                            document.getElementById('i1).onclick = function(event){
+                                // event -> 当前事件相关的信息
+                                // this  -> 当前被点击的标签对象
+                            }
+                        </script>
+                一个事件只能被绑定一次
+                    
+                3. 绑定事件
+                
+                    document.getElementById('i1').addEventListener('click',function(){
+                        console.log(111);
+                    },true)
+                    document.getElementById('i1').addEventListener('click',function(){
+                        console.log(222);
+                    },true)
+                    
+                   PS: addEventListener第三个参数
+                       默认：
+                            事件冒泡
+                            捕获式
+                       
+欠：
+    1. 点赞 +1 动画
+        
+    2. JavaScript高级知识 - 词法分析
+    
+           
+           
+作业：
+    后台管理+所有示例
+    1. 后台管理布局
+    2. 左侧菜单
+    3. 莫泰对话框
+    4. 表格全选反选取消
+    5. 添加标签
+    6. 欢迎今天李磊上课
+    7. 5s之后 删除内容 移除
+    8. 时间流逝
+    9. 搜索框
+        <form action='https://www.sogou.com/web'>
+            <input type='text' name='query' />
+            <div>提交</div>
+        </form>
+     
+           
+参考博客：
+        http://www.cnblogs.com/wupeiqi/articles/5643298.html            
+        http://www.cnblogs.com/wupeiqi/articles/5602773.html
+        
