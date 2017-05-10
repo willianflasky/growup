@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block username %}
+    <span class="login_tag">{{ username}}</span>
+{% endblock %}
+
+{% block content %}
+    <!-- shadow-->
+    <div id="s1" class="shadow hide"></div>
+    <!-- dialog -->
+    <div id="s2" class="dialog hide">
+        <br>
+        <form action="/blog/edit_books/" method="post">
+            <p>号码:<input type="text" name="id"></p>
+            <p>书名:<input type="text" name="title"></p>
+            <p>作者:<input type="text" name="author"></p>
+            <p>价格:<input type="text" name="price"></p>
+            <p>日期:<input type="text" name="pub_date"></p>
+            <input style="margin-left: 30px" type="submit" value="确定">
+            <input type="button" value="取消" onclick="closeMT();">
+            <input type="reset" value="重置">
+        </form>
+    </div>
+
+    <div>
+            <table border="1px" style="width: 900px; height: 10px;table-layout:fixed; color: deepskyblue">
+                <tr>
+                    <th>id</th>
+                    <th>书名</th>
+                    <th>作者</th>
+                    <th>价格</th>
+                    <th>日期</th>
+                    <th>编辑</th>
+                    <th>删除</th>
+                </tr>
+            </table>
+
+            {% for obj in all_books %}
+                <table border="1px" style="width: 900px; height: 10px;table-layout:fixed;">
+                <tr class="c11">
+                    <td target="id">{{ obj.id }}</td>
+                    <td target="title">{{ obj.title }}</td>
+                    <td target="author">{{ obj.author }}</td>
+                    <td target="price">{{ obj.price }}</td>
+                    <td target="pub_date">{{ obj.pub_date }}</td>
+                    <td><a class="edit" href="#" style="color: yellow">编辑</a></td>
+                    <td><a class="delete" href="/blog/del_books/?id={{ obj.id }}" style="color: yellow;">删除</a></td>
+                </tr>
+            </table>
+        {% endfor %}
+        <br>
+        <a href="/blog/add_books/" style="color: yellow">增加新书</a>
+    </div>
+{% endblock %}

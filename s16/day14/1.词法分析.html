@@ -7,28 +7,31 @@
 <body>
 <script>
     function t(age){
-        //console.log(age);
-        //var age = 99;
-        //console.log(age);
-        function age() {
+        console.log(age);   // 词法:5     执行结果:funcation age()
+        var age = 99;
+        console.log(age);   // 词法:5     执行结果:99
+        function age() {    // 词法:fun   执行结果:99不能执行
         }
         //age();
-        //console.log(age)
+        console.log(age)  //   词法:fun   执行结果:99
     }
     t(5)
 
 /*
+********************变量的作用域是在声明时决定的而不是调用执行时决定******************
 * 一.词法分析
 *   1.有参数时
 *       age = undenfined
 *       age = 5
 *   2.发现age已经在AO上面,什么也不做.不会复盖age=5
-*   3.function age会复盖上面的age=5;
+*   3.function age会复盖上面的age=5;(注意在词法分析的时候最后age=funcation age())
 *
 * 二.执行
-*   1.第一个console.log打印function age(){}
-*   2.第二个console.log打印10,因为var age=10把function age(){}复盖.
-*   3.第三个console.log打印10, function没有执行,如果执行的话,会报错.
+*   1.第一个console.log打印function age(){},因为词法分析后,最后就是funcation age(){}
+*   2.第二个console.log打印99,因为var age=99把function age(){}复盖.
+*   3.第三个console.log打印99, function没有执行,如果执行的话,会报错.
+*   4.至于function age()为什么没有复盖 age=99.那么先读(变量的作用域是在声明时决定的而不是调用执行时决定).
+*       function age()在词法分析的时候生效了,在执行的时候早被第一部让参数复盖;
 * */
 </script>
 </body>

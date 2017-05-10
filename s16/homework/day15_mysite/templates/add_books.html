@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+            <form action="/blog/add_books/" method="POST">
+                <p>书名:<input type="text" name="title"/></p>
+                <p>作者:<input type="text" name="author"/></p>
+                <p>价格:<input type="text" name="price"/></p>
+                <p>日期:<input type="text" name="pub_date"/></p>
+                <input type="submit" value="提交">
+                <input type="reset" value="重置">
+            </form>
+{% endblock %}
+

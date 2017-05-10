@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<h1>hello {{ name }}</h1>
+
+<h1>书籍管理工具</h1>
+
+{% for obj in obg_list %}
+    <p>书名{{ obj.title }} 作者 {{ obj.author }} 日期{{ obj.pub_date }} <a href="/delete_books/?id={{ obj.id }}">删除</a><a href="/edit_books/?id={{ obj.id }}">编辑</a></p>
+{% endfor %}
+
+<a href="/add_books/">添加</a>
+
+
+
+</body>
+</html>

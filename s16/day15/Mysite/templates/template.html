@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<h1>{{ p.name }}</h1>
+<h1>{{ p.id }}</h1>
+<h1>{{ p.age }}</h1>
+
+<h1>{{ d.name }}</h1>
+<h1>{{ d.age }}</h1>
+
+<h1>{{ l.0 }}</h1>
+<h1>{{ l.1 }}</h1>
+<h1>{{ l.2 }}</h1>
+
+<h1>{{ name }}</h1>
+
+
+
+<h1>展示用户信息</h1>
+
+
+
+{% for obj in name_list %}
+    {% if obj.age > 20 %}
+        <p>{{ obj.name }} {{ obj.id }}{{ obj.age }}</p>
+    {% endif %}
+
+{% endfor %}
+
+{#{{ name_list.0.name }}#}
+{#{{ name_list.0.age }}#}
+{#{{ name_list.0.id }}#}
+{#{{ name_list.1.name}}#}
+{#{{ name_list.1.age}}#}
+{#{{ name_list.2.name }}#}
+
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>运维平台</title>
+    <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="icon" href="img/logo.png">
+</head>
+<body>
+    <!--header-->
+    <div class="pg-header">
+        <!--LOGO-->
+        <div class="logo left"><img src="img/logo.png"></div>
+        <h4 id="currentTime" style="color: #dddddd;position: fixed; top: -20px; left: 150px"></h4>
+        <div style="color: #dddddd;position: fixed;line-height:44px;left: 330px;right: 300px"><marquee scrollamount="10" scrolldelay="0" direction="left">EEO欢迎您!</marquee></div>
+        <!--用户头像-->
+        <div class="avatar right" style="position: relative">
+            <a><img src="img/2.jpg" /></a>
+            <div class="user-menu">
+                <a href="#">个人资料</a>
+                <a href="#">注销</a>
+            </div>
+        </div>
+
+        <!--登录注册-->
+        <div class="user-info right">
+            <a class="item"><i class="fa fa-heart" aria-hidden="true"></i></a>
+            <a class="item"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+            <a class="item"><input type="button" value="登录" onclick="showLogin();"/></a>
+            <a class="item"><input type="button" value="注册" onclick="showRegister();"/></a>
+            <div id="i1" class="mid hide"></div>
+            <div id="i2" class="modal hide">
+                用户名:<input type="text" placeholder="请输入用户名">
+                密码:<input type="password" placeholder="请输入密码">
+                <input type="button" value="取消" onclick="hideLogin();">
+                <input type="button" value="确定" onclick="hideLogin()">
+            </div>
+
+            <div id="i3" class="modal_register hide">
+                名字:<input type="text"><br>
+                密码:<input type="password"><br>
+                手机:<input type="text"><br>
+                <input type="button" value="取消" onclick="hideRegister();">
+                <input type="button" value="确定" onclick="hideRegister()">
+            </div>
+        </div>
+    </div>
+
+    <!--body-->
+    <div class="pg-body">
+        <div class="menus left">
+            <div class="item">
+                <div class="title">监控</div>
+                <div class="c1 hide">
+                    <a href="#">内容一</a>
+                    <a href="#">内容一</a>
+                    <a href="#">内容一</a>
+                </div>
+            </div>
+
+        <div class="item">
+            <div class="title" id="m2">操作</div>
+            <div class="c1 hide">
+                 <a href="#">内容二</a>
+                 <a href="#">内容二</a>
+                 <a href="#">内容二</a>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="title">日志</div>
+            <div class="c1 hide">
+                 <a href="#">内容三</a>
+                 <a href="#">内容三</a>
+                 <a href="#">内容三</a>
+            </div>
+        </div>
+            <h3 id="welcome" style="bottom: 0px;color: greenyellow; position: fixed;">EEO</h3>
+        </div>
+        <div class="content left">
+            <!--search bar-->
+            <div class="search">
+                <form action="http://www.sogou.com/web" method="get">
+                    搜索:<input type="text" id="key" name="query" onfocus="keyFocus();" onblur="keyBlur();" value="请输入关键字"/>
+                    <input style="border: 0px" type="submit" value="提交">
+                </form>
+            </div>
+            <!--table-->
+            <div class="table">
+                <HR style="width:100%" color=#987cb9 SIZE=3>
+
+                主机:<input class="inp1" id="host_numb" type="text" desc="*主机"><br>
+                端口:<input class="inp1" id="host_port" type="text" desc="*端口"><br>
+                <input type="submit" value="增加主机" onclick="addElement()">
+                <input type="button" value="删除主机" onclick="delElement();">
+
+                <br>
+
+                <div>
+                    <table border="1px" style="width: 200px">
+                        <thead>
+                            <tr>
+                                <th>选择</th>
+                                <th>主机</th>
+                                <th>端口</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody1">
+                            <tr>
+                                <td><input class="option1" type="checkbox"/></td>
+                                <td>c1.com</td>
+                                <td>80</td>
+                            </tr>
+                            <tr>
+                                <td><input class="option1" type="checkbox"/></td>
+                                <td>c2.com</td>
+                                <td>80</td>
+                            </tr>
+                            <tr>
+                                <td><input class="option1" type="checkbox"/></td>
+                                <td>c3.com</td>
+                                <td>80</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="top:48px; position: fixed; left: 620px;" id="display_delete"></div>
+                    <div style="padding-left: 30px;">
+                        <input id="checkAll" type="button" value="全选">
+                        <input id="removeAll" type="button" value="取消">
+                        <input id="reverseAll" type="button" value="反选">
+                    </div>
+                </div>
+                <div id="mylight" class="on off"></div>
+                <div id="myselect">
+                    <select name="fruit" id="fruit" multiple></select>
+                    <div>
+                        <input type="button" value="左边" onclick="toleft();">
+                        <input type="button" value="全部左边" onclick="totalleft();">
+                        <input type="button" value="右边" onclick="toright();">
+                        <input type="button" value="全部右边" onclick="totalright();">
+                    </div>
+
+                    <select name="fish" id="fish" multiple>
+                        <option value="">大鱼</option>
+                        <option value="">小鱼</option>
+                        <option value="">虾米</option>
+                        <option value="">甲鱼</option>
+                        <option value="">咸鱼</option>
+                        <option value="">苹果</option>
+                        <option value="">香蕉</option>
+                        <option value="">菠萝</option>
+                        <option value="">西瓜</option>
+                    </select>
+                </div>
+            </div>
+            <HR style="width: 100%; top:400px; position: fixed" color="#987cb9" size=3>
+            <div style="top: 410px; position: fixed;">
+                    <div class="menu_select">
+                        <div class="menu active" a="1">菜单一</div>
+                        <div class="menu" a="2">菜单二</div>
+                        <div class="menu" a="3">菜单三</div>
+                    </div>
+
+                    <div class="content">
+                        <div class="info" b="1">
+                            <div>
+                                <div class="click_good">
+                                    <a class="Favor" href="#">点赞1</a>
+                                </div>
+                                <div class="click_good">
+                                    <a class="Favor" href="#">点赞2</a>
+                                </div>
+                                <div class="click_good">
+                                    <a class="Favor" href="#">点赞3</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info hide" b="2">内容二</div>
+                        <div class="info hide" b="3">内容三</div>
+                    </div>
+             </div>
+
+        </div>
+    </div>
+    <script src="js/jquery-1.12.4.js"></script>
+    <!--莫泰对话框-->
+    <script src="js/login.js"></script>
+    <!--菜单选择-->
+    <script src="js/menus_choice.js"></script>
+    <!--文字滚动-->
+    <script src="js/welcome.js"></script>
+    <!--时间-->
+    <script src="js/time.js"></script>
+    <!--搜索-->
+    <script src="js/search_key.js"></script>
+    <!--表格选择-->
+    <script src="js/table.js"></script>
+    <!--操作标签-->
+    <script src="js/add_host.js"></script>
+    <!--点赞-->
+    <script src="js/click_good.js"></script>
+    <!--菜单左右选择-->
+    <script src="js/menu_select.js"></script>
+    <!--隔行换色-->
+    <script src="js/change_row_color.js"></script>
+    <!--星星点灯-->
+    <script src="js/mylight.js"></script>
+    <!--选择菜单元素-->
+    <script src="js/buy_fish.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<h1>登录页面</h1>
+
+<form action="{% url 'LOGIN' %}" method="post">
+
+    用户名：<p><input type="text" name="username"></p>
+    密码：<p><input type="password" name="pwd"></p>
+    <input type="submit" value="submit">
+
+</form>
+
+</body>
+</html>

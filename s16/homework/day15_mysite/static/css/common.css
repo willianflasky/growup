@@ -1,0 +1,40 @@
+.shadow{
+    position: fixed;
+    top:0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.6;
+    background-color: #000000;
+    z-index: 10;
+}
+.dialog{
+    position: fixed;
+    top:30%;
+    right: 30%;
+    left: 30%;
+    bottom: 30%;
+    background-color: mediumseagreen;
+    z-index: 11;
+    height: 300px;
+    border-radius: 10px;
+}
+.hide{
+    display: none;
+}
+
+.login_tag{
+    float: right;
+    line-height: 50px;
+    margin-right: 10px;
+    text-decoration:none;
+    color: white;
+}
+
+.login_tag:hover{
+    background-color: green;
+    text-decoration: none;
+    color: yellow;
+}
+
+
