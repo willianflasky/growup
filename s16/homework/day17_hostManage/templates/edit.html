@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block logined_name %}
+    <a href="#" class="login_tag" style="color: deepskyblue">{{ username }} </a>
+{% endblock %}
+
+{% block content %}
+        <div class="list-group">
+            <h3>业务线增加:</h3>
+            业务线名称:<input type="text" id="new_line" placeholder="web">
+            <input id="add_line" type="button" value="提交">
+
+            <HR>
+            <h3>主机增加:</h3>
+            主机地址:<input type="text" name="ip" id="ip" placeholder="10.0.0.1">
+            主机端口:<input type="text" name="port" id="port" placeholder="22">
+            主机用户:<input type="text" name="hostuser" id="hostuser" placeholder="root">
+            主机密码:<input type="password" name="hostpass" id="hostpass" placeholder="password">
+            业务线:<select name="s1" id="s1">
+                {% for line in all_line %}
+                    <option value="{{ line.bussline }}">{{ line.bussline }}</option>
+                {% endfor %}
+            </select>
+            &nbsp;
+            <input type="button" id="add_host" value="提交">
+            <HR>
+            <h3>增加用户主机关联:</h3>
+            主机IP:<input type="text" id="relation_ip" placeholder="10.0.0.1">
+            用户名:<input type="text" id="relation_user" placeholder="tom">
+            <input id="add_relation" type="button" value="提交">
+            <HR>
+        </div>
+{% endblock %}
+
+{% block footer %}
+    <script>
+        $(function(){
+          add_line();
+          add_host();
+          add_relation();
+        })
+
+        function add_line(){
+            $("#add_line").click(function(){
+                var new_line = $("#new_line").val();
+                $.ajax({
+                    url:"{%  url 'EDIT' %}?line=1",
+                    type:"POST",
+                    data: {new_line:new_line},
+                    dataType: "JSON",
+                    success:function(data){
+                        if(data.status){
+                            alert("成功")
+                            location.href = "{% url 'EDIT' %}"
+                        }else{
+                            alert(data.error)
+                        }
+                    }
+                })
+            })
+        }
+
+        function add_host(){
+            $("#add_host").click(function(){
+                var ip = $("#ip").val();
+                var port = $("#port").val();
+                var hostuser = $("#hostuser").val();
+                var hostpass = $("#hostpass").val();
+                var s1 = $("#s1").val();
+                $.ajax({
+                    url:"{% url 'EDIT' %}?line=2",
+                    type:"POST",
+                    data: {ip:ip,port:port,hostuser:hostuser,hostpass:hostpass,s1:s1},
+                    dataType: "JSON",
+                    success:function(data){
+                        if(data.status){
+                            alert("成功")
+                            location.href = "{% url 'EDIT' %}"
+                        }else{
+                            alert(data.error)
+                        }
+                    }
+                })
+            })
+        }
+
+        function add_relation(){
+            $("#add_relation").click(function(){
+                var ip = $("#relation_ip").val();
+                var user = $("#relation_user").val();
+            $.ajax({
+                url:"{% url 'EDIT' %}?line=3",
+                type:"POST",
+                data:{ip:ip, user:user},
+                dataType:"JSON",
+                success:function(data){
+                        if(data.status){
+                            alert("成功")
+                            location.href = "{% url 'EDIT' %}"
+                        }else{
+                            alert(data.error)
+                        }
+                    }
+                })
+            })
+        }
+    </script>
+{% endblock %}
+
+

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse, HttpResponseRedirec
 from django import forms
 from blog.models import *
 from functools import wraps
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 # Create your views here.
 
 
@@ -63,6 +64,16 @@ def show_data(request, *args, **kwargs):
     #     return redirect('/blog/login/')
     username = args[0]
     all_books = Books.objects.all()
+    tatal_number = all_books.count()
+    paginator = Paginator(all_books, 3)
+    page = request.GET.get('p')
+    try:
+        books_obj = paginator.page(page)
+    except PageNotAnInteger:
+        books_obj = paginator.page(1)
+    except EmptyPage:
+        books_obj = paginator.page(paginator.num_pages)
+
     return render(request, 'index.html', locals())
 
 
@@ -100,3 +111,4 @@ def edit_books(request):
             # b.save()  # 效率低
             Books.objects.filter(id=nid).update(id=nid, title=title, author=author, price=price, pub_date=pub_date)
     return redirect('/blog/')
+

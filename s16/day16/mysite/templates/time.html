@@ -1,0 +1,20 @@
+{% load tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/hello/jquery-3.1.1.js"></script>
+</head>
+<body>
+
+<h1>{{ tm }}</h1>
+<h1>{{ z|mul:"[1,2,3]" }}</h1>
+<h1>{% mul2 z 2 2 %}</h1>
+
+</body>
+
+<script>
+    $('h1').css('color','red');
+</script>
+</html>

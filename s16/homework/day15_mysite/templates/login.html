@@ -8,7 +8,7 @@
     <!-- dialog -->
     <div class="dialog">
         <div style="margin-top: 100px; margin-left: 10%">
-            <form action="/blog/login/" method="POST">
+            <form action="{% url 'LOGIN' %}" method="POST">
                 用户名:<input type="text" name="username"/>
                 密码:<input type="password" name="password"/>
                 <br><br>

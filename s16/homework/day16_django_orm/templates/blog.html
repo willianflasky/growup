@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load page_tag %}
+
+{% block logined_name %}
+    <a href="#" class="login_tag" style="color: deepskyblue">{{ username }} </a>
+{% endblock %}
+
+{% block content %}
+
+    {% for i in info_obj %}
+        <div class="list-group">
+            <a href="/blog/detail/{{ i.id }}">
+                <div class="list-group-item list-group-item-success">摘要:&nbsp{{ i.text|truncatechars:200 }}</div>
+                <div class="list-group-item list-group-item-info">文章名:{{ i.title }}&nbsp作者:{{ i.author_name }}&nbsp日期:{{ i.date }}&nbsp发布者:{{ i.publish_username }}</div>
+            </a>
+        </div>
+    {% endfor %}
+
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+              {% if  info_obj.has_previous %}
+                <li><span class="#"><a href="?p={{ info_obj.previous_page_number }}" aria-label="Previous"><span aria-hidden="true">上一页</span></a></span></li>
+              {% endif %}
+
+               {% for page_num in info_obj.paginator.page_range  %}
+                   {% guess_page info_obj.number page_num %}
+               {% endfor %}
+
+               {% if info_obj.has_next %}
+                   <li><span class="#"><a href="?p={{ info_obj.next_page_number }}" aria-label="Next"><span aria-hidden="true">下一页</span></a></span></li>
+               {% endif %}
+          </ul>
+        </nav>
+
+{% endblock %}

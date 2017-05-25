@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block logined_name %}
+    <a href="#" class="login_tag" style="color: deepskyblue">{{ username }} </a>
+{% endblock %}
+
+{% block content %}
+
+    <div class="jumbotron">
+        <h3>新增作家</h3>
+        <div class="input-group">
+            <form action="/blog/append/?p=1" method="post">
+                <input type="text" class="form-control" name="author_name" placeholder="姓名">
+                <input type="text" class="form-control" name="author_age" placeholder="年龄">
+                <input type="text" class="form-control" name="author_city" placeholder="城市">
+                <input type="submit" class="form-control" value="提交">
+                <input type="reset" class="form-control" value="重置">
+            </form>
+        </div>
+    </div>
+
+        <div class="jumbotron">
+        <h3>文章发布</h3>
+        <div class="input-group">
+            <form action="/blog/append/?p=2" method="post">
+                <input type="text" class="form-control" name="artical_title" placeholder="文章名称">
+                <input type="text" class="form-control" name="artical_text" placeholder="文章内容">
+                <input type="submit" class="form-control" value="提交">
+                <input type="reset" class="form-control" value="重置">
+            </form>
+        </div>
+    </div>
+
+
+    <div class="jumbotron">
+        <h3>关联管理</h3>
+        <div class="input-group">
+            <form action="/blog/append/?p=3" method="post">
+                <input type="text" class="form-control" name="artical_title" placeholder="文章名称">
+                <input type="text" class="form-control" name="author_name" placeholder="作者名称">
+                <input type="submit" class="form-control" value="提交">
+                <input type="reset" class="form-control" value="重置">
+            </form>
+        </div>
+    </div>
+{% endblock %}

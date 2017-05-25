@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load page_tag %}
+
 {% block username %}
     <span class="login_tag">{{ username}}</span>
 {% endblock %}
@@ -34,7 +36,7 @@
                 </tr>
             </table>
 
-            {% for obj in all_books %}
+            {% for obj in books_obj %}
                 <table border="1px" style="width: 900px; height: 10px;table-layout:fixed;">
                 <tr class="c11">
                     <td target="id">{{ obj.id }}</td>
@@ -47,7 +49,27 @@
                 </tr>
             </table>
         {% endfor %}
-        <br>
+
+        <p style="color: deepskyblue">Total:{{ tatal_number }}</p>
+
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+              {% if  books_obj.has_previous %}
+                <li><span class="#"><a href="?p={{ books_obj.previous_page_number }}" aria-label="Previous"><span aria-hidden="true">上一页</span></a></span></li>
+              {% endif %}
+
+               {% for page_num in books_obj.paginator.page_range  %}
+                   <li>{% guess_page books_obj.number page_num %}</li>
+               {% endfor %}
+
+
+               {% if books_obj.has_next %}
+                   <li><span class="#"><a href="?p={{ books_obj.next_page_number }}" aria-label="Next"><span aria-hidden="true">下一页</span></a></span></li>
+               {% endif %}
+
+          </ul>
+        </nav>
+
         <a href="/blog/add_books/" style="color: yellow">增加新书</a>
     </div>
 {% endblock %}

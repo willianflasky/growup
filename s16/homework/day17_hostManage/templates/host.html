@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block logined_name %}
+    <a href="#" class="login_tag" style="color: deepskyblue">{{ username }} </a>
+{% endblock %}
+
+{% block header %}
+        <link href="/static/css/modal.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+        <table id="table-7" style="height: 100px; width: 700px" border="1">
+            <thead>
+                <tr>
+                    <th>主机ID</th>
+                    <th>主机IP</th>
+                    <th>主机端口</th>
+                    <th>主机用户</th>
+                    <th>主机业务线</th>
+                    <th colspan="3">功能</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for host in host_list %}
+                    <tr>
+                        <td target="nid">{{ host.hosts__id }}</td>
+                        <td target="ip" >{{ host.hosts__ip }}</td>
+                        <td target="port" >{{ host.hosts__port }}</td>
+                        <td target="user" >{{ host.hosts__hostuser }}</td>
+                        <td target="buss" >{{ host.hosts__bussiness__bussline }}</td>
+                        <td><input class="delete_line" type="button" value="删除"></td>
+                        <td><input class="open_modal" type="button" value="编辑"></td>
+                       <!-- <td><input class="open_modal" type="button" value="增加"></td> -->
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+        <div class="modal_tmp hide">
+            <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">主机编辑</h4>
+                  </div>
+
+                  <div class="modal-body">
+                    <p>主机编号:<input type="text" name="nid" toget="1"/></p>
+                    <p>主机地址:<input type="text" name="ip" toget="1"/></p>
+                    <p>主机端口:<input type="text" name="port"  toget="1"/></p>
+                    <p>主机用户:<input type="text" name="user" toget="1"/></p>
+                    <p>主机业务:<input type="text" name="buss" toget="1"/></p>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default close_modal" data-dismiss="modal">关闭</button>
+                    <button id="modal_submit" type="button" class="btn btn-primary">确定</button>
+                  </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+
+    <div class="shadow hide"></div>
+
+
+{% endblock %}
+
+
+
+{% block footer %}
+    <script>
+        $(function(){
+            open_modal();
+            close_modal();
+            delete_line();
+            modal_submit();
+        })
+
+        function open_modal(){
+            $(".open_modal").click(function(){
+                $('.shadow').removeClass('hide');
+                $('.modal_tmp').removeClass('hide');
+                var tds = $(this).parent().siblings('td');
+                tds.each(function(){
+                    var k = $(this).attr('target');   // k:ip
+                    var v = $(this).text();           // v:10.0.0.1
+                    $("input[name=" + k + " ]").val(v);
+                })
+            })
+        }
+
+        function close_modal(){
+            $(".close_modal").click(function(){
+                $('.shadow').addClass('hide');
+                $('.modal_tmp').addClass('hide');
+
+            })
+        }
+
+        function delete_line(){
+            $(".delete_line").click(function(){
+                var td = $(this).parent().siblings().first().text();
+                $.ajax({
+                    url: "{% url 'HOST' %}?f=delete",
+                    type: "POST",
+                    data: {nid:td},
+                    dataType: "JSON",
+                    success: function(data){
+                        if(data.status){
+                            alert("OK")
+                        }else{
+                            alert(data.error)
+                        }
+                    }
+                })
+            })
+        }
+
+        function modal_submit(){
+            $("#modal_submit").click(function(){
+                $('.shadow').addClass('hide');
+                $('.modal_tmp').addClass('hide');
+
+                var myarray  = new Array();
+                var inputs = $("input[toget='1']");
+                inputs.each(function(){
+                    var tmp = $(this).val();
+                        myarray.push(tmp);
+                })
+                $.ajax({
+                    url: "{% url 'HOST' %}?f=edit",
+                    type:"POST",
+                    data: {nid:myarray[0],ip:myarray[1],port:myarray[2],user:myarray[3], buss:myarray[4]},
+                    dataType:'JSON',
+                    success:function(data){
+                        if(data.status){
+                            location.href = '{% url "HOST" %}'
+                            alert("OK")
+                        }else {
+                            alert(data.error)
+                        }
+                    }
+
+                })
+            })
+        }
+    </script>
+{% endblock %}
+

@@ -1,0 +1,306 @@
+s16day17
+
+
+上节内容回顾：
+    
+    路由系统：
+        1.   /index/                ->  def index(request)
+        2.   
+            /detail-(\d+)/          -> def detail(request,nid)
+            /detail-(?P<nid>\d+)/   -> def detail(request,nid)
+            
+        3. 
+            /index/                ->  def index(request)    name=n1
+            使用别名生成URL：
+                模板语言： {% url n1 %}          -> /index/ 
+                视图函数：
+                            reverse(name="n1")   -> /index/ 
+                            
+        4. 
+        
+            /web/   include("app01.urls")
+    视图函数：
+        1. 函数至少一个参数
+        2. request
+            request.method
+            request.GET
+            request.POST (请求头：Content-Type:application/x-www-form-urlencoded; charset=UTF-8)
+            request.body
+            request.FILES
+            ...
+        3. 
+            return HttpResponse(..)
+            return render()
+            return redirect()
+            
+    模板引擎：
+        
+        1. 基本语法
+        
+            return renderI(request, 'xxx.html', {'v': [1,2,3,4],'d':{'k1':'v1','k2':'v2'} })
+            
+            xxx.html
+                {{v.2}}
+                
+                {% for i in d %}
+                    {{i}} --> key
+                {% endfor %}
+                
+                
+                {% for k,v in d.items %}
+                    {{k}}--{{v}}
+                {% endfor %}
+    
+        2. 函数
+        
+            Django提供函数
+            simple_tag
+            filter
+            
+     ORM操作：
+        1. 创建表
+            
+            class UserInfo(models.Model):
+                # nid = models.AutoField(primary_key=True)   int
+                # nid = models.BigAutoField(primary_key=True)  long
+                name = models.CharField(max_length=32)
+                pwd = models.CharField(max_length=32)
+            
+            
+            
+        
+        2. 操作表
+     
+            q = models.UserInfo.objects.all()
+            Queryset = [obj(id,name,pwd),obj(id,name,pwd),obj(id,name,pwd),]
+     
+     
+            q = models.UserInfo.objects.values('name','pwd')
+            Queryset = [{"name":'alex','pwd':123},{"name":'alex1','pwd':123sfd},{"name":'alex1','pwd':123sfd},]
+     
+     
+            q = models.UserInfo.objects.values_list('name','pwd')
+            Queryset = [('alex',123),('alex',123),('alex',123),('alex',123),]
+     
+     
+     
+            q = models.UserInfo.objects.filter(name='alex')
+            [obj,]
+            
+            
+            q = models.UserInfo.objects.get(name='alex')
+            q = models.UserInfo.objects.filter(name='alex').first()
+            
+            
+            ...
+            
+            
+            
+            
+今日内容：
+
+    1. FBV和CBV
+        
+        FBV:
+           
+            url(r'^index/', views.index),
+           
+            def index(request):
+                print('.....')
+                if request.method == 'GET':
+                    pass
+                elif request.method == 'POST':
+                    pass
+                return HttpResponse('....')
+           
+        
+        CBV:
+            url(r'^user/', views.User.as_view()),
+            
+            
+            class User(View):
+                def dispatch(self, request, *args, **kwargs):
+                    print('before')
+                    obj = super(User,self).dispatch(request, *args, **kwargs)
+                    print('after')
+                    return obj
+
+                def get(self,request):
+                    print("get...")
+                    return HttpResponse('...')
+
+                def post(self,request):
+                    print("post...")
+                    return HttpResponse('...')
+    
+    2. ORM操作
+           
+           a. 创建表
+                一对多
+                多对多
+                    - 创建第三表：
+                        - 自己定义第三张表   ：列无限制
+                        - ManyToManyField字段: 列限制（三）
+                    - 无法直接，只能通过ManyToManyField字段进行间接操作
+                
+           b. 操作
+                正向
+                    dp
+                反向
+                    userinfo
+                    userinfo_set
+                    
+    3. Cookie
+        在浏览器上保存的简直对
+        应用：
+            可做用户登录
+            做投票
+    4. session    
+        服务器端保存的简直对
+        {
+            asdfasdfasdf: {'user':'asdf','pws':'asdf'}
+        
+        }
+
+    
+    5. Ajax操作
+        # 
+        
+        $.ajax({
+            url: '/aj/',                # 提交地址
+            type: "POST",               # 提交方式
+            data: {uuu: u, ppp:p},      # 提交数据
+            dataType: "JSON",
+            success:function (data) {   # 回调函数，登录成功后自动执行
+                # 将字典形式的字符串，发序列化成为字典对象（json对象）
+                # var data_dict = JSON.parse(data);
+                
+                if(data_dict.status){
+                    location.href = "/home/"
+                }else{
+                    alert(data_dict.error);
+                }
+            }
+        })
+
+        
+    作业： 主机管理
+    
+        1. 主机表（FK）,业务线表
+        2. 用户表（M2M），   用户主机关系表
+        3. 功能：
+            a. Ajax登录
+            b.  
+                主机表（主机信息+业务线信息）
+            c. ***
+                当前用户管理的所有主机表（主机信息+业务线信息）
+                
+            d. 业务线管理（增、修改、删除）
+                - 对话框
+                - 新URL
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+            
+

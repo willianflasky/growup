@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block logined_name %}
+    <a href="#" class="login_tag" style="color: deepskyblue">{{ username }} </a>
+{% endblock %}
+
+{% block content %}
+
+    <div class="jumbotron">
+      <h3 style="color: green; font-style: italic">{{ obj.title }}</h3>
+      <p>{{ obj.text|truncatechars:800 }}</p>
+        {% for author_dic in author_list %}
+            <div class="list-group-item list-group-item-info">作者:{{ author_dic.author__name }}&nbsp城市:{{ author_dic.author__city }}&nbsp日期:{{ obj.date }}</div>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

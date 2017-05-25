@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Ajax operation!</h1>
+    <input type="text" name="user" id="user">
+    <input type="text" name="pwd" id="pwd">
+    <input id='btn' type="button" value="提交"> <span style="color: red;">{{ error }}</span>
+
+
+
+    <script src="/static/jquery-1.12.4.js"></script>
+
+    <script>
+    $(function(){
+        bindBTN();
+    })
+
+        function bindBTN(){
+            $("#btn").click(function(){
+                var u = $("#user").val();
+                var p = $("#pwd").val();
+                $.ajax({
+                    url: "/ajax/",
+                    type: "POST",
+                    data: {uuu:u,ppp:p},
+                    dataType:"JSON",
+                    success:function(data_dict){
+                        // var data_dict = JSON.parse(data)
+                        if(data_dict.status){
+                          location.href = "/home/"
+                        }else{
+                            alert(data_dict.error)
+                        }
+                    }
+                })
+            })
+        }
+    </script>
+</body>
+</html>

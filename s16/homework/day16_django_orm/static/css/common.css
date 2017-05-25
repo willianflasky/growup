@@ -1,0 +1,16 @@
+
+
+.login_tag{
+    float: right;
+    line-height: 50px;
+    margin-right: 10px;
+    text-decoration:none;
+    color: white;
+ }
+
+.login_tag:hover{
+    background-color: green;
+    text-decoration: none;
+    color: yellow;
+}
+

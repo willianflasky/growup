@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h1>Ajax操作</h1>
+    <div>
+        <input type="text" name="user" id="user" />
+        <input type="text" name="pwd"  id="pwd"/>
+        <input id="btn" type="button" value="提交" />
+    </div>
+    <script src="/static/jquery.js"></script>
+    <script>
+        $(function () {
+            bindBtn();
+        });
+
+        function bindBtn() {
+            $('#btn').click(function () {
+                var u = $('#user').val();
+                var p = $("#pwd").val();
+                $.ajax({
+                    url: '/aj/',
+                    type: "POST",
+                    data: {uuu: u, ppp:p},
+                    success:function (data) {
+                        var data_dict = JSON.parse(data);
+                        if(data_dict.status){
+                            location.href = "/home/"
+                        }else{
+                            alert(data_dict.error);
+                        }
+                    }
+                })
+
+            })
+        }
+
+
+    </script>
+
+</body>
+</html>

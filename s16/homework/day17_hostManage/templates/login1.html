@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/login.css" />
+</head>
+<body>
+	<div id="block">
+		<label id="user" for="name">p</label>
+            <input type="text" name="username" id="name" placeholder="Username" required/>
+		<label id="pass" for="password">k</label>
+		    <input type="password" name="password" id="password" placeholder="Password" required />
+		    <input type="button" id="submit" name="submit" value="login"/>
+	</div>
+
+    <script src="/static/jquery-1.12.4.js"></script>
+ <script>
+        $(function(){
+                bind_button();
+        })
+
+        function bind_button(){
+            $("#submit").click(function(){
+                var u = $("#name").val();
+                var p = $("#password").val();
+                $.ajax({
+                    url: "{% url 'LOGIN' %}",
+                    type: "POST",
+                    data: {user:u, passwd:p},
+                    dataType: "JSON",
+                    success: function(data){
+                        if(data.status){
+                            location.href = "/host/"
+                        }else{
+                            alert(data.error)
+                        }
+                    }
+                })
+            })
+        }
+    </script>
+</body>
+</html>

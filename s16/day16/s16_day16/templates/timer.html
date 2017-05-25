@@ -1,0 +1,65 @@
+{% load tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+<h1>it is {{ times|date:"Y-m-d" }}</h1>
+<h1>x= {{ x|add:20 }}</h1>
+<h1>y= {{ y|default:"空" }}</h1>
+
+<h1>y= {{ a|safe}}</h1>
+<h1>y= {{ value8|urlencode}}</h1>
+<h1>{{ s|truncatechars:2 }}</h1>
+<h1>{{ s2|truncatewords:5 }}</h1>
+
+<h1>{{ z|mul:"[1,2,3,4]"}}</h1>
+
+<h1>{% mul2 3 4 5 %}</h1>
+<h1>{% mul2 z 4 5 %}</h1>
+
+{% if z|mul:30 > 100 %}
+    {{ z|mul:30 }}
+{% endif %}
+
+
+{% for obj in L %}
+    <p>{{ forloop.counter0 }}----{{ obj }}</p>
+    <p>{{ forloop.revcounter0 }}----{{ obj }}</p>
+{% endfor %}
+
+{% for obj in obj_list %}
+   {{ obj.name }}
+{% empty %}
+    <h1>没有符合条件的书籍</h1>
+{% endfor %}
+
+<form action="{% url 'va' %} " method="post">
+    {% csrf_token %}
+    姓名<p><input type="text" name="username"></p>
+    密码<p><input type="password" name="pwd"></p>
+    <p><input type="submit"></p>
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+    <script src="/static/hello/jquery-3.1.1.js"></script>
+    <script>
+        $("h1").css("color","red")
+    </script>
+</html>

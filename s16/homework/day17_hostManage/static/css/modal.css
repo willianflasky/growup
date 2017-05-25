@@ -1,0 +1,28 @@
+    .hide{
+        display: none;
+    }
+
+    .show{
+        display: block;
+    }
+
+    .shadow{
+        position: fixed;
+        top:0;
+        right:0;
+        left:0;
+        bottom:0;
+        opacity:0.6;
+        background-color: #000;
+        z-index: 10;
+    }
+
+    .modal_tmp{
+        position: fixed;
+        top:30%;
+        left:35%;
+        right:35%;
+        bottom:35%;
+        z-index: 11;
+        border-radius: 20px;
+    }
