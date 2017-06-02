@@ -1,0 +1,154 @@
+s16Day18
+
+上节回顾：
+	1. Model操作
+		- v = models.UserInfo.objects.all()
+		- v = models.UserInfo.objects.values("xx")
+		- v = models.UserInfo.objects.values_list()
+		
+		- v = models.UserInfo.objects.filter(...)
+		
+		- 双下滑线进行跨表
+		FK:
+			正向操作（含FK）：
+				
+			反向操作（表名_set）：
+			
+			删除时，操作：关联删除？关联设置默认值？... 待续
+		
+		M2M:
+			待续
+			
+			
+		性能相关：待续
+			select_related('ut')
+		
+	2. session和cookies
+	
+	
+	3. Ajax
+	
+		$.ajax({
+			url: '',
+			type: 'POST',
+			data: {user:'xxxx'},
+			dataType: 'JSON',
+			success:function(data){
+				# data-> 字符串
+				# data = JSON.parse(data)
+			}
+		})
+
+今日内容：
+	1. 分页
+	
+	2. Form验证
+		功能：
+			- 验证用户请求
+			- 自动生成HTML(保留上次提交的内容)
+		详细：
+			class Foo(forms.Form):
+				usename = fields.CharField() # 正则，插件
+				字段：
+					CharField				字符串
+					EmailField				字符串（邮箱格式）
+					IntegerField			字符串（数字格式）
+					GenericIPAddressField	字符串（IP格式）
+					FileField				文件对象
+					RegexField				字符串（自定义）
+					ChoiceField				多选
+					
+					插件：
+						widgets.TextInput   
+						widgets.PasswordInput   
+						widgets.Textarea
+						
+						widgets.Select(attrs={'class': 'form-control'},choices=[(1,'普通用户'),(2,"超级用户")])						
+						widgets.SelectMultiple(attrs={'class': 'form-control'},choices=[(1,'普通用户'),(2,"超级用户")])						
+						
+						widget=widgets.RadioSelect(choices=((1,'上海'),(2,'北京'),))
+ 
+						widget=widgets.CheckboxInput()
+						widget=widgets.CheckboxSelectMultiple()
+						
+						widget=widgets.FileInput()
+								
+			单表：
+			
+			FK表：
+				问题：数据源无法实时更新
+				重写构造函数：
+					    def __init__(self,*args,**kwargs):
+							super(UserForm,self).__init__(*args,**kwargs)
+							self.fields['ut_id'].widget.choices = models.UserType.objects.values_list('id','name')
+		
+	3. Model操作补充
+	
+	4. 中间件
+		process_request(self,request)
+		process_view(self, request, callback, callback_args, callback_kwargs)
+		process_template_response(self,request,response)
+		process_exception(self, request, exception)
+		process_response(self, request, response)
+	
+		MIDDLEWARE = [
+			'django.middleware.security.SecurityMiddleware',
+			'django.contrib.sessions.middleware.SessionMiddleware',
+			'django.middleware.common.CommonMiddleware',
+			'django.middleware.csrf.CsrfViewMiddleware',
+			'django.contrib.auth.middleware.AuthenticationMiddleware',
+			'django.contrib.messages.middleware.MessageMiddleware',
+			'django.middleware.clickjacking.XFrameOptionsMiddleware',
+			"md.middleware.M1",
+			"md.middleware.M2",
+		]
+	5. 缓存
+	
+	6. 信号
+	
+	
+作业：
+
+	1. 主机管理：
+			Form表单进行验证
+			分页
+			** Ajax提交：Form表单验证 **
+		
+	2. 抽屉
+		设计数据库表结构
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

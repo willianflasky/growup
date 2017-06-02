@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css" />
+</head>
+<body>
+    <div style="width: 700px;margin: 0 auto;">
+        <h1>用户列表</h1>
+        <div>
+            <a href="/add-user" class="btn btn-default">添加</a>
+        </div>
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>用户名</th>
+                    <th>密码</th>
+                    <th>邮箱</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in user_list %}
+                    <tr>
+                        <td>{{ row.username }}</td>
+                        <td>{{ row.password }}</td>
+                        <td>{{ row.email }}</td>
+                        <td><a href="/edit-user-{{ row.id }}">编辑</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <nav aria-label="...">
+          <ul class="pagination">
+              {{ page_info.page_str|safe }}
+          </ul>
+        </nav>
+    </div>
+</body>
+</html>

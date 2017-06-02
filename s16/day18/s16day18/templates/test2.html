@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.css">
+</head>
+<body>
+    <div style="width:700px;margin: 0 auto">
+    <h1 style="color: dodgerblue">用户列表</h1>
+    <a href="/adduser/" class="btn btn-default">增加用户</a>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>用户名</th>
+                <th>密码</th>
+                <th>邮箱</th>
+                <th>类型</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {%  for row in user_list %}
+            <tr>
+                <td>{{ row.username }}</td>
+                <td>{{ row.password }}</td>
+                <td>{{ row.email }}</td>
+                <td>{{ row.ut.name }}</td>
+                <td><a href="/edituser-{{ row.id }}">编辑</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <nav aria-label="...">
+      <ul class="pagination">{{ page_info.page_str|safe }}</ul>
+    </nav>
+
+    </div>
+
+</body>
+</html>

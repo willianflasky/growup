@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block forcontent %}
+			<div class="row">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>IP</th>
+                                    <th>主机用户</th>
+                                    <th>主机密码</th>
+                                    <th>业务线</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                            {% for row in user_list %}
+                                <tr>
+                                    <td>{{ row.id }}</td>
+                                    <td>{{ row.ip }}</td>
+                                    <td>{{ row.hostuser }}</td>
+                                    <td>{{ row.hostpass }}</td>
+                                    <td>{{ row.bussiness.bussline }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+					</div>
+
+					<div class="row">
+                        <nav aria-label="...">
+                          <ul class="pagination">{{ page_info.page_str|safe }}</ul>
+                        </nav>
+					</div>
+
+{% endblock %}

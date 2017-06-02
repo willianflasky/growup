@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="/test" method="POST" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        {{ obj.n1 }}
+        {{ obj.n2 }}
+        {{ obj.n3 }}
+        {{ obj.n4 }}
+        {{ obj.n5 }}
+        {{ obj.n6 }}
+        {{ obj.n7 }}
+        {{ obj.n8 }}
+        <input type="submit" value="提交" />
+
+    </form>
+</body>
+</html>

@@ -1,0 +1,89 @@
+from django.shortcuts import render,HttpResponse
+from app01 import models
+#
+# def create_temp_data(request):
+#     for i in range(104,1004):
+#         models.UserInfo.objects.create(
+#             username='root%s' %i,
+#             password="123123",
+#             email='root%s@qq.com' %i
+#         )
+#     return HttpResponse('创建成功')
+
+def users1(request):
+
+    from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
+    current_page = request.GET.get('p')
+    user_list = models.UserInfo.objects.all()
+
+    paginator = Paginator(user_list,10)
+    # per_page: 每页显示条目数量
+    # count:    数据总个数
+    # num_pages:总页数
+    # page_range:总页数的索引范围，如: (1,10),(1,200)
+    try:
+        page_obj = paginator.page(current_page)
+    except EmptyPage as e:
+        page_obj = paginator.page(1)
+    except PageNotAnInteger as e:
+        page_obj = paginator.page(1)
+    # has_next              是否有下一页
+    # next_page_number      下一页页码
+    # has_previous          是否有上一页
+    # previous_page_number  上一页页码
+    # object_list           分页之后的数据列表
+    # number                当前页
+    # paginator             paginator对象
+    return render(request,'users1.html',{'page_obj':page_obj})
+
+
+from utils.page import PageInfo
+
+def users2(request):
+    all_count = models.UserInfo.objects.all().count()
+
+    page_info = PageInfo(request.GET.get('p'),10,all_count,request.path_info)
+
+    user_list = models.UserInfo.objects.all()[page_info.start():page_info.end()]
+
+
+    return render(request,'users2.html',{'user_list':user_list,'page_info': page_info})
+
+from django import forms
+from django.forms import fields
+class UserForm(forms.Form):
+    username = fields.CharField(
+        required=True,
+        error_messages={'required': '用户名不能为空'}
+    ) # 正则表达式
+    password = fields.CharField(
+        required=True,
+        error_messages={'required': '密码不能为空'}
+    ) # 正则表达式
+    email = fields.EmailField(
+        required=True,
+        error_messages={'required': '邮箱不能为空','invalid': '邮箱格式错误'}
+    )   # 正则表达式
+
+def add_user(request):
+    if request.method == 'GET':
+        return render(request,'add_user.html')
+    else:
+        # 获取用户提交的数据 request.POST
+        # 数据和正则表达式进行验证
+        # 1. 是否验证成功
+        # 2. 成功：获取数据
+        # 3. 失败：错误信息
+        obj = UserForm(request.POST)
+        # 1. 是否验证成功
+        if obj.is_valid():
+            # 2. 成功：获取数据
+            print("验证通过",obj.cleaned_data)
+            models.UserInfo.objects.create(**obj.cleaned_data)
+        else:
+            # 3. 失败：错误信息
+            print("错误信息", obj.errors)
+            # print("错误信息",obj.errors["email"][0])
+            # print("错误信息",obj.errors["username"][0])
+            # print("错误信息",obj.errors["password"][0])
+        return render(request, 'add_user.html',{'obj': obj})
