@@ -52,7 +52,7 @@ def index(request):
         return redirect('/login/')
 
     all_count = Hosts.objects.all().count()
-    page_info = PageInfo(request.GET.get('p'), 20, all_count, request.path_info, page_range=15)
+    page_info = PageInfo(request.GET.get('p'), 10, all_count, request.path_info, page_range=11)
     user_list = Hosts.objects.all().order_by('-id')[page_info.start():page_info.end()]
     return render(request, 'index.html', locals())
 

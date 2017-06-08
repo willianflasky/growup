@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>评论</div>
+    <div id="content">
+        <ul>
+
+        </ul>
+    </div>
+
+</body>
+<script src="/static/jquery-1.12.4.js"></script>
+    <script>
+        $(function () {
+
+            $.ajax({
+                url: '/show/',
+                type: 'POST',
+                dataType: 'JSON',
+                success:function (data) {
+                    if (data.status){
+                        console.log(data);
+                        $.each(data.data,function (index,row) {
+                            var tag = document.createElement('li');
+                            tag.innerHTML = row.username;
+                            $('#content ul').append(tag);
+                        })
+                    }else{
+                        alert(data.error);
+                    }
+                }
+            })
+
+        })
+    </script>
+</html>

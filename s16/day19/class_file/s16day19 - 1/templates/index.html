@@ -1,0 +1,15 @@
+{% load cache %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+        {% cache 5000 xxxxx %}
+            <h1>{{ ctime }}</h1>
+        {% endcache %}
+
+    <h3>{{ ctime }}</h3>
+</body>
+</html>

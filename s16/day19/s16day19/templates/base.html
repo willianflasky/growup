@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.css">
+
+    <style>
+        .modal-body span {
+            color:red;
+        }
+
+        .modal-body p {
+            margin-left: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    {% if request.session.username %}
+        <button id="tologin" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+          {{ request.session.username }}
+        </button>
+    {% else %}
+        <button id="tologin" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+          登录
+        </button>
+    {% endif %}
+
+    {% block content %}
+        <h1>from BASE content block!</h1>
+    {% endblock %}
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">登录</h4>
+      </div>
+      <div class="modal-body">
+        <p><input type="text" id="username" name="username" placeholder="用户名" /></p>
+        <p><input type="password" id="password" name="password"  placeholder="密码"/></p>
+      </div>
+      <div class="modal-footer">
+        <button  type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button id="sbm" type="button" class="btn btn-primary">提交</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/static/jquery-1.12.4.js"></script>
+<script src="/static/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+
+    <script>
+        $(function () {
+            $('#sbm').click(function () {
+                $.ajax({
+                    url: '/login/',
+                    type: 'POST',
+                    data: {'username': $('#username').val(),'password': $('#password').val()},
+                    dataType: 'JSON',
+                    success:function (arg) {
+                        if(arg.status){
+                            location.reload();
+                        }else{
+                            $.each(arg.error,function (k,v) {
+                                // k = username,v = ["This field is required",]
+                                var tag = document.createElement('span');
+                                tag.innerHTML = v[0];
+                                $('#' + k).next().remove();
+                                $('#' + k).after(tag);
+                            })
+                        }
+                    }
+                })
+
+            })
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block cheader %}
+            <a href="/" class="tb">全部</a>
+            <a href="/qu/" class="tb">42区</a>
+            <a href="/dz/" class="tb">段子</a>
+            <a href="/tp/" class="tb">图片</a>
+            <a href="/at/" class="tb active">挨踢1024</a>
+            <a href="/nw/" class="tb">你问我答</a>
+{% endblock %}
+
+{% block c1 %}
+                        {% for item in objs %}
+                        <div class="item">
+                            <div class="news-pic">
+                                <img src="{{ item.img }}" alt="抽屉新热榜" style="display: inline;">
+                            </div>
+                            <div class="null-item"></div>
+                            <div class="news-content">
+                                <div class="part1">
+                                    <a href="{{ item.href }}" class="show-content" target="_blank">{{ item.title }}</a>
+                                    <span class="content-source">{{ item.source }}</span>
+                                    <a href="#" class="n2">
+                                        <span class="content-kind">{{ item.get_zone_display }}</span>
+                                    </a>
+                                </div>
+                                <div class="area-summary">
+                                    <span class="summary">{{ item.summary|truncatechars:200 }}</span>
+                                </div>
+                                <div class="part2">
+                                    <a href="javascript:void(0);"   class="digg-a" title="推荐">
+
+                                        <!--<span class="hand-icon icon-digg active"></span>-->
+                                        <span class="hand-icon icon-digg " onclick="DoFavor(this, {{ item.id }});"></span>
+                                        <b id="favor_count_{{item.id}}">{{ item.favor.count }}</b>
+
+                                    </a>
+                                    <a href="javascript:void(0);" class="discus-a">
+                                        <span class="hand-icon icon-discus"></span>
+                                        <b id="comment_count_{{item.0}}">{{ item.q2.count }}</b>
+                                    </a>
+                                    <a href="javascript:void(0);" class="collect-a" >
+                                        <span class="hand-icon icon-collect"></span><b>私藏</b>
+                                    </a>
+                                    <a href="#" class="user-a">
+                                        <span><img src=""></span>
+                                        <b>{{ item.user.username }}</b>
+                                    </a>
+                                        <span class="time-into">
+                                            <a class="time-a" href="#" target="_blank">
+                                                <b>{{ item.ctime }}</b>
+                                            </a>
+                                            <i>入热榜</i>
+                                        </span>
+
+                                </div>
+                                <!-- 评论区域 -->
+                                <div id="comment_area_{{item.0}}" class="comment-box-area hide" >
+                                    <div class="pinglun arrow"></div>
+                                    <a class="pinglun close-comt" title="关闭" href="javascript:void(0);"></a>
+
+                                    <div class="corner comment-box clearfix" >
+
+                                        <div class="loading-ico loading-ico-top"  style="margin-left:230px;">加载中，请稍候...</div>
+
+                                        <div class="comment-box-top hide" >
+                                            <div class="tip-1">最热评论(<span>{{item.8}}</span>)</div>
+                                            <div class="tip-2">
+                                                <a href="#" target="_blank">
+                                                    <em class="pinglun em1"></em>
+                                                    <span>去评论页面</span>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <ul id="comment_list_{{item.0}}" class="filetree comment-list-top-2 treeview hide">
+
+                                        </ul>
+
+                                        <div class="huifu-top-box hide">
+                                            <div class="box-l txt-input-area-div-top corner no-corner-bottom">
+                                                <div class="lab-comment-top">回复  <span id="reply_id_{{item.0}}"></span>:</div>
+                                                <!-- 针对谣言文本输入框无效 -->
+                                                <textarea id="comment_content_{{item.0}}" maxlength="150" name="txt-huifu-top" class="txt-huifu txt-huifu-top"></textarea>
+                                            </div>
+                                            <div class="box-r">
+                                                <a href="javascript:void(0);" class="pub-icons add-pub-btn add-pub-btn-unvalid" onclick="DoComment({{item.0}})">评论</a>
+                                                <a href="javascript:void(0);" class="loading-ico loading-ico-top pub-loading-top hide">发布中...</a>
+                                            </div>
+                                        </div>
+                                        <div class="tip-3 ">
+                                            <a href="javascript:void(0);" class="hiddenCom-Btn" onclick="HideCommentArea({{item.0}});">
+                                                <em class="pinglun em2"></em>
+                                                <span>收起</span>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    {% endfor %}
+{% endblock %}

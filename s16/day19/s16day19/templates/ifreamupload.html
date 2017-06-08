@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h1>iframe upload</h1>
+    <form action="/ifreamupload/" method="post" id="ff1" enctype="multipart/form-data" target="ifr">
+        {% csrf_token %}
+        <input type="file" name="fffff" onchange="changeImg();">
+    </form>
+    <iframe id="ifr" name="ifr" onload="successBack();" style="display: none"></iframe>
+    <div id="prevImg"></div>
+
+
+    <script src="/static/jquery-1.12.4.js"></script>
+    <script>
+        // 获取回来的数据信息.
+       function successBack(){
+           var v = $('#ifr').contents().find('body').html();
+           var obj = JSON.parse(v);
+
+           var tag = document.createElement('img');
+           tag.src = '/' + obj.data;
+           console.log(tag);
+           $("#prevImg").append(tag);
+       }
+
+        // 自动提交,不需要提交按钮.
+        function changeImg(){
+            document.getElementById('ff1').submit();
+        }
+    </script>
+</body>
+</html>

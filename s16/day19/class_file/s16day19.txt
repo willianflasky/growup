@@ -1,0 +1,342 @@
+s16day19
+
+上节回顾：
+    1. 分页
+        - Django内置
+        - 自定义分页
+    2. Form验证
+        - 对用户请求数据验证（Ajax，Form）
+        
+        Ajax        -> Form验证（上次提交内容保留）(验证)
+        Form表单    -> Form验证（验证，保留上次内容）
+        
+        - 类
+            class Foo(forms.Form):
+                xx1 = xx(定制插件)
+                xx2 = xx()
+                xx3 = xx()
+        - 使用：
+            obj = Foo()  -> 用于生成HTML（内容为空）
+            obj = Foo(request.POST)
+            if obj.is_valid():
+                obj.cleaned_data
+                # models.XX.objects.create(**obj.cleaned_data)
+            else:
+                obj.errors['xx1'][0]
+        
+    3. 中间件
+        
+    4. Models补充
+        单表操作:
+            curd
+        多表操作：
+            ...
+        selete_realated()
+        
+            user_list = Models.UserInfo.objects.all()
+            
+            for row in user_list: 10
+                print(row.username,row.email,row.part_id,row.part.title)
+            
+            ==》 11次
+            
+            user_list = Models.UserInfo.objects.all().selete_realated('part'，‘usertype’) # FK字段名称
+            
+            for row in user_list: 10
+                print(row.username,row.email,row.part_id,row.part.title)
+            ==> 1次跨表操作
+        prefetch_realated()
+            user_list = Models.UserInfo.objects.filter(id=1).prefetch_realated('part',‘usertype’,"group__xxx") # FK字段名称
+            
+            # 第一句：Models.UserInfo.objects.all()[0:10]
+            # part_id = [1,]
+            # 第二句：Models.Part.objects.filter(id__in=part_id)
+            # usertype_id = [2,]
+            # 第三句：Models.UserType.objects.filter(id__in=usertype_id)
+            
+
+            for row in user_list: 10
+                print(row.username,row.email,row.part_id,row.part.title)
+            
+            ==> 2次单表操作
+1. Models补充
+    性能相关：
+        selete_realated
+        prefetch_realated
+    其他：
+        models.UserInfo.objects.all()
+        u = models.UserInfo.objects.all().only('id','name')
+        u = models.UserInfo.objects.all().defer('name')
+        
+        models.UserInfo.objects.values('id')
+        models.UserInfo.objects.values_list('id')
+        
+2. 缓存
+    配置：
+        文件： 路径
+        内存： 变量名称
+        数据库： 表明
+        缓存：IP端口
+        
+    使用：
+        a. 全站缓存
+        b. 单独试图函数
+        c. 局部模板
+    **自定义：利用中间件/装饰器/simple_tag/自定义操作** 
+    
+3. 退钱
+    def test(request):
+    return render(request,'test.html',{'n1': 123,'n2': "root"})
+    
+    
+    <h1>{{ n1 }}</h1>
+    <h1>{{ n2 }}</h1>
+
+    <script>
+        alert({{ n1 }});
+        alert("{{ n2 }}");
+    </script>
+    
+3. 信号
+        Model signals
+            pre_init                    # django的modal执行其构造方法前，自动触发
+            post_init                   # django的modal执行其构造方法后，自动触发
+            pre_save                    # django的modal对象保存前，自动触发
+            post_save                   # django的modal对象保存后，自动触发
+            pre_delete                  # django的modal对象删除前，自动触发
+            post_delete                 # django的modal对象删除后，自动触发
+            m2m_changed                 # django的modal中使用m2m字段操作第三张表（add,remove,clear）前后，自动触发
+            class_prepared              # 程序启动时，检测已注册的app中modal类，对于每一个类，自动触发
+        Management signals
+            pre_migrate                 # 执行migrate命令前，自动触发
+            post_migrate                # 执行migrate命令后，自动触发
+        Request/response signals
+            request_started             # 请求到来前，自动触发
+            request_finished            # 请求结束后，自动触发
+            got_request_exception       # 请求异常后，自动触发
+        Test signals
+            setting_changed             # 使用test测试修改配置文件时，自动触发
+            template_rendered           # 使用test测试渲染模板时，自动触发
+        Database Wrappers
+            connection_created          # 创建数据库连接时，自动触发
+            
+            
+            
+       # 内置信号(自动触发)
+        def fffffff(sender, **kwargs):
+            print("信号被触发",sender,kwargs)
+        def fffffff1(sender, **kwargs):
+            print("信号被触发",sender,kwargs)
+            
+        pre_delete.connect(fffffff)
+        pre_delete.connect(fffffff1)
+        
+4. 序列化
+
+    普通请求 -> render渲染
+    Ajax     -> render生成局部HTML     ***局部数据：应用单一
+    Ajax     -> HttpResponse('数据')   ***接口：为别人提供数据***
+    
+    
+    1. render和HttpResponse的关系？
+        render返回：
+            a. 模板+数据进行替换
+            b. HttpResponse(数据)
+        HttpResponse:
+            a. HttpResponse(数据)
+    2. Ajax请求时，响应内容只能用HttpResponse吗？
+    
+    ***********
+    
+    # Models获取数据时，序列化方式一
+    # from django.core import serializers
+    # user_list = models.UserInfo.objects.all()
+    # data = serializers.serialize("json", user_list)
+    # return HttpResponse(data)
+    # Models获取数据时，序列化方式二 *****************
+    # user_list = models.UserInfo.objects.values('id','username')
+    # user_list = list(user_list)
+    # import json
+    # return HttpResponse(json.dumps(user_list))
+    # Models获取数据时，序列化方式三
+    # user_list = models.UserInfo.objects.values_list('id', 'username')
+    # user_list = list(user_list)
+    # import json
+    # return HttpResponse(json.dumps(user_list))
+    
+    
+    
+    ===》 Django中Ajax方式获取ORM获取数据数据时，涉及序列化操作
+    
+    
+    ************
+    import json
+    ret = {'status': False,'data': None, 'error': None}
+    try:
+        user_list = models.UserInfo.objects.values('id','urname')
+        user_list = list(user_list)
+        ret['status'] = True
+        ret['data'] = user_list
+    except Exception as e:
+        ret['error'] = "获取数据失败"
+    data = json.dumps(ret)
+    return HttpResponse(data)
+    
+    ************
+    
+    class BaseReponse:
+        def __init__(self):
+            self.status = False
+            self.data = None
+            self.error = None
+            
+        
+    import json
+    ret = BaseReponse()
+    try:
+        user_list = models.UserInfo.objects.values('id','urname')
+        user_list = list(user_list)
+        ret.status = True
+        ret.data = user_list
+    except Exception as e:
+        ret.error = "获取数据失败"
+    data = json.dumps(ret.__dict__)
+    return HttpResponse(data)
+
+    
+5. 分析抽屉页面
+    - Ajax操作
+        a. 发送数据，Form验证错误信息，全部展示
+           PS: 添加，编辑
+        
+        b. 登录状态
+                {% if request.session.uuu %}
+                    <a>{{ request.session.uuu }}</a>
+
+                {% else %}
+                    <a id="btn">登录</a>
+                {% endif %}
+        c. Ajax -> CSRF
+            1. 手动找到并携带
+            2. 
+                - HTML中创建Form表单将标签包含在内
+                - data: $('#f11').serialize(),
+            3. 
+                - cookie中获取csrftoken的值
+                - 将值携带到请求头中
+                
+                $.ajax({
+                    header: {"X-CSRFToken": $.cookie('csrftoken')},
+                })
+            4. 注释
+                
+                
+    - 上传文件（偷偷）
+        a. Form表单上传，页面刷新
+        b. Ajax方式：
+            $(function () {
+                $('#btn1').click(function () {
+                    var fm = new FormData();
+                    fm.append('fffff', document.getElementById('ggggg').files[0]);
+                    fm.append('usernmae','root');
+                    
+                    $.ajax({
+                        url: "/ajax-upload/",
+                        type: 'POST',
+                        data: fm,
+                        processData: false,  // tell jQuery not to process the data
+                        contentType: false,  // tell jQuery not to set contentType
+                        success:function (arg) {
+                            console.log(arg);
+                        }
+                    })
+                })
+            })
+            
+            注：兼容性不好
+         c. "伪"Ajax操作
+            1. iframe + Form表单
+            2. iframe onload
+            3. $('#ifr').contents().
+            4. 上传按钮透明度
+         
+    - 创建数据库表
+    
+        class UserInfo:
+            username
+            pwd
+            
+        class News:
+            title
+            summary
+            href
+            news_type_choices = [
+                (1, '42区')
+                (1, '42区')
+                (1, '42区')
+            ]
+            nt_id = Interager(choices=news_type_choices) # 新闻类型
+            u = FK(UserInfo) # 发布者 
+            ctime = models.DateTimeField(auto_now_add=True)
+            # time模块
+            
+            favor = models.M2m("UserInfo")
+            """ 第三那张表
+            1  1 
+            1  2
+            1  3
+            2  3
+            2  2
+            """
+         
+         q1
+         class Comment:
+            id 自增： 评论ID
+            content = 评论内容
+            user = FK(UserInfo,related_name='q1') = 评论者ID
+            new = Fk(News,related_name='q2') = 评论的文章ID
+            ctime =评论时间
+            parent_id = FK(Comment,related_name='q3')
+            
+            1  嗯，不像我们还要担心内部打架伤了背部  10  11  null
+            2  突破重围，结果被KGB大佬亲手格杀.....  10  12  null
+            3  这几个肉会玩                          10  13  null
+            4  asdfasdfasdf                          10  11  null
+            5  开门，你的快递到了                    10  19  1
+            
+         
+    
+    
+    news_list = News.objects.all()
+    for row in news_list:
+        print(row.title,summary,row.favor.all().count())
+    
+作业：
+    1. 数据表创建
+    2. 手动添加用户（用户登录Ajax+Form验证）
+    3. 新闻列表（分页）
+    4. 发布新闻
+    5. 【可选】点赞
+    
+    PS: 页面无要求
+    
+6. 后台管理
+7. 聊天室（WebSocket，长轮询）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

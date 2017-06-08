@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h1>Form上传文件</h1>
+    <form action="/upload/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input  type="file" name="fffff"/>
+        <input type="submit" value="提交" />
+    </form>
+    <h1>Ajax上传文件</h1>
+    <input  type="file" id="ggggg"/>
+    <a id="btn1">提交</a>
+
+
+    <h1>"伪"Ajax操作</h1>
+    <form id="ff1" action="/ajax-upload/" method="POST" enctype="multipart/form-data" target="ifr">
+        {% csrf_token %}
+        <input  type="file" name="fffff" onchange="changeImg();"/>
+    </form>
+
+    <iframe id="ifr" name="ifr" onload="successBack();"  style="display: none"></iframe>
+
+    <div id="prevImg"></div>
+
+    <script src="/static/jquery.js"></script>
+    <script>
+        $(function () {
+            $('#btn1').click(function () {
+                var fm = new FormData();
+                fm.append('fffff', document.getElementById('ggggg').files[0]);
+                $.ajax({
+                    url: "/ajax-upload/",
+                    type: 'POST',
+                    data: fm,
+                    processData: false,  // tell jQuery not to process the data
+                    contentType: false,  // tell jQuery not to set contentType
+                    success:function (arg) {
+                        console.log(arg);
+                    }
+                })
+            })
+        });
+        function successBack() {
+            var v = $('#ifr').contents().find('body').html();
+            var obj = JSON.parse(v);
+
+            var tag = document.createElement('img');
+            tag.src = "/" + obj.data;
+
+            $('#prevImg').append(tag);
+
+        }
+        function changeImg() {
+            document.getElementById('ff1').submit();
+        }
+    </script>
+</body>
+</html>

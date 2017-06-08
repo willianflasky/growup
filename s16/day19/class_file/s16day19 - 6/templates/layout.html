@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .shadow{
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background-color: #0f0f0f;
+            opacity: 0.5;
+            z-index: 999;
+        }
+        .modal{
+            position: fixed;
+            z-index: 1000;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 300px;
+            margin-left: -200px;
+            margin-top: -150px;
+            background-color: white;
+            padding: 20px;
+        }
+        .hide{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    {% if request.session.uuu %}
+        <a>{{ request.session.uuu }}</a>
+
+    {% else %}
+        <a id="btn">登录</a>
+    {% endif %}
+
+    {% block content %} {% endblock %}
+
+    <div id="sd" class="shadow hide"></div>
+    <div id="md" class="modal hide">
+        <p><input type="text" id="username" name="username" placeholder="用户名" /></p>
+        <p><input type="password" id="pwd" name="pwd"  placeholder="密码"/></p>
+
+        <a id="sbm">提交</a>
+        <a id="cancle">取消</a>
+    </div>
+
+    <script src="/static/jquery.js"></script>
+    <script>
+        $(function () {
+
+            $('#btn').click(function () {
+
+                $('#sd,#md').removeClass('hide');
+            });
+
+            $('#cancle').click(function () {
+                $('#sd,#md').addClass('hide');
+            });
+
+            $('#sbm').click(function () {
+                $.ajax({
+                    url: '/login/',
+                    type: 'POST',
+                    data: {'username': $('#username').val(),'pwd': $('#pwd').val()},
+                    dataType: 'JSON',
+                    success:function (arg) {
+                        if(arg.status){
+                            location.reload();
+                        }else{
+                            $.each(arg.error,function (k,v) {
+                                // k = username,v = [xxxx,]
+                                var tag = document.createElement('span');
+                                tag.innerHTML = v[0];
+                                $('#' + k).after(tag);
+                            })
+                        }
+                    }
+                })
+
+            })
+        })
+
+
+    </script>
+</body>
+</html>

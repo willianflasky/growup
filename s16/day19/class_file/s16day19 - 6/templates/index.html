@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>新闻列表</h1>
+    {% for row in news_list %}
+        <div>{{ row.title }}</div>
+    {% endfor %}
+
+
+{% endblock %}
+
+

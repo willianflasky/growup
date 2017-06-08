@@ -1,0 +1,50 @@
+{% load cache %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div>评论</div>
+    <div id="content">
+        <ul>
+
+        </ul>
+    </div>
+    <script src="/static/jquery.js"></script>
+    <script>
+        $(function () {
+
+            $.ajax({
+                url: '/get-data/',
+                type: 'GET',
+                success:function (data) {
+                    data = JSON.parse(data);
+                    if (data.status){
+                        console.log(data.data);
+                        $.each(data.data,function (index,row) {
+                            var tag = document.createElement('li');
+                            tag.innerHTML = row.username;
+                            $('#content ul').append(tag);
+                        })
+                    }else{
+                        alert(data.error);
+                    }
+                    // $('#content').append(data);
+                    /*
+                    data = JSON.parse(data);
+                    $.each(data,function (i,row) {
+                        var tag = document.createElement('li');
+                        tag.innerHTML = row.name;
+                        $('#content ul').append(tag);
+                    })
+                    */
+                    
+                }
+            })
+
+        })
+    </script>
+</body>
+</html>
