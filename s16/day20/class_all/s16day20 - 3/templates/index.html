@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    {% if request.session.is_login %}
+    <h1 id="tl" login="true">新闻列表</h1>
+    {% else %}
+    <h1 id="tl" login="false">新闻列表</h1>
+    {% endif %}
+
+    {% for row in news_list %}
+    <div>
+        <a href="{{ row.url }}">{{ row.title }}</a>
+        <p>{{ row.content }}</p>
+        <span onclick="doFavor({{ row.nid }});">点赞 {{ row.favor_count }}</span>
+        <span>评论 {{ row.comment_count }}</span>
+    </div>
+    {% endfor %}
+    <script src="/static/jquery.js"></script>
+    <script>
+        function doFavor(nid) {
+            if ($('#tl').attr('login') == "true"){
+                $.ajax({
+                url: '/do-favor/',
+                type: "GET",
+                data: {nid: nid},
+                dataType: 'JSON',
+                success:function (arg) {
+                    if(arg.status){
+
+                    }else{
+                        location.href = '/login/';
+                    }
+                }
+            })
+            }else{
+                location.href = '/login/';
+            }
+
+        }
+    </script>
+</body>
+</html>

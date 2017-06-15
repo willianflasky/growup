@@ -1,0 +1,271 @@
+Day20
+回顾：
+    1. 请求生命周期
+    
+    2. 中间件
+        md = [
+            "file_path.classname"
+        ]
+        process_request【可有可无】             process_response【必须有】
+        process_request                         process_response
+        process_request                         process_response
+        process_request                         process_response
+        process_request                         process_response
+        
+                         路由->函数
+    3. 路由系统
+        a. /index/        -> func
+        b. /index/(\d+)   -> func()
+        c. /prev/         -> include('xxx.urls')
+        d. /detail/       -> func     n1
+            {% url n1 %}
+            reverse('n1')
+    4. 视图函数
+        a. FBV
+            def index(request):
+                request.POST
+                request.GET
+                request.method
+                request.FILES
+                request.body
+                request.COOKIE
+                request.session
+                request.path_info
+                request...
+                
+                return render
+                return redirect
+                return HttpResponse
+                
+        b. CBV
+            class Foo(view):
+                def dispatch
+                    pass
+                    
+                def get
+                
+                ...
+     5. 模板引擎渲染
+        a. Django后台完成渲染所有工作
+        b. 字典，元组，列表： .
+        c. simple_tag
+        
+     6. 数据库操作
+        pymysql
+            - 自己写SQL语句
+        ORM
+            - 类和对象完成数据库所有操作
+            
+            - 创建类
+                - 单表
+                - 一对一
+                - 一对多
+                - 多对多
+            - 操作：
+                ...
+                
+     7. 分页
+     
+     
+     8. Ajax提交
+        $.ajax({
+            url: 
+            type:
+            data:
+            dataType:
+            headers:
+            success:function(arg){
+                
+            
+            }
+        
+        })
+            
+        
+     9. Django Form组件
+        class:
+            字典 = （）
+            
+            
+        obj = Foo(reqest.GET)
+        obj.is_valid()
+        
+     10. 序列化
+     
+     
+     
+     11. 其他：
+            csrf
+            缓存
+            信号
+    
+今日内容：
+    1. project
+    
+        填充数据（admin）：
+            admin.py
+                from repository import models
+
+                admin.site.register(models.UserInfo)
+                admin.site.register(models.Comment)
+                admin.site.register(models.Favor)
+                admin.site.register(models.News)
+                admin.site.register(models.NewsType)
+            创建用户
+                python manage.py createsuperuser
+                root
+                root!23456
+                
+            浏览器：
+                http://127.0.0.1:8000/admin
+                
+            admin中显示：
+                    class News(models.Model):
+                        nid = models.AutoField(primary_key=True)
+                        user_info = models.ForeignKey('UserInfo')
+                        class Meta:
+                            verbose_name_plural = '新闻' # 表名称
+
+                        def __str__(self):
+                            return self.title            # 行显示内容
+           验证码：
+                1. pip3 install Pillow
+                2. check_code.py 和  Monaco.ttf【项目跟目录】
+                3. <img src='/xxxxxx/'>
+                4. 
+                    def xxxxx(request):
+                        img_obj, code = ac.create_validate_code()
+                        stream = BytesIO()
+                        img_obj.save(stream,'png')
+                        request.session['check_code'] = code
+                        return HttpResponse(stream.getvalue())
+                        
+    2. 查看新闻列表
+    3. 点赞
+        后端：
+        
+        前端：
+            position: relative; absolute;
+            
+            function ZMM(ths,txt) {
+                var fontSize = 5;
+                var left = 5;
+                var top = 5;
+                var opacity = 1;
+
+                var tag = document.createElement('span');
+                tag.innerHTML = txt;
+                tag.style.position = "absolute";
+                tag.style.fontSize = fontSize + 'px';
+                tag.style.left = left+ 'px';
+                tag.style.top = top+ 'px';
+                tag.style.opacity = opacity;
+                $(ths).append(tag);
+
+                var obj = setInterval(function () {
+                    fontSize = fontSize + 5;
+                    left = left + 5;
+                    top = top - 5;
+                    opacity = opacity - 0.1;
+                    tag.style.fontSize = fontSize + 'px';
+                    tag.style.left = left+ 'px';
+                    tag.style.top = top+ 'px';
+                    tag.style.opacity = opacity;
+                    if(left > 60){
+                        clearInterval(obj);
+                        tag.remove();
+                    }
+                },100);
+            }
+    
+    4. 图片验证码
+    5. 评论和多级评论（**********）
+        a. 结构化数据
+        b. 递归生成HTML
+    
+    7. 后台管理
+        - 简单菜单(适用于固定个数菜单)
+        - 动态菜单
+            当前URL： /backend/host/
+            
+            a. 结构化数据
+            b. 递归生成HTML
+          
+        
+    6. WebSocket
+        http://www.cnblogs.com/wupeiqi/p/6558766.html
+    
+    8. KindEditor[插件] ---- 欠
+	http://www.cnblogs.com/wupeiqi/articles/6307554.html
+        - 高度宽度
+        - item
+        - 
+            uploadJson: '/kind/upload_img/',
+            extraFileUploadParams: {
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            filePostName:'fafafa'
+           
+           
+           def upload_img(request):
+            """
+            文件上传
+            :param request:
+            :return:
+            """
+            obj = request.FILES.get('fafafa')
+            
+            dic = {
+                'error': 0,
+                'url': '/static/imgs/20130809170025.png',
+                'message': '错误了...'
+            }
+
+            return HttpResponse(json.dumps(dic))
+            
+    
+作业：整理今天
+
+
+
+下周内容：
+    1. Alex，
+        协同开发GitHub
+        celery
+        等
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+
+

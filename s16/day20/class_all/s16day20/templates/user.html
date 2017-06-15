@@ -1,0 +1,12 @@
+{% extends '_layout.html' %}
+
+{% block content %}
+
+    <h1>用户管理...</h1>
+    <script src="/static/jquery.js"></script>
+    <script>
+        $(function () {
+            $('#menu_user').addClass('active').siblings().removeClass('active');
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends '_layout.html' %}
+
+{% block content %}
+
+    <h1>主机管理.</h1>
+    <script src="/static/jquery.js"></script>
+    <script>
+        $(function () {
+            $('#menu_host').addClass('active').siblings().removeClass('active');
+        })
+    </script>
+{% endblock %}

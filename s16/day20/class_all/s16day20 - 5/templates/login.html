@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <form method="POST" action="/login/">
+        {% csrf_token %}
+        <p>
+            <input type="text" name="username" />
+        </p>
+        <p>
+            <input type="password" name="password" />
+        </p>
+        <p>
+            <input type="text" name="code" />
+
+            <img src="/check_code/" onclick="changeImg(this);">
+        </p>
+        <input type="submit" value="提交" />
+    </form>
+    <script>
+        function changeImg(ths) {
+            ths.src = ths.src + "?";
+        }
+    </script>
+</body>
+</html>

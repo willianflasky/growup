@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    {% if request.session.is_login %}
+    <h1 id="tl" login="true">新闻列表</h1>
+    {% else %}
+    <h1 id="tl" login="false">新闻列表</h1>
+    {% endif %}
+
+    {% for row in news_list %}
+    <div>
+        <a href="{{ row.url }}">{{ row.title }}</a>
+        <p>{{ row.content }}</p>
+        <span onclick="doFavor(this,{{ row.nid }});" style="position: relative;">
+            点赞 <i class="favor-count">{{ row.favor_count }}</i>
+{#            <span style="position: absolute;">+1</span>#}
+        </span>
+        <span>评论 {{ row.comment_count }}</span>
+    </div>
+    {% endfor %}
+    <script src="/static/jquery.js"></script>
+    <script>
+        function doFavor(ths,nid) {
+
+            if ($('#tl').attr('login') == "true"){
+                $.ajax({
+                url: '/do-favor/',
+                type: "GET",
+                data: {nid: nid},
+                dataType: 'JSON',
+                success:function (arg) {
+                    if(arg.status == 1){
+                        // -1
+                        var favorCount = $(ths).find('.favor-count').text();
+                        favorCount = parseInt(favorCount);
+                        favorCount = favorCount -1;
+                        $(ths).find('.favor-count').text(favorCount);
+                        ZMM(ths,"-1");
+
+                    }else if(arg.status == 2){
+                        // +1
+                        var favorCount = $(ths).find('.favor-count').text();
+                        favorCount = parseInt(favorCount);
+                        favorCount = favorCount + 1;
+                        $(ths).find('.favor-count').text(favorCount);
+                        ZMM(ths,"+1");
+
+                    }else{
+                        location.href = '/login/';
+                    }
+                }
+            })
+            }else{
+                location.href = '/login/';
+            }
+        }
+        
+        
+        function ZMM(ths,txt) {
+            var fontSize = 5;
+            var left = 5;
+            var top = 5;
+            var opacity = 1;
+
+            var tag = document.createElement('span');
+            tag.innerHTML = txt;
+            tag.style.position = "absolute";
+            tag.style.fontSize = fontSize + 'px';
+            tag.style.left = left+ 'px';
+            tag.style.top = top+ 'px';
+            tag.style.opacity = opacity;
+            $(ths).append(tag);
+
+            var obj = setInterval(function () {
+                fontSize = fontSize + 5;
+                left = left + 5;
+                top = top - 5;
+                opacity = opacity - 0.1;
+                tag.style.fontSize = fontSize + 'px';
+                tag.style.left = left+ 'px';
+                tag.style.top = top+ 'px';
+                tag.style.opacity = opacity;
+                if(left > 60){
+                    clearInterval(obj);
+                    tag.remove();
+                }
+            },100);
+        }
+    </script>
+</body>
+</html>

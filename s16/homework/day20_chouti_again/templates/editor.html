@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/kindeditor-4.1.10/themes/default/default.css" />
+</head>
+<body>
+
+<form action="/news/" method="POST" >
+    <h1>请输入内容：</h1>
+    {% csrf_token %}
+    <div style="width: 500px; margin: 0 auto;">
+        <textarea name="content" id="content"></textarea>
+    </div>
+    <input type="submit" value="提交"/>
+</form>
+
+
+
+    <script src="/static/js/jquery-1.12.4.js"></script>
+    <script src="/static/kindeditor-4.1.10/kindeditor-all.js"></script>
+
+
+<script>
+    $(function () {
+        initKindEditor();
+    });
+
+    function initKindEditor() {
+        var a = 'kind';
+        var kind = KindEditor.create('#content', {
+            width: '100%',       // 文本框宽度(可以百分比或像素)
+            height: '300px',     // 文本框高度(只能像素)
+            minWidth: 200,       // 最小宽度（数字）
+            minHeight: 400,      // 最小高度（数字）
+            uploadJson: '/upload_img/',
+            extraFileUploadParams: {
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            fileManagerJson: '/file_manager/',
+            allowPreviewEmoticons: true,
+            allowImageUpload: true
+        });
+    }
+</script>
+
+</body>
+</html>

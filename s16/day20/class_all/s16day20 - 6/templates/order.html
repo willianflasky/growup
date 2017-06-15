@@ -1,0 +1,12 @@
+{% extends '_layout.html' %}
+
+{% block content %}
+
+    <h1>订单管理...</h1>
+    <script src="/static/jquery.js"></script>
+    <script>
+        $(function () {
+            $('#menu_order').addClass('active').siblings().removeClass('active');
+        })
+    </script>
+{% endblock %}

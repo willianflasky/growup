@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            margin: 0;
+        }
+        .pg-header{
+            height: 48px;
+            background-color: cadetblue;
+        }
+        .menu{
+            position: absolute;
+            left: 0;
+            top:50px;
+            bottom: 0;
+            width: 200px;
+            background-color: #dddddd;
+        }
+        .content{
+            position: absolute;
+            left: 210px;
+            right: 0;
+            top:50px;
+            bottom: 0;
+            overflow: auto;
+        }
+        .menu-item{
+            display: block;
+            padding: 15px 0;
+            border: 1px solid #dddddd;
+        }
+        .menu-item.active{
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+    <div class="pg-header"></div>
+    <div class="pg-body">
+        <div class="menu">
+            <a id="menu_order" href="/backend/order/" class="menu-item">订单管理</a>
+            <a id="menu_user" href="/backend/user/" class="menu-item active">用户管理</a>
+            <a id="menu_host" href="/backend/host/" class="menu-item">主机管理</a>
+            <a id="menu_news" href="/backend/news/" class="menu-item">新闻管理</a>
+        </div>
+        <div class="content">
+            {% block content %} {% endblock %}
+        </div>
+    </div>
+</body>
+</html>
