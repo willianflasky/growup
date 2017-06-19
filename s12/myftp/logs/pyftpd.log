@@ -1,0 +1,155 @@
+INFO:pyftpdlib:>>> starting FTP server on 0.0.0.0:2121, pid=25972 <<<
+INFO:pyftpdlib:concurrency model: async
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:received interrupt signal
+INFO:pyftpdlib:>>> shutting down FTP server (1 active socket fds) <<<
+INFO:pyftpdlib:>>> starting FTP server on 0.0.0.0:2121, pid=27207 <<<
+INFO:pyftpdlib:concurrency model: async
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:received interrupt signal
+INFO:pyftpdlib:>>> shutting down FTP server (1 active socket fds) <<<
+INFO:pyftpdlib:>>> starting FTP server on 0.0.0.0:2121, pid=27678 <<<
+INFO:pyftpdlib:concurrency model: async
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:received interrupt signal
+INFO:pyftpdlib:>>> shutting down FTP server (1 active socket fds) <<<
+INFO:pyftpdlib:>>> starting FTP server on 0.0.0.0:2121, pid=30032 <<<
+INFO:pyftpdlib:concurrency model: async
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:received interrupt signal
+INFO:pyftpdlib:>>> shutting down FTP server (1 active socket fds) <<<
+INFO:pyftpdlib:>>> starting FTP server on 0.0.0.0:2121, pid=30892 <<<
+INFO:pyftpdlib:concurrency model: async
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:127.0.0.1:6365-[] FTP session opened (connect)
+INFO:pyftpdlib:127.0.0.1:6365-[tom] USER 'tom' logged in.
+INFO:pyftpdlib:127.0.0.1:6365-[tom] RETR /home/weibiao/myftp/bin/main.py completed=1 bytes=959 seconds=0.001
+INFO:pyftpdlib:127.0.0.1:6365-[tom] RETR /home/weibiao/myftp/bin/main.py completed=1 bytes=923 seconds=0.0
+INFO:pyftpdlib:127.0.0.1:6365-[tom] FTP session closed (disconnect).
+INFO:pyftpdlib:received interrupt signal
+INFO:pyftpdlib:>>> shutting down FTP server (1 active socket fds) <<<
+INFO:pyftpdlib:>>> starting FTP server on 0.0.0.0:2121, pid=785 <<<
+INFO:pyftpdlib:concurrency model: async
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:received interrupt signal
+INFO:pyftpdlib:>>> shutting down FTP server (1 active socket fds) <<<
+INFO:pyftpdlib:>>> starting FTP server on 0.0.0.0:2121, pid=20064 <<<
+INFO:pyftpdlib:concurrency model: async
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:10.0.2.200:55610-[] FTP session opened (connect)
+INFO:pyftpdlib:10.0.2.200:55610-[tom] USER 'tom' logged in.
+INFO:pyftpdlib:received interrupt signal
+INFO:pyftpdlib:>>> shutting down FTP server (2 active socket fds) <<<
+INFO:pyftpdlib:10.0.2.200:55610-[tom] FTP session closed (disconnect).
+INFO:pyftpdlib:>>> starting FTP server on 0.0.0.0:2121, pid=26770 <<<
+INFO:pyftpdlib:concurrency model: multi-process
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:>>> shutting down FTP server (0 active workers) <<<
+INFO:pyftpdlib:>>> starting FTP server on 0.0.0.0:2121, pid=27450 <<<
+INFO:pyftpdlib:concurrency model: multi-process
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:>>> shutting down FTP server (0 active workers) <<<
+INFO:pyftpdlib:>>> starting FTP server on 0.0.0.0:2121, pid=28944 <<<
+INFO:pyftpdlib:concurrency model: multi-process
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:10.0.2.200:13407-[] FTP session opened (connect)
+INFO:pyftpdlib:10.0.2.200:13407-[] FTP session closed (disconnect).
+INFO:pyftpdlib:10.0.2.200:13407-[user] USER 'user' logged in.
+INFO:pyftpdlib:10.0.2.200:13407-[user] FTP session closed (disconnect).
+INFO:pyftpdlib:10.0.2.200:30596-[] FTP session opened (connect)
+INFO:pyftpdlib:10.0.2.200:30596-[] FTP session closed (disconnect).
+INFO:pyftpdlib:10.0.2.200:30596-[user] USER 'user' logged in.
+INFO:pyftpdlib:10.0.2.200:36255-[] FTP session opened (connect)
+INFO:pyftpdlib:10.0.2.200:36255-[] FTP session closed (disconnect).
+INFO:pyftpdlib:10.0.2.200:36255-[user] USER 'user' logged in.
+INFO:pyftpdlib:10.0.2.200:30596-[user] FTP session closed (disconnect).
+INFO:pyftpdlib:10.0.2.200:36255-[user] FTP session closed (disconnect).
+INFO:pyftpdlib:>>> shutting down FTP server (0 active workers) <<<
+INFO:pyftpdlib:>>> starting FTP server on 0.0.0.0:2121, pid=8034 <<<
+INFO:pyftpdlib:concurrency model: multi-process
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:10.0.2.200:48099-[] FTP session opened (connect)
+INFO:pyftpdlib:10.0.2.200:48099-[] FTP session closed (disconnect).
+INFO:pyftpdlib:10.0.2.200:48099-[user] USER 'user' logged in.
+INFO:pyftpdlib:10.0.2.200:48099-[user] FTP session closed (disconnect).
+INFO:pyftpdlib:>>> shutting down FTP server (0 active workers) <<<
+INFO:pyftpdlib:>>> starting FTP server on 0.0.0.0:2121, pid=26074 <<<
+INFO:pyftpdlib:concurrency model: multi-process
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:>>> shutting down FTP server (0 active workers) <<<
+INFO:pyftpdlib:>>> starting FTP server on 0.0.0.0:2121, pid=6424 <<<
+INFO:pyftpdlib:concurrency model: multi-process
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:>>> shutting down FTP server (0 active workers) <<<
+INFO:pyftpdlib:>>> starting FTP server on 0.0.0.0:2121, pid=6960 <<<
+INFO:pyftpdlib:concurrency model: multi-process
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:>>> shutting down FTP server (0 active workers) <<<
+INFO:pyftpdlib:>>> starting FTP server on 0.0.0.0:2121, pid=25751 <<<
+INFO:pyftpdlib:concurrency model: multi-process
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:>>> shutting down FTP server (0 active workers) <<<
+INFO:pyftpdlib:>>> starting FTP server on 0.0.0.0:2121, pid=26547 <<<
+INFO:pyftpdlib:concurrency model: multi-process
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:>>> shutting down FTP server (0 active workers) <<<
+INFO:pyftpdlib:>>> starting FTP server on 0.0.0.0:2121, pid=27461 <<<
+INFO:pyftpdlib:concurrency model: multi-process
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:>>> shutting down FTP server (0 active workers) <<<
+INFO:pyftpdlib:>>> starting FTP server on 0.0.0.0:2121, pid=27784 <<<
+INFO:pyftpdlib:concurrency model: multi-process
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:>>> shutting down FTP server (0 active workers) <<<
+INFO:pyftpdlib:>>> starting FTP server on 0.0.0.0:2121, pid=28956 <<<
+INFO:pyftpdlib:concurrency model: multi-process
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:>>> shutting down FTP server (0 active workers) <<<
+INFO:pyftpdlib:>>> starting FTP server on 0.0.0.0:2121, pid=29573 <<<
+INFO:pyftpdlib:concurrency model: multi-process
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:>>> shutting down FTP server (0 active workers) <<<
+INFO:pyftpdlib:>>> starting FTP server on 0.0.0.0:2121, pid=30844 <<<
+INFO:pyftpdlib:concurrency model: multi-process
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:>>> shutting down FTP server (0 active workers) <<<
+INFO:pyftpdlib:>>> starting FTP server on 0.0.0.0:2121, pid=528 <<<
+INFO:pyftpdlib:concurrency model: multi-process
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:>>> shutting down FTP server (0 active workers) <<<
+INFO:pyftpdlib:>>> starting FTP server on 0.0.0.0:2121, pid=5811 <<<
+INFO:pyftpdlib:concurrency model: multi-process
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:>>> shutting down FTP server (0 active workers) <<<
+INFO:pyftpdlib:>>> starting FTP server on 0.0.0.0:2121, pid=6141 <<<
+INFO:pyftpdlib:concurrency model: multi-process
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:10.0.2.200:7491-[] FTP session opened (connect)
+INFO:pyftpdlib:10.0.2.200:7491-[] FTP session closed (disconnect).
+INFO:pyftpdlib:10.0.2.200:7491-[user1] USER 'user1' logged in.
+INFO:pyftpdlib:10.0.2.200:7491-[user1] FTP session closed (disconnect).
+INFO:pyftpdlib:>>> shutting down FTP server (0 active workers) <<<

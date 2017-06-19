@@ -1,0 +1,9 @@
+
+/*1.单独的CSS文件 */
+/*2.html头部*/
+/*3.标签属性*/
+
+div{
+    background: red;
+    color: white;
+}

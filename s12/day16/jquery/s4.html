@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="button" onclick="add();" />
+
+    <ul>
+        <li>123</li>
+        <li>456</li>
+        <li>789</li>
+
+    </ul>
+
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+        $(function(){
+            $('ul').delegate("li","click",function(){
+                alert($(this).text());
+            })
+        })
+
+        function add(){
+            var tag = document.createElement('li');
+            tag.innerText='ttt';
+            $('ul').append(tag);
+        }
+    </script>
+
+</body>
+</html>

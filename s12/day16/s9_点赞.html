@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .item{
+          padding: 50px;
+            position: relative;
+        }
+        .item span{
+            font-size: 18px;
+            position: absolute;
+            top:49px;
+            left:71px;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="item">
+        <a onclick="favor(this);">赞1</a>
+        <!--<span>+1</span>-->
+    </div>
+    <div class="item">
+         <a onclick="favor(this);">赞2</a>
+    </div>
+    <div class="item">
+         <a onclick="favor(this);">赞3</a>
+    </div>
+    <div class="item">
+         <a onclick="favor(this);">赞4</a>
+    </div>
+
+    <script>
+        function favor(ths){
+            var top =49;
+            var left=71;
+            var op=1;
+            var fontSize=18;
+
+            var tag = document.createElement('span');
+            tag.style.position='obsolute';
+            tag.style.top= top + "px";
+            tag.style.left= left + "px";
+            tag.style.opacity = op;
+            tag.style.fontSize = fontSize + 'px';
+            tag.innerText= '+1'
+            ths.parentElement.appendChild(tag);
+
+            var interval=setInterval(function(){
+                top -=10;
+                left +=10;
+                fontSize +=5;
+                op -= 0.1;
+                tag.style.top= top + "px";
+                tag.style.left= left + "px";
+                tag.style.opacity = op;
+                tag.style.fontSize = fontSize + 'px';
+                if(op<=0){
+                    clearInterval(interval);
+                    ths.parentElement.removeChild();
+                }
+            },50);
+
+        }
+    </script>
+</body>
+</html>

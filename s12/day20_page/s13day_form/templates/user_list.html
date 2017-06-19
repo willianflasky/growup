@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+    <table>
+        {% for line in result %}
+            <tr>
+                <td>{{ line.username }}</td>
+                <td>{{ line.age }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+    <div>
+        {{ page_str|safe }}
+    </div>
+</body>
+</html>

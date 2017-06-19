@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div id="mydiv">test</div>
+
+    <!--选择器-->
+    <!--ID-->
+    $("#mydiv");
+
+    <!--元素-->
+    $("div")
+
+    <!--class-->
+    $(".myClass")
+
+    <!--all-->
+    $("*")
+
+    <!--多个元素选择-->
+    $("div,myClass,p.myClass")
+
+    <!--form-->
+    $("form input")
+
+    <!--parent > child 匹配form表单中的第一级input-->
+    $("form > child")
+
+    <!--label + input-->
+    $("label + input")
+
+    <!--form ~ input-->
+    $("form ~ input")
+
+
+    <!--查找-->
+    <!--children-->
+    <p>Hello</p><div><span>Hello Again</span></div><p>And Again</p>
+    $("div").children()
+    $("div").children(.myClass)
+
+    <!--next-->
+    <p>Hello</p><p>Hello Again</p><div><span>And Again</span></div>
+    $("p").next()
+    $("p").next(.myClass)
+
+    <!--nextAll-->
+    <div></div><div></div><div></div><div></div>
+    $("div:first").nextAll().addClass('after')
+
+    <!--parent-->
+    <div><p>Hello</p><p>Hello</p></div>
+    $("p").parent()
+    $("p").parent(.myClass)
+
+    <!--prev上一个-->
+    $("p").prev()
+    $("p").prev(.myClass)
+
+    <!--prevAll-->
+    $("div:last").prevAll().addClass("before")
+
+</body>
+</html>

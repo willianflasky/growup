@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="text"/>
+
+    <div id="i1">
+        <div class="item"></div>
+        <div class="item">
+            <div class="c1">123</div>
+            <a id="bd">百度</a>
+            <a>sina</a>
+        </div>
+        <div class="item"></div>
+    </div>
+    <div id="i2"></div>
+
+
+
+<form>
+  <label>Name:</label>
+  <input name="name" alex="panda" />
+  <fieldset>
+      <label>Newsletter:</label>
+      <input name="newsletter" alex="qq" />
+ </fieldset>
+</form>
+<input name="none" last="last" />
+
+
+
+
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+        $('#i1').addClass('hide')
+    </script>
+
+</body>
+</html>
+
+
+<!--
+1.查找标签
+    a.选择器
+        id
+        element标签
+        .class
+        *所有
+        组合
+        层级
+        $('#il')
+        $('.item')
+        $('.item a')
+        $('.item a,#i2')
+    b.筛选器
+        $('li:first')
+        $('#i1').find('.item')
+        $('#i1').eq(1)
+
+2.操作
+    a.css
+    b.属性
+    c.文本操作
+
+3.事件
+    a.优化
+
+4.扩展
+    a.函数扩展
+    b.form表单
+
+5.ajax
+    a.偷偷发请求
+-->

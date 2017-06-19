@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .pager a{
+            display: inline-block;
+            padding: 5px;
+            background: cadetblue;
+            margin:2px;
+        }
+        .pager a.active{
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>name</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in type_list %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.caption }}</td>
+        </tr>
+
+    {% endfor %}
+
+    </tbody>
+    </table>
+
+    <div class="pager">
+
+        {{ str_page }}
+    </div>
+</body>
+</html>

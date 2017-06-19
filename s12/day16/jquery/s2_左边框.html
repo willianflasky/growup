@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .hide {
+            display: none;
+        }
+        .menu{
+            width:200px;
+            height: 600px;
+            border: 1px solid #dddddd;
+            overflow: auto;
+        }
+        .menu .item .title{
+            height: 40px;
+            line-height: 40px;
+            background-color: blue;
+            color: white;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <div class="item">
+            <div class="title" onclick="showMenu(this);">菜单一</div>
+            <div class="body">
+                <p>内容一</p>
+                <p>内容二</p>
+                <p>内容三</p>
+                <p>内容四</p>
+                <p>内容五</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="title" onclick="showMenu(this);">菜单二</div>
+            <div class="body">
+                <p>内容一</p>
+                <p>内容二</p>
+                <p>内容三</p>
+                <p>内容四</p>
+                <p>内容五</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="title" onclick="showMenu(this);">菜单三</div>
+            <div class="body">
+                <p>内容一</p>
+                <p>内容二</p>
+                <p>内容三</p>
+                <p>内容四</p>
+                <p>内容五</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+        function showMenu(self){
+            $(self).next().removeClass('hide');
+            $(self).parent().siblings().find('.body').addClass('hide');
+        }
+    </script>
+</body>
+</html>

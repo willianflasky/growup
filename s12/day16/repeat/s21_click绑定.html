@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .menu{
+            width: 200px;
+            height: 600px;
+            border: 1px solid gray;
+            overflow: auto;
+        }
+        .menu .title{
+            height: 40px;
+            line-height: 40px;
+            background-color: green;
+            color:white;
+        }
+        .hide{
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <div class="item">
+            <div class="title">菜单一</div>
+            <div class="body">
+                <p>内容一</p>
+                <p>内容一</p>
+                <p>内容一</p>
+                <p>内容一</p>
+                <p>内容一</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="title">菜单二</div>
+            <div class="body">
+                <p>内容二</p>
+                <p>内容二</p>
+                <p>内容二</p>
+                <p>内容二</p>
+                <p>内容二</p>
+
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="title">菜单三</div>
+            <div class="body">
+                <p>内容三</p>
+                <p>内容三</p>
+                <p>内容三</p>
+                <p>内容三</p>
+                <p>内容三</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../jquery/jquery-1.12.4.js"></script>
+
+    <script>
+        $(function(){
+           //当文档树加载完毕后,自动执行.
+            $('.item .title').click(function(){
+                    $(this).next().removeClass('hide');
+                    $(this).parent().siblings().find('.body').addClass('hide');
+            })
+        });
+
+//        $('.item .title').bind('click',function(){
+//                $(this).next().removeClass('hide');
+//                $(this).parent().siblings().find('.body').addClass('hide');
+//        })
+    </script>
+</body>
+</html>
+
+<!--去掉手动绑定onclick-->
