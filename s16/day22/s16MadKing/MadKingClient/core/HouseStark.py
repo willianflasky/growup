@@ -132,20 +132,19 @@ class ArgvHandler(object):
             raise KeyError
 
 
-
-    #def __get_asset_id_by_sn(self,sn):
+    # def __get_asset_id_by_sn(self,sn):
     #    return  self.__submit_data("get_asset_id_by_sn",{"sn":sn},"get")
     def load_asset_id(self):
-        asset_id_file = settings.Params['asset_id']
+        asset_id_file = settings.Params['asset_id']     # 查看有没有ID,第否为第一次
         has_asset_id = False
         if os.path.isfile(asset_id_file):
             asset_id = open(asset_id_file).read().strip()
             if asset_id.isdigit():
-                return  asset_id
+                return asset_id
             else:
-                has_asset_id =  False
+                has_asset_id = False
         else:
-            has_asset_id =  False
+            has_asset_id = False
 
     def __update_asset_id(self,new_asset_id):
         asset_id_file = settings.Params['asset_id']
@@ -154,25 +153,25 @@ class ArgvHandler(object):
         f.close()
 
     def report_asset(self):
-        """收集硬件信息,并汇报"""
+        """收集硬件信息,并汇报,通过反射过来的."""
         obj = info_collection.InfoCollection()  # 实例化一个对象
-        asset_data = obj.collect()  #
-        asset_id = self.load_asset_id()
+        asset_data = obj.collect()  # 使用这个方法
+        asset_id = self.load_asset_id()  # False 或者 下发有资源ID
         if asset_id:    # reported to server before
-            asset_data["asset_id"] = asset_id
-            post_url = "asset_report"
+            asset_data["asset_id"] = asset_id   # 如果有ID,更新数据中的ID
+            post_url = "asset_report"           # 指定POST路径
 
         else:   # first time report to server
             '''report to another url,this will put the asset into approval waiting zone, when the asset is approved ,this request returns
             asset's ID'''
 
-            asset_data["asset_id"] = None
-            post_url = "asset_report_with_no_id"
+            asset_data["asset_id"] = None   # 没有ID,表示第一次上报数据
+            post_url = "asset_report_with_no_id"    # 指定POST路径
 
-        data = {"asset_data": json.dumps(asset_data)}
-        response = self.__submit_data(post_url,data,method="post")      # post方式提交收集的数据
+        data = {"asset_data": json.dumps(asset_data)}       # 转成json传输
+        response = self.__submit_data(post_url, data, method="post")      # post方式提交收集的数据
         if "asset_id" in response:
-            self.__update_asset_id(response["asset_id"])
+            self.__update_asset_id(response["asset_id"])     # 如果有asset_id则更新数据
 
         self.log_record(response)
 

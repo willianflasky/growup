@@ -38,9 +38,10 @@ class Asset(object):
         else:
             if self.response['error']:
                 return False
-        try:#合法性检查通过了
-            #1.如果根据sn号在数据库里找不到对应的资产数据，就把汇报的数据存档到临时待审批区
-            #2. 如果能找到对应资产，就返回资产id给客户端
+        try:
+            # 合法性检查通过了
+            # 1.如果根据sn号在数据库里找不到对应的资产数据，就把汇报的数据存档到临时待审批区
+            # 2.如果能找到对应资产，就返回资产id给客户端
             if not only_check_sn: #False
                 self.asset_obj = models.Asset.objects.get(id=int(data['asset_id']), sn=data['sn'])
             else: #新资产 True
@@ -61,12 +62,14 @@ class Asset(object):
         if data:
             try:
                 data = json.loads(data)
-                if self.mandatory_check(data,only_check_sn=True):  # the asset is already exist in DB,just return it's asset id to client
+                if self.mandatory_check(data,only_check_sn=True):
+                    # the asset is already exist in DB,just return it's asset id to client
                     response = {'asset_id': self.asset_obj.id}
                 else:
-                    if hasattr(self, 'waiting_approval'): #代表这是新资产
+                    if hasattr(self, 'waiting_approval'):  # 代表这是新资产
                         response = {
-                            'needs_aproval': "this is a new asset,needs IT admin's approval to create the new asset id."}
+                            'needs_aproval': "this is a new asset,needs IT admin's approval to create the new asset id."
+                        }
                         self.clean_data = data
                         self.save_new_asset_to_approval_zone()
                         print(response)
@@ -81,8 +84,9 @@ class Asset(object):
             response = self.response
         return response
 
-    def save_new_asset_to_approval_zone(self):
-        '''When find out it is a new asset, will save the data into approval zone to waiting for IT admin's approvals'''
+    def save_new_asset_to_approval_zone(self):  # 将数据存在表中,等待审批
+        '''When find out it is a new asset, will save the data into approval
+        zone to waiting for IT admin's approvals'''
         asset_sn = self.clean_data.get('sn')
         asset_already_in_approval_zone = models.NewAssetApprovalZone.objects.get_or_create(sn=asset_sn,
                                                                                            data=json.dumps(
@@ -254,7 +258,6 @@ class Asset(object):
     def _create_server(self):
         self.__create_server_info()
         self.__create_or_update_manufactory()
-
         self.__create_cpu_component()
         self.__create_disk_component()
         self.__create_nic_component()
@@ -277,7 +280,7 @@ class Asset(object):
                     'os_release': self.clean_data.get('os_release'),
                 }
 
-                obj = models.Server(**data_set)
+                obj = models.Server(**data_set)     # 存入数据
                 #obj.asset.model = self.clean_data.get('model')
                 obj.save()
                 return obj

@@ -1,12 +1,9 @@
 #_*_coding:utf-8_*_
-__author__ = 'Alex Li'
-
 from plugins.linux import sysinfo
 
 
 def LinuxSysInfo():
-    # print __file__
-    return sysinfo.collect()
+    return sysinfo.collect()        #
 
 
 def WindowsSysInfo():
