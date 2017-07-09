@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block forlink %}
+    <script src="/static/echarts.min.js"></script>
+{% endblock %}
+
+{% block forcontent %}
+ <div class="row">
+        <div class="panel col-md-7">
+            <div class="panel-body" >
+                <div id="p1" style="width:60%;height:400px;"></div>
+            </div>
+        </div>
+
+        <div class="panel col-md-5">
+            <div class="panel-body" >
+                <div id="p2" style="width:60%; height:400px;"></div>
+            </div>
+        </div>
+ </div>
+
+    <script type="text/javascript">
+
+    $(function(){
+         $.getJSON("{% url 'get_dashboard_data' %}",function(callback){
+             DrawCharts(callback);
+         });
+    });
+
+    function DrawCharts(data) {
+        var myChart1 = echarts.init(document.getElementById('p1'), 'infographic');
+        var option1 = {
+            title: {
+                text: '资产系统类型'
+            },
+            tooltip: {},
+            legend: {
+                data: ['系统类型']
+            },
+            xAxis: {
+                data: data['p11']
+            },
+            yAxis: {},
+            series: [{
+                name: '系统类型',
+                type: 'bar',
+                data: data['p12']
+            }]
+        };
+        myChart1.setOption(option1);
+
+        var myChart2 = echarts.init(document.getElementById('p2'), 'infographic');
+        var option2 = {
+            title: {
+                text: '资产状态分类',
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: data['p21']
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '60%'],
+                    data: data['p22'],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        myChart2.setOption(option2)
+    }
+    </script>
+
+{% endblock %}

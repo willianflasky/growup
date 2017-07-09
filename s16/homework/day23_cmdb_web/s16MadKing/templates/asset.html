@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block forcontent %}
+
+<div class="row">
+    <div class="panel col-md-7">
+        <div class="panel-body" >
+            <div class="table-responsive">
+              <table class="table">
+                <tr style="background-color: green; color: white">
+                    {% for k in result.0 %}
+                        <th>{{ k }}</th>
+                    {% endfor %}
+                </tr>
+
+                  {% for dic in result %}
+                          <tr>
+                              {% for k,v in dic.items %}
+                                    <td>{{ v }}</td>
+                              {% endfor %}
+                          </tr>
+                  {% endfor %}
+              </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
