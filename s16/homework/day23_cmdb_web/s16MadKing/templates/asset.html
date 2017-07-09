@@ -3,26 +3,34 @@
 {% block forcontent %}
 
 <div class="row">
-    <div class="panel col-md-7">
-        <div class="panel-body" >
-            <div class="table-responsive">
               <table class="table">
-                <tr style="background-color: green; color: white">
-                    {% for k in result.0 %}
-                        <th>{{ k }}</th>
-                    {% endfor %}
-                </tr>
-
-                  {% for dic in result %}
-                          <tr>
-                              {% for k,v in dic.items %}
-                                    <td>{{ v }}</td>
-                              {% endfor %}
-                          </tr>
+                    <tr style="background-color: black; color: whitesmoke">
+                        <th>ID号</th>
+                        <th>资产类型</th>
+                        <th>资产名字</th>
+                        <th>资产编号</th>
+                        <th>厂商</th>
+                        <th>在线状态</th>
+                        <th>创建日期</th>
+                        <th>机柜</th>
+                    </tr>
+                  {% for item in objs %}
+                      <tr>
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.asset_type }}</td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.sn }}</td>
+                            <td>{{ item.manufactory }}</td>
+                            <td>{{ item.get_status_display }}</td>
+                            <td>{{ item.create_date }}</td>
+                            <td>{{ item.cabinet }}</td>
+                      </tr>
                   {% endfor %}
               </table>
-            </div>
-        </div>
-    </div>
 </div>
+
+{#     <div class="pagination">#}
+{#         {{ page_info.page_str|safe }}#}
+{#     </div>#}
+
 {% endblock %}

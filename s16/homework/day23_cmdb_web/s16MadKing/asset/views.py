@@ -37,13 +37,17 @@ def index(request):
 
 
 def asset(request):
-    result = []
-    all_data = Asset.objects.all().values()
-    for line in all_data:
-        line['create_date'] = line['create_date'].strftime('%Y-%m-%d %H:%M:%S')
-        line['update_date'] = line['update_date'].strftime('%Y-%m-%d %H:%M:%S')
-        result.append(line)
+    from asset.page import PageInfo
+    all_count = Asset.objects.all().count()
+    page_info = PageInfo(request.GET.get('p'), 20, all_count, request.path_info, page_range=3)
+    objs = Asset.objects.all()[page_info.start():page_info.end()]
 
+    # result = []
+    # all_data = Asset.objects.all().values()
+    # for line in all_data:
+    #     line['create_date'] = line['create_date'].strftime('%Y-%m-%d %H:%M:%S')
+    #     line['update_date'] = line['update_date'].strftime('%Y-%m-%d %H:%M:%S')
+    #     result.append(line)
     return render(request, 'asset.html', locals())
 
 
