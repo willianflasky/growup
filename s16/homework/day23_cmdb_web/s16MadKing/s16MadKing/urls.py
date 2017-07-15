@@ -23,7 +23,7 @@ urlpatterns = [
     # url(r'^api/', include(rest_urls) ),
     url(r'^asset/', include(asset_urls)),
     # url(r'^$',views.index,name="dashboard"),
-    # url(r'^login/$',views.acc_login,name='login'),
+    url(r'^login/$', views.login, name='LOGIN'),
     url(r'^$', views.index),
     url(r'^asset/', views.asset),
     url(r'^data/', views.data, name="get_dashboard_data"),
