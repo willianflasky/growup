@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load luffyadmin_tags %}
+
+{% block body %}
+
+    admin app index
+    <div class="container">
+{#         循环后端传过来的大字典.     example:{'crm':{'account':admin_class}}#}
+        {% for app_name,table_list_dict in site.registered_admins.items %}
+            <div class="">
+{#            每个项目名: 下面显示所有的表#}
+                <h3 style="color: red">{{ app_name }}</h3>
+
+                <table class="table table-hover">
+{#                继续循环里面的字典  example: {'account':admin_class} #}
+                    {% for model_name,admin_class in table_list_dict.items %}
+                        <tr>
+                            <td>
+{#                                点击连接进入,URL用项目名和表名#}
+                                <a href="{{ app_name }}/{{ model_name }}/">
+{#                                通过simple_tags拿到modal表的verbose_name#}
+                                    {% get_model_verbose_name admin_class %}
+                                </a>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endfor %}
+
+
+    </div>
+
+{% endblock %}
+

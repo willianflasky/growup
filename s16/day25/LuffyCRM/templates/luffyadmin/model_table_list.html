@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load luffyadmin_tags %}
+
+{% block body %}
+
+    admin app index
+    <div class="container">
+
+            <div class="">
+                <h3>{{ app_name }}</h3>
+                {% if admin_class.list_filter %}
+                <div class="row">
+                    <form >
+                        {% for filter_column in admin_class.list_filter %}
+                            <div class="col-lg-2">
+                                <p>{{ filter_column }}</p>
+                                {% build_filter_ele filter_column admin_class filter_conditions %}
+
+                            </div>
+                        {% endfor %}
+                        <div class="col-lg-1">
+                            <button class="btn btn-success" style="margin-top: 30px">过滤</button>
+                        </div>
+                    </form>
+                </div>
+                {% endif %}
+
+                <table class="table table-hover">
+
+                    <thead>
+                        <tr>
+                            {% if not  admin_class.list_display %}
+                                <th>{{ model_name }}</th>
+                            {% else %}
+                                {% for column in admin_class.list_display %}
+                                <th>{{ column }}</th>
+                                {% endfor %}
+                            {% endif %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in querysets %}
+{#                            <tr>#}
+{#                                {% for column_name in admin_class.list_display %}#}
+{#                                    <td>{{ row.column_name }}</td>#}
+{##}
+{#                                {% endfor %}#}
+{#                            </tr>#}
+{#                            {% build_table_row row admin_class as row_data %}#}
+                            {% build_table_row row admin_class  %}
+{#                            {{ row_data|safe }}#}
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+
+                <div class="pagination">
+
+                    {% get_filter_condtions_string filter_conditions as  filter_condtions_string %}
+                     <ul class="pagination">
+                        <li class=""><a href="?_page=1{{ filter_condtions_string }}">首页 </a></li>
+
+                         {% for p in paginator.page_range %}
+                            {% get_abs_value p  querysets.number as i %} <!--i变量是当前页与循环的次数的差的绝对值 -->
+
+                             {% if i < 3 %}
+                                {% if p == querysets.number %}
+                                    <li class="active"><a href="?_page={{ p }}{{ filter_condtions_string }}">{{ p }} <span class="sr-only">(current)</span></a></li>
+                                {% else %}
+                                    <li class=""><a href="?_page={{ p }}{{ filter_condtions_string }}">{{ p }} <span class="sr-only">(current)</span></a></li>
+
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                        <li class=""><a href="?_page={{ paginator.num_pages }}{{ filter_condtions_string }}">尾页 </a></li>
+                        <li> 总计 {{ querysets.paginator.num_pages }}页</li>
+                     </ul>
+
+
+
+                </div>
+
+            </div>
+
+
+
+    </div>
+
+{% endblock %}
+
