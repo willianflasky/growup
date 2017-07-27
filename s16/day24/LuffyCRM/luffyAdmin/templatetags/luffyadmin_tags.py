@@ -89,7 +89,7 @@ def build_table_row(row, admin_class):
             column_val = getattr(row, column_name)
         # 判断第一个字段,增加A标签
         if index == 0:
-            td_ele = "<td><a href='#'>{column_val}</a></td>".format(column_val=column_val)
+            td_ele = "<td><a href='{obj_id}/change/'>{column_val}</a></td>".format(obj_id=row.id, column_val=column_val)
         else:
             td_ele = "<td>{column_val}</td>".format(column_val=column_val)
         row_ele += td_ele
@@ -105,8 +105,44 @@ def get_abs_value(loop_num, curent_page_number):
 
 
 @register.simple_tag
-def get_filter_condtions_string(filter_conditions):
+def get_filter_condtions_string(filter_conditions, q_val):
     condtion_str = ""
     for k, v in filter_conditions.items():
         condtion_str += "&%s=%s" % (k, v)
+    if q_val:   # 拼接search 字段
+        condtion_str += "&_q=%s" % q_val
     return condtion_str
+
+
+@register.simple_tag
+def generate_orderby_icon(new_order_key):
+    if new_order_key.startswith('-'):
+        icon_ele = '<i class="fa fa-angle-down" aria-hidden="true"></i>'
+    else:
+        icon_ele = '<i class="fa fa-angle-up" aria-hidden="true"></i>'
+
+    return mark_safe(icon_ele)
+
+
+@register.simple_tag
+def get_m2m_objects(admin_class, field_name, selected_objs):
+    # 1.根据field_name, 从admin_class.model反射字段对象
+    # 2.拿到关联表的所有数据
+    # 3.返回数据
+    field_obj = getattr(admin_class.model, field_name)
+    all_objects = field_obj.rel.to.objects.all()
+    # 拿到字段对象, 把关联表的数据都取到
+    return set(all_objects) - set(selected_objs)
+
+
+@register.simple_tag
+def get_selected_m2m_objects(form_obj, field_name):
+    """
+    1. 根据field_name反射出form_obj.instance里的字段对象
+    2. 拿到字段对象关联的所有数据
+    :param admin_class:
+    :param flied_name:
+    :return:
+    """
+    field_obj = getattr(form_obj.instance, field_name)
+    return field_obj.all()

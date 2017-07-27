@@ -25,7 +25,7 @@ class Tag(models.Model):
 class Customer(models.Model):
     name = models.CharField(max_length=64,blank=True,null=True)
     qq = models.CharField(max_length=64,unique=True,blank=True,null=True)
-    weixin = models.CharField(max_length=64,unique=True,blank=True,null=True)
+    weixin = models.CharField(max_length=64,unique=True,blank=True,null=True, help_text="微信号")
     phone = models.BigIntegerField(unique=True,blank=True,null=True)
     email = models.EmailField(blank=True,null=True)
     source = models.ForeignKey("Source")
@@ -42,7 +42,7 @@ class Customer(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return "%s-%s"%(self.id, self.name)
 
 
 class PaymentRecord(models.Model):

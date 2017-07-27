@@ -9,6 +9,10 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 
+class CustomerAdmin(admin.ModelAdmin):
+    filter_horizontal = ['tags', 'consult_courses']
+
+
 class UserCreationForm(forms.ModelForm):
     """A form for creating new users. Includes all the required
     fields, plus a repeated password."""
@@ -88,7 +92,7 @@ admin.site.register(models.Account, AccountAdmin)
 # admin.site.unregister(Group)
 
 
-admin.site.register(models.Customer)
+admin.site.register(models.Customer, CustomerAdmin)
 admin.site.register(models.CustomerFollowUp)
 admin.site.register(models.ClassList)
 admin.site.register(models.Contract)

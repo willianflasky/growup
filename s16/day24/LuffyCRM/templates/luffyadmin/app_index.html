@@ -55,7 +55,7 @@
         {% for app_name,table_list_dict in site.registered_admins.items %}
             <div class="">
 {#            每个项目名: 下面显示所有的表#}
-                <h3 style="color: white; background-color: darkcyan; border-radius: 10px">&nbsp;{{ app_name }}</h3>
+                <h3 class="btn-sm btn-primary">项目:{{ app_name }}</h3>
 
                 <table class="table table-hover">
 {#                继续循环里面的字典  example: {'account':admin_class}#}

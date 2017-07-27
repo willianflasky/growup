@@ -10,6 +10,7 @@ class BaseAdmin(object):
     list_filter = ()
     list_per_page = 5
     search_fields = ()
+    filter_horizontal = []
 
 
 class AdminSite(object):

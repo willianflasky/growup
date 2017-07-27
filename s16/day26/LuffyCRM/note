@@ -1,0 +1,27 @@
+
+
+search
+
+增删改查
+
+admin action
+
+
+1.字段名 'tags'
+2. 根据字段名 + 表的model_class反射出了字段对象
+3.拿到关联的m2m字段的表的所有数据  models.Customer.tags.rel.to.objects.all()
+
+Customer.tags.all()
+
+moveEleTo(target_id)
+
+next week
+delete
+action
+pop up window
+嵌入crm项目
+权限
+学员交作业
+发邮件
+
+

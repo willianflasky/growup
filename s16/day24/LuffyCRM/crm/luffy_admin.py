@@ -8,10 +8,11 @@ print("------------crm luffy_admin.py")
 
 # 自定义customer表的管理类
 class CustomerAdmin(BaseAdmin):
-    list_display = ['name', 'qq', 'consultant', 'source', 'status']
+    list_display = ['id','name', 'qq', 'consultant', 'source', 'status']
     list_filter = ['consultant', 'source', 'status', 'tags']
-    list_per_page = 10
-    search_fields = ['email', ]
+    list_per_page = 2
+    search_fields = ['source__name', 'qq']
+    filter_horizontal = ['tags', 'consult_courses']
 
 
 # 自定义course表的管理类

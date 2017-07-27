@@ -51,21 +51,25 @@
 {#      右侧内容#}
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 {#        从app_index.html---> view(model_table_list) --->这里#}
-            <h3 style="background-color: #449d44;display: inline-block; color: white;border-radius: 5px">&nbsp;{{ app_name }}&nbsp;</h3>
-{#        搜索功能#}
-        {% if admin_class.search_fields %}
-            <div class="row">
-                <form action="">
-                        <label for="searchbar"><img src="/static/admin/img/search.svg" alt="Search"></label>
-                        <input type="text" size="40" name="q" value="" id="searchbar" autofocus="">
-                        <input type="submit" value="Search">
-                </form>
-            </div>
-        {% endif %}
+            <p class="btn btn-primary">项目:{{ app_name }}&nbsp;</p>
+
+        {#                将K,V变成字符串, 返回的数据存到filter_condtions_string#}
+                    {% get_filter_condtions_string filter_conditions  q_val as  filter_condtions_string %}
+
+            <form >
+            {#          搜索Bar#}
+               <div class="row">
+                     <div class="col-lg-3">
+                        <input type="search" name="_q" value="{% if q_val %}{{ q_val }}{% endif %}" placeholder="{% for s_field in admin_class.search_fields%}{{ s_field }} {% endfor %}" class="form-control">
+                     </div>
+                    <div class="col-lg-1 col-lg-offset-10">
+                        <a href="add/" class="btn btn-success">Add {% get_model_verbose_name admin_class %}</a>
+                    </div>
+                </div>
+
 {#        从后端传过来的 admin_class(表的管理类), 列表有值有真,默认没有值为假#}
                 {% if admin_class.list_filter %}
                 <div class="row">
-                    <form >
 {#                    list_filter有值,则循环列表#}
                         {% for filter_column in admin_class.list_filter %}
                             <div class="col-lg-2">
@@ -80,21 +84,36 @@
 {#                            form表单#}
                             <button class="btn btn-success" style="margin-top: 30px">过滤</button>
                         </div>
-                    </form>
                 </div>
                 {% endif %}
+            </form>
 
+
+{#        Table数据#}
                 <table class="table table-hover">
                     <thead>
                         <tr>
 {#                        如果list_display没有数据#}
                             {% if not admin_class.list_display %}
-                                <th>{{ model_name }}</th>
+                                <th>{{ model_name }} </th>
                             {% else %}
 {#                        如果有数据, 有数据有会显示表名#}
 {#                                循环list_display#}
                                 {% for column in admin_class.list_display %}
-                                <th>{{ column }}</th>
+                                <th>
+{#                                字段 == list_display字段表示这个字段 排序#}
+                                {% if order_column == column %}
+{#                                    与当前值相返#}
+                                    <a href="?_o={{ new_order_key }}{{ filter_condtions_string }}">
+{#                                    带尖角号的字段#}
+                                        {{ column }}
+                                        {% generate_orderby_icon  new_order_key %}
+                                    </a>
+                                {% else %}
+{#                                    不带尖角号的字段#}
+                                    <a href="?_o={{ column }}{{ filter_condtions_string }}">{{ column }}</a>
+                                {% endif %}
+                                </th>
                                 {% endfor %}
                             {% endif %}
                         </tr>
@@ -108,8 +127,7 @@
                 </table>
 {#                分页处理#}
                 <div class="pagination">
-{#                将K,V变成字符串, 返回的数据存到filter_condtions_string#}
-                    {% get_filter_condtions_string filter_conditions as  filter_condtions_string %}
+
                      <ul class="pagination">
 {#                     拼接的 &k=v1&b=v2#}
                         <li class=""><a href="?_page=1{{ filter_condtions_string }}">首页 </a></li>
@@ -119,13 +137,13 @@
 
                              {% if i < 3 %}
                                 {% if p == querysets.number %}
-                                    <li class="active"><a href="?_page={{ p }}{{ filter_condtions_string }}">{{ p }} <span class="sr-only">(current)</span></a></li>
+                                    <li class="active"><a href="?_page={{ p }}{{ filter_condtions_string }}&_o={{ last_orderby_key }}">{{ p }} <span class="sr-only">(current)</span></a></li>
                                 {% else %}
-                                    <li class=""><a href="?_page={{ p }}{{ filter_condtions_string }}">{{ p }} <span class="sr-only">(current)</span></a></li>
+                                    <li class=""><a href="?_page={{ p }}{{ filter_condtions_string }}&_o={{ last_orderby_key }}">{{ p }} <span class="sr-only">(current)</span></a></li>
                                 {% endif %}
                             {% endif %}
                         {% endfor %}
-                        <li class=""><a href="?_page={{ paginator.num_pages }}{{ filter_condtions_string }}">尾页 </a></li>
+                        <li class=""><a href="?_page={{ paginator.num_pages }}{{ filter_condtions_string }}&_o={{ last_orderby_key }}">尾页 </a></li>
 {#                        <li> 总计 {{ querysets.paginator.num_pages }}页</li>#}
                      </ul>
                 </div>
