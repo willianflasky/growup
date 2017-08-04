@@ -1,0 +1,79 @@
+{#继承模板#}
+{% extends 'base.html' %}
+{#加载simple_tag#}
+{% load luffyadmin_tags %}
+
+{% block body %}
+{# 头部#}
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href=#>路飞</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">主页</a></li>
+            <li><a href="#">设置</a></li>
+            <li><a href="#">外形</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ request.user.name }} <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">操作</a></li>
+                <li><a href="#">其它</a></li>
+                <li><a href="#">这里</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">链接</a></li>
+                <li><a href="{% url 'LOGOUT' %}">退出</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+        </div>
+      </div>
+    </nav>
+
+
+
+
+ <div class="container-fluid">
+
+      <div class="row">
+    {#      左侧菜单#}
+            <div class="col-sm-3 col-md-2 sidebar" style="background-color: #1b6d85;">
+                  <ul class="nav nav-sidebar">
+                    <h3 style="margin-left: 20px; color: white">Luffy admin</h3>
+                  </ul>
+            </div>
+
+            {#      右侧内容#}
+            <div >
+            {#                项目名#}
+            <p class="btn btn-primary col-sm-12">{{ app_name }}&nbsp;</p>
+            {#                面包屑#}
+            <div class="container">
+                    <ol class="breadcrumb">
+                      <li><a href="/luffyadmin/">Home</a></li>
+                      <li><a href="/luffyadmin/{{ app_name }}/">{{ app_name }}</a></li>
+                      <li class="active"><a href="/luffyadmin/{{ app_name }}/{{ model_name }}/">{{ model_name }}</a></li>
+                    </ol>
+            </div>
+
+
+            {% include 'luffyadmin/components/model_obj_list.html' %}
+
+            </div>
+
+      </div>    {# row  end  #}
+</div>  {# container-fluid  end  #}
+
+{% endblock %}
+
+

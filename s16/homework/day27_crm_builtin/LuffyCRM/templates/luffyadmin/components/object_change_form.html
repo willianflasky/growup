@@ -1,0 +1,21 @@
+   {% load luffyadmin_tags %}
+    <div class="container">
+
+        <ol class="breadcrumb">
+          <li><a href="/luffyadmin/">Home</a></li>
+          <li><a href="/luffyadmin/{{ app_name }}/">{{ app_name }}</a></li>
+          <li><a href="/luffyadmin/{{ app_name }}/{{ model_name }}/">{{ model_name }}</a></li>
+          <li class="active">
+              <a href="#">
+                  {% if form_obj.instance.id %}
+                      {{ form_obj.instance }}
+                  {% else %}
+                      添加{{ model_name }}
+                  {% endif%}
+              </a></li>
+        </ol>
+
+
+   {% include "luffyadmin/components/object_change_form_sub.html" %}
+
+    </div>
