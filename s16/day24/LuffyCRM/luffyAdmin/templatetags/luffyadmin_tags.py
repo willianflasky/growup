@@ -76,24 +76,29 @@ def build_table_row(row, admin_class):
     :param admin_class:
     :return:
     """
-    row_ele = "<tr>"
-    # 循环列表
-    for index, column_name in enumerate(admin_class.list_display):
-        # 拿到字段对象
-        field_obj = row._meta.get_field(column_name)
-        # 判断是否 choices
-        if field_obj.choices:
-            column_display_func = getattr(row, "get_%s_display" % column_name)
-            column_val = column_display_func()
-        else:
-            column_val = getattr(row, column_name)
-        # 判断第一个字段,增加A标签
-        if index == 0:
-            td_ele = "<td><a href='{obj_id}/change/'>{column_val}</a></td>".format(obj_id=row.id, column_val=column_val)
-        else:
-            td_ele = "<td>{column_val}</td>".format(column_val=column_val)
-        row_ele += td_ele
+    row_ele = "<tr><td><input class='row-obj' name='_selected_obj' type='checkbox' value='{obj_id}'></td>".format(obj_id=row.id)
 
+    if admin_class.list_display:
+        # 循环列表
+        for index, column_name in enumerate(admin_class.list_display):
+            # 拿到字段对象
+            field_obj = row._meta.get_field(column_name)
+            # 判断是否 choices
+            if field_obj.choices:
+                column_display_func = getattr(row, "get_%s_display" % column_name)
+                column_val = column_display_func()
+            else:
+                column_val = getattr(row, column_name)
+            # 判断第一个字段,增加A标签
+            if index == 0:
+                td_ele = "<td><a href='{obj_id}/change/'>{column_val}</a></td>".format(obj_id=row.id, column_val=column_val)
+            else:
+                td_ele = "<td>{column_val}</td>".format(column_val=column_val)
+            row_ele += td_ele
+
+    else:   # 显示对象的Str格式
+        td_ele = "<td><a href='{obj_id}/change/'>{obj_str}</a></td>".format(obj_id=row.id, obj_str=row)
+        row_ele += td_ele
     row_ele += "</tr>"
     return mark_safe(row_ele)
 
@@ -144,5 +149,67 @@ def get_selected_m2m_objects(form_obj, field_name):
     :param flied_name:
     :return:
     """
-    field_obj = getattr(form_obj.instance, field_name)
-    return field_obj.all()
+    # 判断空值就不反射
+    if form_obj.instance.id:
+        field_obj = getattr(form_obj.instance, field_name)
+        return field_obj.all()
+    else:
+        return ""
+
+
+@register.simple_tag
+def object_delete(obj, recursive=False):
+    """
+    1. 通过obj.related_objects拿到所有外键关联的对象列表 如: obj = Account.objects.get(id=2); obj.related_objects
+    2. 循环关联对象关系表. for i in obj.related_objects; 调用relate_name = i.get_accessor_name() 拿到反向查询的字段名.
+    3. 根据反向查询字段名, 拿到关系的对象.  obj.relate_name.all()
+    4. 对关联的对象再重复1,2,3步骤,直到没有更深入的关联关系为止.
+
+    :param obj:
+    :return:
+
+    meta:
+        1. related_objects获取别的表FK我. 获取个列表
+            obj = Account.objects.get(id=2); obj.related_objects
+        2. get_accessor_name()获取反向外键查询的名字通常是表名_set
+            obj = Account.objects.get(id=2); A=obj.related_objects[0]; A.get_accessor_name()
+    """
+    if not recursive:
+        ele = "<ul><li>{object_name}".format(object_name=obj)
+    else:
+        ele = "<ul>"
+
+    local_m2m = obj._meta.local_many_to_many       # 处理多对多
+
+    for m2m_field in local_m2m:
+        m2m_objs = getattr(obj, m2m_field.name).all()
+        for m2m_obj in m2m_objs:
+            ele += "<li>{obj_name}:{m2m_name}</li>".format(obj_name=m2m_field.name, m2m_name=m2m_obj)
+
+    for i in obj._meta.related_objects:
+        reverse_lookup_key = i.get_accessor_name()
+        try:
+            reverse_lookup_field = getattr(obj, reverse_lookup_key)
+            query_set = reverse_lookup_field.all()
+            child_ele = "<ul>"
+            for o in query_set:
+                child_ele += "<li>{model_verbose_name}:<a>{obj_name}</a></li>".format(
+                                                                        model_verbose_name=o._meta.verbose_name,
+                                                                        obj_name=o)
+                if o._meta.related_objects:   # 代表还有下一层
+                    child_ele +=object_delete(o, recursive=True)
+            child_ele += "</ul></li>"
+
+            ele += child_ele
+        except Exception as e:
+            print(e)
+    ele += "</ul>"
+    return mark_safe(ele)
+
+
+def get_readonly_field_val(field_name, obj_instance):
+    field_type = obj_instance._meta.get_field(field_name).get_internal_type()
+    if field_type == "ManyToManyField":
+        m2m_obj = getattr(obj_instance, field_name)
+        return ','.join([i.__str__() for i in m2m_obj.all()])
+    return getattr(obj_instance,field_name)

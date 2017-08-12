@@ -9,8 +9,16 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 
+def myAction(modeladmin, request, queryset):
+    print("request:", request)
+    print("queryset:", queryset)
+
+myAction.short_description = "myAction"
+
+
 class CustomerAdmin(admin.ModelAdmin):
     filter_horizontal = ['tags', 'consult_courses']
+    actions = ['myAction']
 
 
 class UserCreationForm(forms.ModelForm):
@@ -71,7 +79,7 @@ class AccountAdmin(BaseUserAdmin):
     fieldsets = (
         ('test', {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('name','customer')}),
-        ('Permissions', {'fields': ('is_admin','role')}),
+        ('Permissions', {'fields': ('is_admin', 'is_staff', 'is_active', 'role', 'is_superuser', 'groups', 'user_permissions')}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
     # overrides get_fieldsets to use this attribute when creating a user.
@@ -83,7 +91,7 @@ class AccountAdmin(BaseUserAdmin):
     )
     search_fields = ('email',)
     ordering = ('email',)
-    filter_horizontal = ()
+    filter_horizontal = ('groups', 'user_permissions')
 
 # Now register the new UserAdmin...
 admin.site.register(models.Account, AccountAdmin)

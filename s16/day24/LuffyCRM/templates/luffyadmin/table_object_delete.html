@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load luffyadmin_tags %}
+
+{% block body %}
+
+
+{% object_delete obj %}
+
+
+    <form action="">
+    {% csrf_token %}
+        <div class="col-lg-1">
+            <input type="submit" class="btn btn-danger" value="删除">
+            <a class="btn btn-primary" href="/luffyadmin/{{ app_name }}/{{ model_name }}/">返回</a>
+        </div>
+    </form>
+
+{% endblock %}

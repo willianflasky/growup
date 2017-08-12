@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+{% load crmadmin_tags %}
+
+{% block body %}
+
+    <div class="container" >
+
+        <h1>admin app index</h1>
+
+
+        <ol class="breadcrumb">
+
+            <li><a href="/crmadmin">Home</a></li>
+            
+            <li><a href="/crmadmin/{{ app_name }}/{{ model_name }}">{{ app_name }}</a></li>
+            
+            <li class="active"><a href="/crmadmin/{{ app_name }}/{{ model_name }}">{% get_model_verbose_name admin_class %}</a></li>
+
+        </ol>
+
+
+        <div class="">
+
+{#        处理url的get请求#}
+            {% get_filter_condtions_string filter_conditions q_val as filter_condtions_string %}
+
+            <h3>{{ app_name }}</h3>
+
+        <form>
+
+                <div class="row">
+
+{#                查找#}
+                    <div class="col-lg-3">
+
+                        <p>search</p>
+                        <input type="search" name="_q" value="{% if q_val %}{{ q_val }}{% endif %}" placeholder="{% for s_field in admin_class.search_fields %}{{ s_field }} {% endfor %}" class="form-control">
+
+                    </div>
+
+
+                
+{#                添加#}
+                    <div class="col-lg-3 col-lg-offset-6">
+
+                        <a href="add/" class="btn btn-info">Add {% get_model_verbose_name admin_class %}</a>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                        {% for filter_column in admin_class.list_filter %}
+{#                            循环list filter#}
+                            <div class="col-lg-3">
+                                <p>{{ filter_column }}</p>
+{#                            过滤字段#}
+                                {% build_filter_ele filter_column admin_class filter_conditions %}
+
+                            </div>
+
+                        {% endfor %}
+
+                        <div class="col-lg-3">
+                            <button class="btn btn-success" style="margin-top: 30px">Filter 过滤</button>
+                        </div>
+
+                </div>
+
+
+         </form>
+
+
+        <form action="" method="post">{% csrf_token %}
+
+        <div class="row">
+{#                  action#}
+             <div class="col-lg-3">
+
+                <p>Action</p>
+                 {% build_action_ele admin_class %}
+
+            </div>
+
+            <div class="col-lg-3">
+
+                 <button type="submit" class="btn" style="margin-top: 30px">Go</button>
+
+            </div>
+
+        </div>
+
+
+
+        <table class="table table-hover">
+
+            <thead>
+
+                <tr>
+
+                    <th>
+
+                        <label>
+                              <input type="checkbox" id="action-toggle" onclick="Checkaction()">
+                        </label>
+
+                    </th>
+
+                    {% if not admin_class.list_display %}
+                    <th>
+                        {{ model_name }}
+{#                        如果没有list display就显示 表名#}
+                    </th>
+                    {% else %}
+
+                    {% for column in admin_class.list_display %}
+                    <th>
+
+{#                    排序#}
+                        {% if order_column == column %} <!-- 判断是否是排序的那一列-->
+
+                            <a href="?_o={{ new_order_key }}{{ filter_conditions_string }}">
+
+                            {{ column }}
+
+                            {% generate_orderby_icon new_order_key %}
+{#                            处理上下箭头#}
+
+                            </a>
+
+                        {% else %}
+
+                            <a href="?_o={{ column }}{{ filter_condtions_string }}">{{ column }}</a>
+
+                        {% endif%}
+
+                    </th>
+                    {% endfor %}
+
+                    {% endif %}
+                </tr>
+
+            </thead>
+
+            <thbody>
+
+                {% for row in querysets %}
+
+                    {% build_table_row row admin_class %}
+
+                {% endfor %}
+            </thbody>
+
+        </table>
+
+        </form>
+
+
+            <div clas="pagination">
+{#                翻页也带上过滤的字段#}
+
+
+                <ul class="pagination">
+                    <li class=""><a href="?_page=1{{ filter_condtions_string }}">首页</a></li>
+
+                    {% for p in paginator.page_range %}
+
+                        {% get_abs_value p querysets.number as i  %}<!--i变量是当前页与循环的次数的差的绝对值 -->
+
+                        {% if i < 3 %}
+
+                            {% if p == querysets.number %}
+                                <li class="active"><a href="?_page={{ p }}{{ filter_condtions_string }}&_o={{ last_orderby_key }}">{{ p }}</a></li>
+{#                            _o保证了翻页不影响 排序#}
+                            {% else %}
+                                <li class=""><a href="?_page={{ p }}{{ filter_condtions_string }}&_o={{ last_orderby_key }}">{{ p }}</a></li>
+                            {% endif %}
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                    <li class=""><a href="?_page={{ paginator.num_pages }}{{ filter_condtions_string }}&_o={{ last_orderby_key }}">尾页</a></li>
+
+                    <li>总计 {{ querysets.paginator.num_pages }}页</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+{% endblock %}
+
+{% block bottom-js %}
+
+    <script>
+
+        function Checkaction() {
+            console.log("#action-toggle");
+            if ($("#action-toggle").prop("checked")){
+                $("input[type=checkbox]").each(function () {
+                    $(this).prop("checked",true);
+                });
+            } else {
+                $("input[type=checkbox]").each(function () {
+                    $(this).prop("checked",false);
+                });
+            }
+        }
+
+    </script>
+
+{% endblock %}

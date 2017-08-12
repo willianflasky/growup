@@ -3,7 +3,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from luffyAdmin import app_config
 from luffyAdmin import forms
-
+from luffyAdmin import perm_handle
 # Create your views here.
 
 from luffyAdmin.admin_base import site
@@ -11,6 +11,7 @@ print("注册的admin list:", site.registered_admins)
 
 
 # http://127.0.0.1:8000/luffyadmin/  显示项目名和对应的表名
+@perm_handle.check_permission
 def app_index(request):
     return render(request, 'luffyadmin/app_index.html', {'site': site})
 
@@ -84,7 +85,8 @@ def get_orderby_objs(request, querysets):
         return querysets, None, None, last_orderby_key
 
 
-def model_table_list(request, app_name, model_name):
+@perm_handle.check_permission
+def model_table_list(request, app_name, model_name, no_render = False):
     """
     1. 拿到表对象，取出表里的数据
     2. 拿到此表对应的admin class，
@@ -99,32 +101,47 @@ def model_table_list(request, app_name, model_name):
         if model_name in site.registered_admins[app_name]:
             # 拿到管理类
             admin_class = site.registered_admins[app_name][model_name]
-            # print("--model class",model_class,locals())
-            # querysets从DB里查询的结果, filter_conditions = {'consultant': '1', 'status': '0'}
-            querysets, filter_conditions = get_filter_objs(request, admin_class)
-            # 处理搜索函数
-            querysets, q_val = get_search_objs(request, querysets, admin_class)
-            # 排序
-            querysets, new_order_key, order_column, last_orderby_key = get_orderby_objs(request, querysets,)
-            # django版本分页
-            paginator = Paginator(querysets, admin_class.list_per_page)  # Show 25 contacts per page
-            page = request.GET.get('_page')
-            try:
-                querysets = paginator.page(page)
-            except PageNotAnInteger:
-                # If page is not an integer, deliver first page.
-                querysets = paginator.page(1)
-            except EmptyPage:
-                # If page is out of range (e.g. 9999), deliver last page of results.
-                querysets = paginator.page(paginator.num_pages)
 
-            return render(request, "luffyadmin/model_table_list.html", locals())
+            if request.method == 'POST':
+                action_func_name = request.POST.get('admin_action')
+                action_func = getattr(admin_class, action_func_name)        # 去掉用函数,精随
+
+                selected_obj_ids = request.POST.getlist('_selected_obj')    # 拿到数据的ID号,列表
+                selected_objs = admin_class.model.objects.filter(id__in=selected_obj_ids)   # 拿到数据过滤
+                action_res = action_func(request, selected_objs)            # 把request, queryset传过去
+                if action_res:         # 这样可以支持自定义返回页面
+                    return action_res
+                return redirect(request.path)
+
+            else:
+                # print("--model class",model_class,locals())
+                # querysets从DB里查询的结果, filter_conditions = {'consultant': '1', 'status': '0'}
+                querysets, filter_conditions = get_filter_objs(request, admin_class)
+                # 处理搜索函数
+                querysets, q_val = get_search_objs(request, querysets, admin_class)
+                # 排序
+                querysets, new_order_key, order_column, last_orderby_key = get_orderby_objs(request, querysets,)
+                # django版本分页
+                paginator = Paginator(querysets, admin_class.list_per_page)  # Show 25 contacts per page
+                page = request.GET.get('_page')
+                try:
+                    querysets = paginator.page(page)
+                except PageNotAnInteger:
+                    # If page is not an integer, deliver first page.
+                    querysets = paginator.page(1)
+                except EmptyPage:
+                    # If page is out of range (e.g. 9999), deliver last page of results.
+                    querysets = paginator.page(paginator.num_pages)
+                if no_render:
+                    return locals()
+                else:
+                    return render(request, "luffyadmin/model_table_list.html", locals())
     else:   # 没有的APP名字
         return HttpResponse("没有:%s" % app_name)
 
 
 # app_name= crm     model_name = customer       object_id = 1
-def table_obj_change(request, app_name, model_name, object_id):
+def table_obj_change(request, app_name, model_name, object_id, no_render=False):
     # 如果crm在这个字典中
     if app_name in site.registered_admins:
         # 再如果表在这个内层字典中      {'crm':{'customer':admin_class}}
@@ -134,7 +151,7 @@ def table_obj_change(request, app_name, model_name, object_id):
             # 去表中获取数据,通过ID
             data_obj = admin_class.model.objects.get(id=object_id)
             # 动态类,实例化
-            form = forms.create_dynamic_modelform(admin_class.model)
+            form = forms.create_dynamic_modelform(admin_class.model, admin_class)
 
             if request.method == 'GET':
                 # 将数据放入这个实例中, 将form_obj返回给前端.
@@ -143,11 +160,13 @@ def table_obj_change(request, app_name, model_name, object_id):
                 form_obj = form(instance=data_obj, data=request.POST)
                 if form_obj.is_valid():
                     form_obj.save()
+    if no_render:
+        return locals()
+    else:
+        return render(request, 'luffyadmin/table_object_change.html', locals())
 
-    return render(request, 'luffyadmin/table_object_change.html', locals())
 
-
-def table_obj_add(request, app_name, model_name):
+def table_obj_add(request, app_name, model_name, no_render=False):
     if app_name in site.registered_admins:
         # 再如果表在这个内层字典中      {'crm':{'customer':admin_class}}
         if model_name in site.registered_admins[app_name]:
@@ -155,7 +174,7 @@ def table_obj_add(request, app_name, model_name):
             admin_class = site.registered_admins[app_name][model_name]
 
             # 动态类,实例化
-            form = forms.create_dynamic_modelform(admin_class.model)
+            form = forms.create_dynamic_modelform(admin_class.model, admin_class)
             if request.method == 'GET':
                 form_obj = form()
             elif request.method == 'POST':
@@ -163,5 +182,20 @@ def table_obj_add(request, app_name, model_name):
                 if form_obj.is_valid():
                     form_obj.save()
                     return redirect(request.path.rstrip('add/'))
+    if no_render:
+        return locals()
+    else:
+        return render(request, 'luffyadmin/table_object_add.html', locals())
 
-    return render(request, 'luffyadmin/table_object_add.html', locals())
+
+def table_object_del(request, app_name, model_name, object_id):
+    if app_name in site.registered_admins:
+        # {'crm':{'customer':admin_class}}
+        if model_name in site.registered_admins[app_name]:
+            admin_class = site.registered_admins[app_name][model_name]
+            obj = admin_class.model.objects.get(id=object_id)
+            if request.method == 'POST':
+                obj.delete()
+                return redirect("/luffyadmin/{app}/{model}/".format(app=app_name, model_name=model_name))
+
+    return render(request, 'luffyadmin/table_object_delete.html', locals())

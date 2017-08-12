@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load luffyadmin_tags %}
+
+{% block body %}
+
+    admin app index
+    <div class="container">
+            <ol class="breadcrumb">
+              <li><a href="/luffyadmin/">Home</a></li>
+              <li ><a href="/luffyadmin/{{ app_name }}/">{{ app_name }}</a></li>
+              <li class="active"><a href="/luffyadmin/{{ app_name }}/{{ model_name }}/">{{ model_name }}</a></li>
+            </ol>
+
+            {% include 'luffyadmin/components/model_obj_list.html' %}
+
+
+
+    </div>
+
+
+
+{% endblock %}
+
+
+

@@ -11,6 +11,11 @@ class BaseAdmin(object):
     list_per_page = 5
     search_fields = ()
     filter_horizontal = []
+    default_actions = ['delete_obj']
+    actions = []
+
+    def delete_obj(self, request, queryset):
+        queryset.delete()
 
 
 class AdminSite(object):
@@ -26,6 +31,10 @@ class AdminSite(object):
         :param options:                 其它
         :return:
         """
+
+        # 实例化,防止内存共享,导致数据乱.
+        admin_class = admin_class()
+
         # 把modelu装到admin_class中,以供simple tags调用. 直接传递model到前端,HTML会报错.
         admin_class.model = model_or_iterable
 

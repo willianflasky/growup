@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+
+{% block page-header %}客户库{% endblock %}
+
+{% block page-content %}
+
+    {{ request.path }}
+
+    {% include 'luffyadmin/components/model_obj_list.html' %}
+
+{% endblock %}

@@ -1,0 +1,95 @@
+     {% load luffyadmin_tags %}
+
+     <form class="form-horizontal" method="post" >{% csrf_token %}
+            {% for field in form_obj %}
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">
+{#                    required字段加粗#}
+                        {% if field.field.required%}
+                            <span>{{ field.name }}</span>
+                        {% else %}
+                            <span style="font-weight: normal;">{{ field.name }}</span>
+                        {% endif %}
+                    </label>
+                    <div class="col-sm-10">
+                        {% if field.name in admin_class.filter_horizontal %}
+                            <div>
+
+                                {% get_selected_m2m_objects form_obj field.name as selected_m2m_objects %}
+                                {% get_m2m_objects admin_class field.name selected_m2m_objects as m2m_objects %}
+
+                                <div class="col-lg-5">
+                                    <input oninput="FuzzySearch(this);" type="search" class="form-control">
+                                    <select id="{{ field.name }}_from" multiple class="form-control">
+                                        {% for obj in m2m_objects %}
+                                            <option ondblclick="MoveElementTo(this, '{{ field.name }}_to', '{{ field.name }}')" value="{{ obj.id }}">{{ obj }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-5">
+                                    <select ele-type="right-select-ele" name="{{ field.name }}" id="{{ field.name }}_to" multiple class="form-control">
+                                        {% for obj in selected_m2m_objects %}
+                                            <option ondblclick="MoveElementTo(this, '{{ field.name }}_from', '{{ field.name }}')" value="{{ obj.id }}">{{ obj }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        {% else %}
+                            {{ field }}
+                        {% endif %}
+                        {#                        错误提示#}
+                        <span style="color: grey; font-size: 8px">{{field.help_text}}</span>
+                        <span style="color: red;">{{ field.errors.0 }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+
+
+            <div class="form-group">
+
+                <div class="col-sm-1 col-lg-offset-10">
+                    <input onclick="SelectAllm2mElements()" type="submit" class="btn btn-info" value="保存">
+                </div>
+            </div>
+
+        </form>
+
+<script>
+    function MoveElementTo(self, target_id, field_name){
+        $("#"+target_id).append($(self));
+        $(self).removeAttr('ondblclick');
+        $(self).dblclick(
+                function (){
+                    if(target_id == field_name+'_to'){
+                        MoveElementTo(self, field_name+ "_from", field_name)
+                    }else{
+                        MoveElementTo(self, field_name+ "_to", field_name)
+                    }
+                }
+        )
+    }
+
+    {#    保存时选择select option标签#}
+    function SelectAllm2mElements(){
+        $('select[ele-type="right-select-ele"] option').prop('selected', true);
+    }
+
+        function FuzzySearch(self){
+    {#        拿到select标签#}
+            var select_ele = $(self).next();
+    {#        拿到输入的值#}
+            var search_text = $(self).val();
+    {#        循环select的子标签, option#}
+            $(select_ele).children().each(function(){
+    {#            判断是否包含#}
+                if ($(this).text().indexOf(search_text) == -1){
+    {#                没有匹配隐藏#}
+                    $(this).addClass('hidden');
+                }else{
+    {#                匹配去掉隐藏#}
+                    $(this).removeClass('hidden');
+                }
+            })
+        }
+    </script>

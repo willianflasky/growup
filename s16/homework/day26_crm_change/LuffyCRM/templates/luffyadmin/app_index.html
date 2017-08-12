@@ -1,0 +1,85 @@
+{#继承模板#}
+{% extends 'base.html' %}
+{#加载simple_tag#}
+{% load luffyadmin_tags %}
+
+{% block body %}
+{# 头部#}
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href=#>路飞</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">主页</a></li>
+            <li><a href="#">设置</a></li>
+            <li><a href="#">外形</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ request.user.name }} <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">操作</a></li>
+                <li><a href="#">其它</a></li>
+                <li><a href="#">这里</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">链接</a></li>
+                <li><a href="{% url 'LOGOUT' %}">退出</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+        </div>
+      </div>
+    </nav>
+
+ <div class="container-fluid">
+      <div class="row">
+{#      左侧菜单#}
+        <div class="col-sm-3 col-md-2 sidebar" style="background-color: #1b6d85;">
+              <ul class="nav nav-sidebar">
+                <h3 style="margin-left: 20px; color: white">Luffy admin</h3>
+              </ul>
+        </div>
+{#      右侧内容#}
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+{#            <h1 class="page-header">Dashboard</h1>#}
+{#         循环后端传过来的大字典.     example:{'crm':{'account':admin_class}}#}
+        {% for app_name,table_list_dict in site.registered_admins.items %}
+            <div class="">
+{#            每个项目名: 下面显示所有的表#}
+                <h3 class="btn-sm btn-primary">项目:{{ app_name }}</h3>
+
+                <table class="table table-hover">
+{#                继续循环里面的字典  example: {'account':admin_class}#}
+                    {% for model_name,admin_class in table_list_dict.items %}
+                        <tr>
+                            <td>
+{#                                点击连接进入,URL用项目名和表名#}
+                                <a href="{{ app_name }}/{{ model_name }}/">
+{#                                通过simple_tags拿到modal表的verbose_name#}
+                                    {% get_model_verbose_name admin_class %}
+                                </a>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endfor %}
+        </div>
+
+      </div>
+    </div>
+
+
+{% endblock %}
+

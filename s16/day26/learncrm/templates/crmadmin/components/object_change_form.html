@@ -1,0 +1,170 @@
+{% load crmadmin_tags %}
+
+<div class="container">
+
+        <ol class="breadcrumb">
+
+            <li><a href="/crmadmin">Home</a></li>
+
+            <li><a href="/crmadmin/{{ app_name }}/{{ model_name }}">{{ app_name }}</a></li>
+
+            <li><a href="/crmadmin/{{ app_name }}/{{ model_name }}">{% get_model_verbose_name admin_class %}</a></li>
+
+            {% if object %}
+
+                <li><a href="/crmadmin/{{ app_name }}/{{ model_name }}/{{ object.id }}/change">{{ object }}</a></li>
+
+            {% else %}
+
+                <li><a href="/crmadmin/{{ app_name }}/{{ model_name }}/add">ADD{% get_model_verbose_name admin_class %}</a></li>
+
+            {% endif %}
+
+        </ol>
+
+        <form action="" class="form-horizontal" method="post">{% csrf_token %}
+
+            {% for field in form_obj %}
+
+                <div class="form-group">
+
+                    <label class="col-sm-2 control-label">
+                        {% if field.field.required %}
+{#                            field字段的field对象 的required方法 查看form的自定义方式#}
+
+                            {{ field.name }}
+
+                        {% else %}
+
+                            <span style="font-weight: normal">{{ field.name }}</span>
+
+                        {% endif %}
+
+                    </label>
+
+
+                    <div class="col-sm-10">
+
+                        {% if field.name in admin_class.filter_horizontal %}
+{#                            处理M2M的字段#}
+
+                            {% get_selected_m2m_objects form_obj field.name as selected_m2m_objects %}
+{#                            拿到用户记录在数据库中的数据#}
+
+                            {% get_m2m_objects admin_class field.name selected_m2m_objects as m2m_objects %}
+{#                            不在此用户的记录中,但是第三方表里面有 方便左右选择#}
+
+                            <div class="col-sm-5" style="padding-left: 0px;padding-right: 0px;">
+
+                                <input oninput="FuzzySearch(this)" type="search" class="form-control">
+
+                                <select  id="{{ field.name }}_from" multiple class="form-control">
+
+                                    {% for obj in m2m_objects %}
+
+                                        <option  ondblclick="MoveElementTo(this,'{{ field.name }}_to','{{ field.name }}')" id="{{ field.name }}_from" value="{{ obj.id }}">{{ obj }}</option>
+
+                                    {% endfor %}
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-sm-1"></div>
+
+                            <div  class="col-sm-5" style="padding-left: 0px;padding-right: 0px;">
+
+                                <select  ele-type="right-select-ele" name="{{ field.name }}" id="{{ field.name }}_to" multiple class="form-control">
+
+                                    {% for obj in selected_m2m_objects %}
+
+                                        <option ondblclick="MoveElementTo(this,'{{ field.name }}_from','{{ field.name }}')" value="{{ obj.id }}">{{ obj }}</option>
+
+                                    {% endfor %}
+
+                                </select>
+
+                            </div>
+
+
+                        {% else %}
+
+                            {{ field }}
+
+                        {% endif %}
+
+{#                    帮助#}
+                            <span style="color:gray;font-size: 10px">{{ field.help_text }}</span>
+{#                 错误信息#}
+                            <span style="color: red">{{ field.errors.0 }}  </span>
+
+                    </div>
+
+
+                </div>
+
+
+            {% endfor %}
+
+
+            <div class="form-group">
+
+                <div class="col-sm-1 col-lg-offset-11">
+
+                    <input type="submit"  onclick="SelectAllm2mElements()" class="btn btn-info" value="Save">
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+<script>
+{#选择的左右移动#}
+    function MoveElementTo(self,target_id,field_name) {
+        console.log(self);
+        $("#"+target_id).append($(self));
+
+        $(self).removeAttr("ondblclick");
+
+        $(self).dblclick(
+                function () {
+                    if (target_id == field_name + '_to'){
+                        MoveElementTo(self,field_name+'_from',field_name)
+                    }else {
+                        MoveElementTo(self,field_name+'_to',field_name)
+                    }
+                }
+        )
+
+    }
+
+
+{#    设置右边的为都选中,提交的时候#}
+    function SelectAllm2mElements() {
+        $("select[ele-type='right-select-ele'] option").prop("selected",true);
+    }
+
+
+{#    查询 select 模糊查询#}
+    function FuzzySearch(self) {
+        var select_ele = $(self).next();
+        console.log($(self).val());
+        var search_text = $(self).val();
+        $(select_ele).children().each(function () {
+            //console.log($(this).text());
+            if ($(this).text().indexOf(search_text) == -1){ //not matches
+                console.log('not match',$(this).text());
+                $(this).css('display','none');
+            }else {
+                $(this).css('display','block');
+            }
+        })
+
+    }
+
+
+</script>

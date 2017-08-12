@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crmadmin_tags %}
+
+{% block body %}
+
+    <div class="container">
+
+            <h3>Are you sure?</h3>
+
+        <p>Are you sure you want to delete the selected {% get_model_verbose_name admin_class %}? All of the following objects and their related items will be deleted:</p>
+
+        <h3>Summary</h3>
+
+        <p>{% get_model_verbose_name admin_class %}:{{ object_id_count }}</p>
+
+        <p>relationships:{% get_relationships admin_class  %}</p>
+
+
+
+        <h3>Objects</h3>
+
+        <p>{% get_model_verbose_name admin_class %}:{{ querysets }}</p>
+
+        <button type="button" class="btn"><a href="{{ request.path }}">不,谢谢</a></button>
+
+    </div>
+
+
+
+{% endblock %}

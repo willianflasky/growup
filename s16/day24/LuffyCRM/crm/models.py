@@ -1,7 +1,7 @@
 from django.db import models
 # Create your models here.
 from django.contrib.auth.models import (
-    BaseUserManager, AbstractBaseUser
+    BaseUserManager, AbstractBaseUser, PermissionsMixin
 )
 
 
@@ -42,7 +42,7 @@ class Customer(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return "%s-%s"%(self.id, self.name)
+        return "%s-%s" % (self.id, self.name)
 
 
 class PaymentRecord(models.Model):
@@ -80,6 +80,9 @@ class CustomerFollowUp(models.Model):
                       (5, '已试听'),
                       )
     status = models.IntegerField(choices=status_choices)
+
+    def __str__(self):
+        return self.customer.name
 
 
 class Course(models.Model):
@@ -245,7 +248,7 @@ class MyUserManager(BaseUserManager):
         return user
 
 
-class Account(AbstractBaseUser):
+class Account(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
@@ -256,6 +259,7 @@ class Account(AbstractBaseUser):
     customer = models.OneToOneField("Customer",blank=True,null=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=True)
 
     objects = MyUserManager()
 
@@ -273,14 +277,22 @@ class Account(AbstractBaseUser):
     def __str__(self):
         return self.email
 
-    def has_perm(self, perm, obj=None):
-        return True
+    # def has_perm(self, perm, obj=None):
+    #     return True
+    #
+    # def has_module_perms(self, app_label):
+    #     return True
 
-    def has_module_perms(self, app_label):
-        return True
+    # @property
+    # def is_staff(self):
+    #     return self.is_admin
 
-    @property
-    def is_staff(self):
-        return self.is_admin
+    class Meta:
+        permissions = (
+            ('crm_table_index', '可以查看所有的luffyadmin的APP'),
+            ("crm_table_list", "查看每张表的数据"),
+            ("crm_table_list_view", "查看每条数据的修改页"),
+            ("crm_table_list_change", "修改每条数据"),
+        )
 
 

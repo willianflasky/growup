@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+
+{% block page-header %}客户详情{% endblock %}
+
+{% block page-content %}
+
+    {{ request.path }}
+
+    {% include 'luffyadmin/components/object_change_form.html' %}
+
+{% endblock %}

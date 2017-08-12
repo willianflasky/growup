@@ -3,6 +3,7 @@
 
 {% block body %}
 
+    {#头部导航条#}
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -12,22 +13,22 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="http://v3.bootcss.com/examples/dashboard/#">Project name</a>
+          <a class="navbar-brand" href="/">路飞</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://v3.bootcss.com/examples/dashboard/#">Dashboard</a></li>
-            <li><a href="http://v3.bootcss.com/examples/dashboard/#">Settings</a></li>
-            <li><a href="http://v3.bootcss.com/examples/dashboard/#">Profile</a></li>
+            <li><a href="#">主页</a></li>
+            <li><a href="#">设置</a></li>
+            <li><a href="#">外形</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ request.user.name }} <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
+                <li><a href="#">操作</a></li>
+                <li><a href="#">其它</a></li>
+                <li><a href="#">这里</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="{% url 'LOGOUT' %}">logout</a></li>
+                <li><a href="#">链接</a></li>
+                <li><a href="{% url 'LOGOUT' %}">退出</a></li>
               </ul>
             </li>
           </ul>
@@ -39,56 +40,68 @@
     </nav>
 
     <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-              <ul class="nav nav-sidebar">
-{#              request是render的第一个参数,request.user是django实现的功能,直接取User表中的数据,但是这里已经不是User表了,改成了Account#}
-{#                循环菜单的数据#}
-                 {%  for menu in request.user.role.menus.all %}
-                    <li class="">
-{#                        Toggle点击一级菜单,展开二级菜单或者收缩#}
-                        <a href="#" onclick="SubMenuToggle(this)">{{ menu.name }} </a>
-{#                    判断是否有子菜单,二级菜单是外建到一级菜单的,所以表名_set可以实现反向查询#}
-                        {% if menu.submenu_set.all %}
-                            <ul class="hidden">
-{#                            当二级菜单有数据时,则循环二级菜单#}
-                                {% for submenu in menu.submenu_set.all %}
-                                <li class="sub-menu" >
-{#                                url_type 0表示绝对路径(带IP和端口), 1表示相对路径.       #}
-                                    <a href="{% if submenu.url_type == 0 %}{{ submenu.url }}{% else %}{% url submenu.url %}{% endif %}" onclick="MenuHilight(this)">{{ submenu.name }}</a>
-                                </li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
-                    </li>
-                 {% endfor %}
-              </ul>
+        {#左侧菜单#}
+    {% block left-menu %}
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar" style="background-color: darkslategray">
+                  <ul class="nav nav-sidebar">
+    {#              request是render的第一个参数,request.user是django实现的功能,直接取User表中的数据,但是这里已经不是User表了,改成了Account#}
+    {#                循环菜单的数据#}
+                     {%  for menu in request.user.role.menus.all %}
+                        <li class="">
+    {#                        Toggle点击一级菜单,展开二级菜单或者收缩#}
+                            <a href="#" onclick="SubMenuToggle(this)">{{ menu.name }} </a>
+    {#                    判断是否有子菜单,二级菜单是外建到一级菜单的,所以表名_set可以实现反向查询#}
+                            {% if menu.submenu_set.all %}
+                                <ul class="hidden">
+    {#                            当二级菜单有数据时,则循环二级菜单#}
+                                    {% for submenu in menu.submenu_set.all %}
+                                    <li class="sub-menu" >
+    {#                                url_type 0表示绝对路径(带IP和端口), 1表示相对路径.       #}
+                                          <a href="{% if submenu.url_type == 0 %}{{ submenu.url }}{% else %}{% url submenu.url %}{% endif %}" onclick="MenuHilight(this)">{{ submenu.name }}</a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </li>
+                     {% endfor %}
+                  </ul>
+            </div>
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Dashboard</h1>
+    {% endblock %}
+
+        {#右侧数据#}
+        <div class="row">
+            <p class="form-control btn btn-primary">{% block page-header %}Your Header{% endblock %}</p>
+            {% block page-content %}{% endblock %}
         </div>
 
-      </div>
     </div>
+
+
 
 {% endblock%}
 
 {% block bottom-js %}
-    <script>
-{#        自动加载JS#}
-        $(document).ready(function(){
+<script>
+    $(document).ready(function () {
+        var highlight_menu = $(".nav-sidebar a[href='{{ request.path }}']");
+        highlight_menu.addClass("btn-danger");
+        if (highlight_menu.parent().hasClass("sub-menu")){
+            $(highlight_menu).parent().parent().removeClass("hidden");
+        }
 
-        })
+    })
 
-{#        Toggle显示或者隐藏属性#}
-        function SubMenuToggle(ele) {
+    function SubMenuToggle(ele) {
         $(ele).next().toggleClass("hidden");
         MenuHilight(ele);
-        }
-{#        增加Active显示#}
-        function MenuHilight(ele) {
-            $(ele).parent().toggleClass("active");
+    }
 
-        }
-    </script>
+    function MenuHilight(ele) {
+        $(ele).parent().toggleClass("active");
+
+    }
+
+</script>
 {% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load luffyadmin_tags %}
+
+{% block body %}
+
+
+
+{%  object_delete obj  %}
+
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="col-lg-1 col-lg-offset-5">
+                <input type="submit" class="btn btn-danger" value="Delete">
+
+        </div>
+    </form>
+
+
+{% endblock %}

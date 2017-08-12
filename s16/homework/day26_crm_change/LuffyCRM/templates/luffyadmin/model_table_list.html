@@ -1,0 +1,168 @@
+{#继承模板#}
+{% extends 'base.html' %}
+{#加载simple_tag#}
+{% load luffyadmin_tags %}
+
+{% block body %}
+{# 头部#}
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href=#>路飞</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">主页</a></li>
+            <li><a href="#">设置</a></li>
+            <li><a href="#">外形</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ request.user.name }} <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">操作</a></li>
+                <li><a href="#">其它</a></li>
+                <li><a href="#">这里</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">链接</a></li>
+                <li><a href="{% url 'LOGOUT' %}">退出</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+        </div>
+      </div>
+    </nav>
+
+ <div class="container-fluid">
+
+      <div class="row">
+{#      左侧菜单#}
+        <div class="col-sm-3 col-md-2 sidebar" style="background-color: #1b6d85;">
+              <ul class="nav nav-sidebar">
+                <h3 style="margin-left: 20px; color: white">Luffy admin</h3>
+              </ul>
+        </div>
+{#      右侧内容#}
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+{#        s=#}
+                 <ol class="breadcrumb">
+                      <li><a href="/luffyadmin/">Home</a></li>
+                      <li><a href="/luffyadmin/{{ app_name }}/">{{ app_name }}</a></li>
+                      <li class="active"><a href="/luffyadmin/{{ app_name }}/{{ model_name }}/">{{ model_name }}</a></li>
+                 </ol>
+
+{#        从app_index.html---> view(model_table_list) --->这里#}
+            <p class="btn btn-primary">项目:{{ app_name }}&nbsp;</p>
+
+        {#                将K,V变成字符串, 返回的数据存到filter_condtions_string#}
+                    {% get_filter_condtions_string filter_conditions  q_val as  filter_condtions_string %}
+
+            <form >
+
+
+            {#          搜索Bar#}
+               <div class="row">
+
+                     <div class="col-lg-3">
+                        <input type="search" name="_q" value="{% if q_val %}{{ q_val }}{% endif %}" placeholder="{% for s_field in admin_class.search_fields%}{{ s_field }} {% endfor %}" class="form-control">
+                     </div>
+                    <div class="col-lg-1 col-lg-offset-10">
+                        <a href="add/" class="btn btn-success">Add {% get_model_verbose_name admin_class %}</a>
+                    </div>
+                </div>
+            
+
+
+{#        从后端传过来的 admin_class(表的管理类), 列表有值有真,默认没有值为假#}
+                {% if admin_class.list_filter %}
+                <div class="row">
+{#                    list_filter有值,则循环列表#}
+                        {% for filter_column in admin_class.list_filter %}
+                            <div class="col-lg-2">
+{#                            字段名#}
+                                <p>{{ filter_column }}</p>
+{#                                生成select标签#}
+                                {% build_filter_ele filter_column admin_class filter_conditions %}
+                            </div>
+                        {% endfor %}
+{#                    过滤按钮#}
+                        <div class="col-lg-1">
+{#                            form表单#}
+                            <button class="btn btn-success" style="margin-top: 30px">过滤</button>
+                        </div>
+                </div>
+                {% endif %}
+            </form>
+
+
+{#        Table数据#}
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+{#                        如果list_display没有数据#}
+                            {% if not admin_class.list_display %}
+                                <th>{{ model_name }} </th>
+                            {% else %}
+{#                        如果有数据, 有数据有会显示表名#}
+{#                                循环list_display#}
+                                {% for column in admin_class.list_display %}
+                                <th>
+{#                                字段 == list_display字段表示这个字段 排序#}
+                                {% if order_column == column %}
+{#                                    与当前值相返#}
+                                    <a href="?_o={{ new_order_key }}{{ filter_condtions_string }}">
+{#                                    带尖角号的字段#}
+                                        {{ column }}
+                                        {% generate_orderby_icon  new_order_key %}
+                                    </a>
+                                {% else %}
+{#                                    不带尖角号的字段#}
+                                    <a href="?_o={{ column }}{{ filter_condtions_string }}">{{ column }}</a>
+                                {% endif %}
+                                </th>
+                                {% endfor %}
+                            {% endif %}
+                        </tr>
+                    </thead>
+                    <tbody>
+{#                    循环数据, 用simple_tags生成标签#}
+                        {% for row in querysets %}
+                            {% build_table_row row admin_class  %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+{#                分页处理#}
+                <div class="pagination">
+
+                     <ul class="pagination">
+{#                     拼接的 &k=v1&b=v2#}
+                        <li class=""><a href="?_page=1{{ filter_condtions_string }}">首页 </a></li>
+{#                      数据长度#}
+                         {% for p in paginator.page_range %}
+                            {% get_abs_value p  querysets.number as i %} <!--i变量是当前页与循环的次数的差的绝对值 -->
+
+                             {% if i < 3 %}
+                                {% if p == querysets.number %}
+                                    <li class="active"><a href="?_page={{ p }}{{ filter_condtions_string }}&_o={{ last_orderby_key }}">{{ p }} <span class="sr-only">(current)</span></a></li>
+                                {% else %}
+                                    <li class=""><a href="?_page={{ p }}{{ filter_condtions_string }}&_o={{ last_orderby_key }}">{{ p }} <span class="sr-only">(current)</span></a></li>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                        <li class=""><a href="?_page={{ paginator.num_pages }}{{ filter_condtions_string }}&_o={{ last_orderby_key }}">尾页 </a></li>
+{#                        <li> 总计 {{ querysets.paginator.num_pages }}页</li>#}
+                     </ul>
+                </div>
+            </div>
+        </div>
+      </div>
+{% endblock %}
+
+

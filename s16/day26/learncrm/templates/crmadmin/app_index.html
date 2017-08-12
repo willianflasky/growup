@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crmadmin_tags %}
+
+{% block body %}
+
+    <div class="container">
+    <h1>admin app index</h1>
+{#    后端registered_admins 字典的循环#}
+        {% for app_name,table_list_dict in site.registered_admins.items %}
+            <div class="">
+                <h3>{{ app_name }}</h3>
+
+                <table class="table table-hover">
+                    {% for model_name,admin_class in table_list_dict.items %}
+                    <tr>
+                        <td>
+{#                            仿照django admin 的url跳转#}
+                            <a href="{{ app_name }}/{{ model_name }}/">
+                                {% get_model_verbose_name admin_class %}
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}
