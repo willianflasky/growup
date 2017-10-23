@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>发送消息</h3>
+    <div>
+        <p>接受者：<input type='text' id="to_user" /></p>
+        <p>消息内容：<input type='text' id="msg" /></p>
+        <input type="button" value="发送" id="btn" />
+
+    </div>
+    <h3>个人信息</h3>
+    <ul>
+        <li>{{ request.session.init_dict.User.NickName }}</li>
+        <li>{{ request.session.init_dict.User.UserName }}</li>
+    </ul>
+    <h3>联系人列表</h3>
+    <ul>
+        {% for item in contact_list.MemberList %}
+            <li>{{ item.NickName }}({{ item.RemarkName }}) --- {{ item.UserName }}</li>
+        {% endfor %}
+    </ul>
+    <script src="/static/jquery-3.1.1.js"></script>
+    <script>
+        $(function () {
+            bindBtnEvent();
+            getMsg();
+        });
+        function bindBtnEvent() {
+            $('#btn').click(function () {
+                $.ajax({
+                     url: '/send_msg.html',
+                     type: "GET",
+                     data: {'to_user':$('#to_user').val(),'msg':$('#msg').val() },
+                     success:function (arg) {
+                         console.log(arg);
+                     }
+                 })
+            });
+        }
+        function getMsg() {
+            $.ajax({
+                url: '/get_msg.html',
+                type:"GET",
+                success:function (arg) {
+                    getMsg();
+                },
+                error:function () {
+                    getMsg();
+                }
+            })
+        }
+    </script>
+</body>
+</html>

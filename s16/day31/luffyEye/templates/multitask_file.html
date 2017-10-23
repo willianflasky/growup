@@ -1,0 +1,74 @@
+{% extends 'index.html' %}
+
+{% block content-container %}
+    <div id="page-title">
+        <h1 class="page-header text-overflow">批量文件</h1>
+
+    </div>
+
+    <div id="page-content">
+        {% include 'components/host_groups.html' %}
+        <div class="col-lg-9">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">文件</h3>
+                </div>
+                <div class="panel-body">
+                    <select onchange="CheckTransferType(this)" name="transfer_type" class="form-control">
+                        <option value="send">发送文件到远程</option>
+                        <option value="get">从远程下载文件</option>
+                    </select>
+
+                    <form style="height: 300px" id="demo-dropzone" action="{% url 'file_upload' %}?random_tag={{ random_tag }}" class="dropzone dz-clickable">
+                        <div class="dz-default dz-message">
+                            <div class="dz-icon icon-wrap icon-circle icon-wrap-md">
+                                <i class="fa fa-cloud-upload fa-3x"></i>
+                            </div>
+                            <div>
+                                <p class="dz-text">Drop files to upload</p>
+                                <p class="text-muted">or click to pick manually</p>
+                            </div>
+                        </div>
+
+                    </form>
+
+
+
+                    <input type="text" name="remote_path" placeholder="输入远程路径" class="form-control">
+
+                    <button class="btn btn-danger" id='stop_task_btn' onclick="StopTask(this)" disabled>终止任务</button>
+                    <a class="btn btn-primary"  href="{% url 'download_task_file' %}?task_id=" id='download-task-file'  disabled>下载任务文件</a>
+                    <button class="btn btn-info pull-right" onclick="PostTask('file_transfer')">执行</button>
+                </div>
+            </div>
+
+            {% include 'components/task_result.html' %}
+
+        </div>
+
+    </div>
+
+
+    {% include 'components/multitask_js.html' %}
+
+    <script>
+
+        function CheckTransferType(self) {
+            console.log($(self).val())
+            if ($(self).val() == 'get'){
+                $(self).next().addClass("hide")
+            }else {
+                $(self).next().removeClass("hide")
+            }
+        }
+
+        function  DownloadFile(self) {
+                var task_id = $(self).attr('task_id');
+                $.get("{% url 'download_task_file' %}?task_id="+task_id,function(callback){
+                    console.log(callback)
+                });
+
+        }
+    </script>
+
+{% endblock %}

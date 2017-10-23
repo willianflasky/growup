@@ -1,0 +1,103 @@
+{% extends 'index.html' %}
+{% block content-container %}
+    <div id="page-title">
+        <h1 class="page-header text-overflow">主机列表</h1>
+
+        <!--Searchbox-->
+        <div class="searchbox">
+            <div class="input-group custom-search-form">
+                <input type="text" class="form-control" placeholder="Search..">
+                <span class="input-group-btn">
+                    <button class="text-muted" type="button"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-content">
+
+       <div class="panel col-lg-3">
+            <div class="panel-heading">
+                <h3 class="panel-title">Small</h3>
+            </div>
+            <div class="panel-body">
+
+                <!--Small-->
+                <!--===================================================-->
+                <div class="list-group">
+                    {% for group in request.user.host_groups.all %}
+                    <a class="list-group-item  list-item-sm " href="#" onclick="GetHostList(this,{{ group.id }})">
+                        {{ group.name }}
+                         <span class="badge badge-primary">{{ group.bind_host_users.count }}</span>
+                    </a>
+                    {% endfor %}
+                    <a class="list-group-item  list-item-sm " href="#" onclick="GetHostList(this,-1)">
+                        未分组主机
+                        <span class="badge badge-primary">{{ request.user.bind_host_users.count}}</span>
+
+                    </a>
+
+                </div>
+                <!--===================================================-->
+
+            </div>
+        </div>
+       <div class="panel col-lg-8 " style="margin-left:20px ">
+            <div class="panel-heading">
+                <h3 class="panel-title">Panel with header</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped" id="host_list">
+                        <thead>
+                            <tr>
+                                <th>主机名</th>
+                                <th>IP</th>
+                                <th>Port</th>
+                                <th>Username</th>
+                                <th>Login</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+            </div>
+       </div>
+
+    </div>
+
+<script>
+
+function GetHostList(self,group_id) {
+
+    $.getJSON("{% url 'get_host_list' %}?group_id="+group_id,function(callback){
+        console.log(callback)
+        var table_trs  =""
+        $.each(callback,function (index,item) {
+            console.log(item)
+            var tr =  "<tr><td>" + item.host__hostname +  "</td><td>" + item.host__ip_addr + "</td><td>" +
+                item.host__port +  "</td><td>" + item.host_user__username +
+                "</td><td> <button onclick=GetToken('"+ item.id +"',this) class='btn btn-primary'>Token</button>  <a class='btn btn-link' href='#'>login</a></td><td ele='token'></td> </tr>";
+            table_trs += tr
+        })
+
+        $('#host_list tbody').html(table_trs);
+    });
+
+}
+
+
+function  GetToken(bind_host_id,self) {
+    $.getJSON("{% url 'get_token' %}?bind_host_id="+bind_host_id, function(callback){
+
+        console.log(callback)
+        $(self).parent().next().text(callback.token);
+
+    });//end getjson
+}
+</script>
+
+{% endblock %}
+
+
+

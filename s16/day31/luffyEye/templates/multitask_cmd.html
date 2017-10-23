@@ -1,0 +1,34 @@
+{% extends 'index.html' %}
+
+{% block content-container %}
+    <div id="page-title">
+        <h1 class="page-header text-overflow">批量命令</h1>
+
+    </div>
+
+    <div id="page-content">
+
+
+        {% include 'components/host_groups.html' %}
+        <div class="col-lg-9">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">命令</h3>
+                </div>
+                <div class="panel-body">
+                   <textarea id="cmd_input" class="form-control" placeholder="input you command here...."></textarea>
+                    <button class="btn btn-danger" id='stop_task_btn' onclick="StopTask(this)" disabled>终止任务</button>
+                    <button class="btn btn-info pull-right" onclick="PostTask('cmd')">执行</button>
+                </div>
+            </div>
+
+            {% include 'components/task_result.html' %}
+
+        </div>
+
+    </div>
+
+
+{% include 'components/multitask_js.html' %}
+
+{% endblock %}

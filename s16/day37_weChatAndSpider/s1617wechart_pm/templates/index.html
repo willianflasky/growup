@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>个人信息</h3>
+    <div>
+        {{ init_dict.User.NickName }}
+
+{#        <img src="/get_user_avatar.html?k={{ init_dict.User.HeadImgUrl }}">#}
+
+        看不到头像，原因设置防盗链。
+        获取refer请求头
+    </div>
+    <h3>常用联系人列表</h3>
+    <ul>
+        {% for item in init_dict.ContactList %}
+            <li>
+{#                <img src="/get_user_avatar.html?k={{ item.HeadImgUrl }}">#}
+                {{ item.NickName }}
+            </li>
+        {% endfor %}
+        <li><a href="/contact_list.html">查看所有联系人</a></li>
+    </ul>
+
+</body>
+</html>

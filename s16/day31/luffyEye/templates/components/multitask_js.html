@@ -1,0 +1,182 @@
+<script>
+    function ToggleHostlist(self) {
+
+         $(self).parent().next().toggleClass("hide");
+
+    }
+
+    function  CountSelectedHosts() {
+        $("#selected_host_num").text( $(".host_ele:checked").length );
+    }
+
+    function StopTask(self) {
+
+       $.post("{% url 'stop_task' %}",{'task_id': $(self).attr("task_id"),'csrfmiddlewaretoken':"{{ csrf_token }}" },function(callback ){
+
+           console.log(callback )
+           var callback = JSON.parse(callback);
+           if (callback.status == 0){
+                clearInterval(get_result_timer);
+                console.log("task cancelled.")
+               $.niftyNoty({
+                    type: "danger",
+                    container : "floating",
+                    title : "Task is terminated... ",
+                    message : "Task has killed...",
+                    closeBtn : true,
+                    timer : 25000
+               });
+           }
+
+       });//end post
+
+    }
+    function CheckAllHosts(self) {
+
+        $(self).parent().next().find('input').prop("checked",$(self).prop("checked"))
+
+        CountSelectedHosts()
+
+    }
+    function  GetTaskResult(task_id ){
+
+        $.getJSON("{% url 'get_task_result' %}",{'task_id':task_id},function(callback){
+
+            console.log(callback)
+            var result_ele = ""
+            var res_status = {
+                0:'成功',
+                1:'失败',
+                3:'超时',
+                2:'执行中',
+            }
+
+
+            var all_task_done = true;
+            var finished_task_counter = 0 ;
+            $.each(callback,function (index,i) {
+                    var single_res_title = "<p>"+ i.bind_host__host__hostname + "(" +i.bind_host__host__ip_addr +")" +
+                            "-----------------" + res_status[i.status] +"</p>"
+                    var single_res_body = "<pre>" + i.result +"</pre>"
+                    var single_res  = single_res_title + single_res_body;
+                    result_ele += single_res
+                    if ( i.status == 2){ //任务还在执行中
+                        all_task_done = false
+
+                    }else {
+                        //执行完了
+                        finished_task_counter +=  1
+                    }
+            })
+
+            if (all_task_done){
+                //代表所有任务都执行完了
+                clearInterval(get_result_timer);
+                //允许下载文件
+
+                $("#download-task-file").removeAttr("disabled");
+
+            }
+            var finished_percent = parseInt(finished_task_counter / callback.length * 100);
+            $("#task_progress").parent().removeClass("hide");
+            $("#task_progress").css("width", finished_percent+"%").text(finished_percent+"%");
+
+            $("#task_result").html(result_ele);
+
+
+        });//end getJSON
+    }
+
+
+    function  PostTask(task_type) {
+
+        var selected_hosts = []
+        $.each($(".host_ele:checked"),function (index,ele) {
+            selected_hosts.push($(ele).val());
+        })
+        var cmd_str = $("#cmd_input").val()
+
+        if ( selected_hosts.length == 0){
+            alert("必须选择主机！")
+            return false;
+        }
+        if (task_type == "cmd"){
+            if ( cmd_str.length == 0){
+                alert("必须输入命令！")
+                return false;
+            }
+
+        }else {
+            //file transfer
+            var transfer_type = $("select[name='transfer_type']").val();
+
+            if (transfer_type == 'send'){
+                //拿着random_tag 到后台uploads/uid/random_tag目录下检查有没有文件
+            }
+            var remote_path = $.trim($("input[name='remote_path']").val());
+            if (remote_path.length ==  0 ){
+                alert("必须输入远程路径!")
+                return false
+            }
+
+        }
+
+        console.log(selected_hosts)
+
+        // start post task
+        var task_data  = {
+            'task_type':task_type,
+            'selected_host_ids':selected_hosts,
+            //'cmd':cmd_str
+        }
+        if (task_type == 'cmd'){
+            task_data['cmd'] = cmd_str
+        }else { //file transfer
+            task_data['transfer_type'] = transfer_type
+            task_data['random_tag'] = "{{ random_tag }}"
+            task_data['remote_path'] = remote_path
+
+        }
+
+        $.post("{% url 'multitask' %}", {'task_data': JSON.stringify(task_data),'csrfmiddlewaretoken':"{{ csrf_token }}"},function(callback){
+
+            console.log(callback);
+            var callback = JSON.parse(callback)
+            //为了一会任务完成后能顺利下载文件
+            var new_download_url = $("#download-task-file").attr("href");
+            $("#download-task-file").attr("href",new_download_url+ callback.task_id);
+
+
+
+            $("#stop_task_btn").removeAttr("disabled");
+            $("#stop_task_btn").attr("task_id", callback.task_id);
+
+            var timer_counter = 0
+            get_result_timer = setInterval(function () {
+
+                GetTaskResult(callback.task_id)
+
+                if (timer_counter < callback.timeout ){ // 还可以继续运行
+                //if (timer_counter < 10  ){ // 还可以继续运行
+                    timer_counter += 2 ;
+
+                }else {
+                    clearInterval(get_result_timer);
+                    console.log("task is timed out ...")
+
+                    $.niftyNoty({
+                        type: "warning",
+                        container : "floating",
+                        title : "Task is timed out . ",
+                        message : "Task has timed out , but there are still 4 sub task hasn't done yet.",
+                        closeBtn : true,
+                        timer : 25000
+                    });
+
+                }
+            },2000);
+        });//end post
+
+    }
+
+</script>

@@ -1,0 +1,272 @@
+s16/17爬虫2
+	
+内容回顾：
+	1. Http协议
+		Http协议：GET / http1.1/r/n...../r/r/r/na=1
+		 TCP协议：sendall("GET / http1.1/r/n...../r/r/r/na=1") 
+		 
+	2. 请求体
+		 GET: GET / http1.1/r/n...../r/r/r/n
+		POST: 
+			  POST / http1.1/r/n...../r/r/r/na=1&b=2
+			  POST / http1.1/r/n...../r/r/r/{"k1":123}
+			  
+			  PS: 依据Content-Type请求头
+			 
+	3. requests模块
+		- method
+		- url
+		- params
+		- data
+		- json
+		- headers
+		- cookies
+		- proxies
+	4. BeautifulSoup4模块
+		HTML
+		XML
+		
+	5. Web微信
+		- 轮训
+		- 长轮训
+	
+	
+
+今日内容概要：
+	1. Web微信
+	
+	2. 高性能相关
+		
+	3. Scrapy
+	
+	
+内容详细：
+	1. Web微信
+	
+		- 防盗链
+			- headers
+			- cookies
+			
+		- 检测请求
+			- url
+			
+		- Session中：
+			- qcode
+			- ctime
+			- login_cookie_dict
+			- ticket_dict_cookie
+			- ticket_dict
+			- init_cookie_dict
+		
+		- 收发消息
+	
+	
+	
+	2. 高性能相关 
+		
+		基本原理：
+			IO多路复用：select，用于检测socket对象是否发生变化(是否连接成功，是否有数据到来)
+				Socket：socket客户端
+			
+			import socket
+			import select
+
+			class Request(object):
+				def __init__(self,sock,func,url):
+					self.sock = sock
+					self.func = func
+					self.url = url
+
+				def fileno(self):
+					return self.sock.fileno()
+
+			def async_request(url_list):
+
+				input_list = []
+				conn_list = []
+
+				for url in url_list:
+					client = socket.socket()
+					client.setblocking(False)
+					# 创建连接,不阻塞
+					try:
+						client.connect((url[0],80,)) # 100个向百度发送的请求
+					except BlockingIOError as e:
+						pass
+
+					obj = Request(client,url[1],url[0])
+
+					input_list.append(obj)
+					conn_list.append(obj)
+
+				while True:
+					# 监听socket是否已经发生变化 [request_obj,request_obj....request_obj]
+					# 如果有请求连接成功：wlist = [request_obj,request_obj]
+					# 如果有响应的数据：  rlist = [request_obj,request_obj....client100]
+					rlist,wlist,elist = select.select(input_list,conn_list,[],0.05)
+					for request_obj in wlist:
+						# print('连接成功')
+						# # # # 发送Http请求
+						# print('发送请求')
+						request_obj.sock.sendall("GET / HTTP/1.0\r\nhost:{0}\r\n\r\n".format(request_obj.url).encode('utf-8'))
+						conn_list.remove(request_obj)
+
+					for request_obj in rlist:
+						data = request_obj.sock.recv(8096)
+						request_obj.func(data)
+						request_obj.sock.close()
+						input_list.remove(request_obj)
+
+					if not input_list:
+						break
+
+		使用一个线程完成并发操作，如何并发？
+		当第一个任务到来时，先发送连接请求，此时会发生IO等待，但是我不等待，我继续发送第二个任务的连接请求....
+		
+		IO多路复用监听socket变化
+		先连接成功：
+			发送请求信息： GET / http/1.0\r\nhost....
+			遇到IO等待，不等待，继续检测是否有人连接成功：
+			发送请求信息： GET / http/1.0\r\nhost....
+			遇到IO等待，不等待，继续检测是否有人连接成功：
+			发送请求信息： GET / http/1.0\r\nhost....
+			
+		有结果返回：
+			读取返回内容，执行回调函数
+			读取返回内容，执行回调函数
+			读取返回内容，执行回调函数
+			读取返回内容，执行回调函数
+			读取返回内容，执行回调函数
+			读取返回内容，执行回调函数
+			读取返回内容，执行回调函数
+			
+		
+		
+		问题：什么是协程？
+			  单纯的执行一端代码后，调到另外一端代码执行，再继续跳...
+			  
+		异步IO：
+			 - 【基于协程】可以用 协程+非阻塞socket+select实现，gevent
+			 - 【基于事件循环】完全通用socket+select实现,Twsited
+		
+		1. 如何提高爬虫并发？
+			利用异步IO模块，如：asyncio,twisted,gevent 
+			本质：
+				- 【基于协程】可以用 协程+非阻塞socket+select实现，gevent
+				- 【基于事件循环】完全通用socket+select实现,Twsited，tornado
+				
+		2. 异步非阻塞
+			  异步：回调   select 
+			非阻塞：不等待 setblocking(False)
+				
+		3. 什么是协程？
+			pip3 install gevent 
+		
+			from greenlet import greenlet
+
+			def test1():
+				print(12)
+				gr2.switch()
+				print(34)
+				gr2.switch()
+			 
+			 
+			def test2():
+				print(56)
+				gr1.switch()
+				print(78)
+			 
+			gr1 = greenlet(test1)
+			gr2 = greenlet(test2)
+			gr1.switch()
+
+		
+		
+	3. 爬虫
+		- request+bs4+twisted或gevent或asyncio
+		- scrapy框架
+			- twisted
+			- 自己html解析
+			- 限速
+			- 去重
+			- 递归，找4层
+			- 代理
+			- https
+			- 中间件
+			....
+		- 安装scrapy
+			依赖Twisted
+		
+		- 开始写爬虫
+			执行命令：
+				 scrapy startproject sp1
+				 
+				 sp1
+					- sp1
+						- spiders      爬虫
+							- xx.py
+							- chouti.py
+						- middlewares  中间件
+						- pipelines    持久化
+						- items        规则化
+						- settings     配置
+					- scrapy.cfg
+					
+				cd sp1
+				scrapy genspider xx xx.com
+				scrapy genspider chouti chouti.com
+				 
+		- scrapy crawl chouti
+			name
+			allow_domains
+			start_urls
+			
+			parse(self,response)
+			
+			
+				yield Item
+				
+				yield Request(url,callback)
+				
+				
+本周任务：
+	1. Web微信
+	
+	2. 高性能示例保存
+	
+	3. 
+		- 煎蛋
+		- 拉钩
+		- 知乎
+		- 抽屉
+				
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

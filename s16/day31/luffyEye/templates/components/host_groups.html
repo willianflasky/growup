@@ -1,0 +1,46 @@
+        <div class="panel col-lg-3">
+            <div class="panel-heading">
+                <h3 class="panel-title">主机组 <span id="selected_host_num"></span></h3>
+            </div>
+            <div class="panel-body">
+
+                <ul class="list-group" id="host_list">
+                    {% for group in request.user.host_groups.all %}
+
+                    <li class="list-group-item ">
+                        <input type="checkbox" onclick="CheckAllHosts(this)">
+                        <a  href="#" onclick="ToggleHostlist(this)">
+                            {{ group.name }}
+                        </a>
+                        <span class="badge badge-primary">{{ group.bind_host_users.count }}</span>
+                    </li>
+
+                    <ul class="hide">
+                         {% for bind_host in group.bind_host_users.all %}
+                            <li><input  onclick="CountSelectedHosts()" class="host_ele" type="checkbox" value="{{ bind_host.id }}">{{ bind_host.host_user.username }}@{{ bind_host.host.ip_addr }}</li>
+                         {% endfor %}
+                    </ul>
+
+                    {% endfor %}
+                    <li class="list-group-item">
+                        <input type="checkbox" onclick="CheckAllHosts(this)">
+                        <a href="#" onclick="ToggleHostlist(this)">
+                            未分组主机
+
+                        </a>
+                         <span class="badge badge-primary">{{ request.user.bind_host_users.count}}</span>
+                    </li>
+
+                    <ul class="hide">
+                         {% for bind_host in request.user.bind_host_users.all %}
+                            <li><input class="host_ele"  onclick="CountSelectedHosts()" type="checkbox" value="{{ bind_host.id }}">{{ bind_host.host_user.username }}@{{ bind_host.host.ip_addr }}</li>
+                         {% endfor %}
+                    </ul>
+
+
+                </ul>
+
+
+
+            </div>
+        </div>
