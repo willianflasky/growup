@@ -1,0 +1,77 @@
+# -*- coding: utf-8 -*-
+import sys,io
+sys.stdout=io.TextIOWrapper(sys.stdout.buffer,encoding='gb18030')
+
+import json
+import scrapy
+from scrapy.http import Request
+from scrapy.selector import HtmlXPathSelector
+from scrapy.http.cookies import CookieJar
+from ..items import Sp2Item
+
+class ChoutiSpider(scrapy.Spider):
+    name = 'chouti'
+    allowed_domains = ['chouti.com']
+
+    cookies = None
+    cookie_dict = {}
+
+    # start_requests方法
+    def start_requests(self):
+        yield Request(url="http://dig.chouti.com/",callback=self.index,dont_filter=True)
+    def index(self, response):
+        """
+        :param response:response中包含首页相关的所有内容
+        :return:
+        """
+        # 获取首页信息
+        cookie_jar = CookieJar()
+        cookie_jar.extract_cookies(response, response.request)
+        self.cookies = cookie_jar
+        for k, v in cookie_jar._cookies.items():
+            for i, j in v.items():
+                for m, n in j.items():
+                    self.cookie_dict[m] = n.value
+
+        # 发送POST，输入用户名和密码进行登录（携带Cookie）
+        yield Request(
+            url="http://dig.chouti.com/login",
+            method='POST',
+            headers={'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+            body='phone=8613121758648&password=woshiniba&oneMonth=1',
+            cookies=self.cookie_dict,
+            callback=self.check_login
+        )
+
+    def check_login(self,response):
+        """
+        如果登录成功，可以执行点赞
+        :param response:
+        :return:
+        """
+        data_dict = json.loads(response.text)
+        code = data_dict['result']['code']
+        if code == '9999':
+            """去查看首页"""
+            yield Request(url='http://dig.chouti.com/',callback=self.pager,dont_filter=True)
+
+
+    def pager(self,response):
+
+        hxs = HtmlXPathSelector(response)
+        news_list = hxs.select('//div[@id="content-list"]/div[@class="item"]')
+        for new in news_list:
+            # temp = new.xpath('div/div[@class="part2"]/@share-linkid').extract()
+            link_id = new.xpath('*/div[@class="part2"]/@share-linkid').extract_first()
+            yield Request(
+                url='http://dig.chouti.com/link/vote?linksId=%s' % (link_id,),
+                method='POST',
+                cookies=self.cookie_dict,
+                callback=self.do_favor_result
+            )
+
+        # 找到页吗
+
+    def do_favor_result(self,response):
+        print(response.text)
+

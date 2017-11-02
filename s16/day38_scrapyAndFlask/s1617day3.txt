@@ -1,0 +1,446 @@
+s1617day3
+
+内容回顾：
+	Scrapy
+		- 创建project
+		- 创建爬虫
+		- 编写
+			- 类
+				- start_urls = ['http://www.xxx.com']
+				- def parse(self,response):
+					
+					yield Item对象
+					yield Request对象
+					
+				- pipeline
+					- process_item
+					  @classmethod
+					- from_clawer
+					- open_spider
+					- close_spider
+				  配置
+				  
+				- request对象("地址",回调函数)
+		- 执行
+	
+	高性能相关：
+		- 多线程【IO】和多进程【计算】
+		- 尽可能利用线程：
+			一个线程（Gevent），基于协程：
+				- 协程，greenlet
+				- 遇到IO就切换
+			一个线程（Twisted，Tornado），基于事件循环：
+				- IO多路复用
+				- Socket，setBlocking(Flase)
+				
+
+今日内容：
+	- Scrapy
+		- Cookie操作
+		- Pipeline
+		- 中间件
+		- 扩展
+		- 自定义命令
+		- 其他
+		- scrapy-redis
+	- Tornado和Flask
+		- 基本流程
+	
+	
+	
+内容详细：
+	1. Scrapy
+		
+		- start_requests
+			- 可迭代对象
+			- 生成器
+			
+			内部iter()
+				from scrapy.crawler import Crawler
+				Crawler.crawl
+				
+			    def start_requests(self):
+				for url in self.start_urls:
+					yield Request(url=url,callback=self.parse)
+					# return [Request(url=url,callback=self.parse),]			
+		- cookie
+			cookie_jar = CookieJar()
+			cookie_jar.extract_cookies(response, response.request)
+			
+		- pipeline
+			- 5个方法
+			- process_item 
+				- return item 
+				- raise DropItem()
+		
+		- 去重规则 
+			DUPEFILTER_CLASS = 'sp2.my_filter.MyDupeFilter'
+			from scrapy.utils.request import request_fingerprint
+
+			class MyDupeFilter(object):
+				def __init__(self):
+					self.visited = set()
+
+				@classmethod
+				def from_settings(cls, settings):
+					return cls()
+
+				def request_seen(self, request):
+					fp = request_fingerprint(request)
+					if fp in self.visited:
+						return True
+					self.visited.add(fp)
+
+				def open(self):  # can return deferred
+					pass
+
+				def close(self, reason):  # can return a deferred
+					pass
+
+				def log(self, request, spider):  # log that a request has been filtered
+					pass
+		
+			from scrapy.utils.request import request_fingerprint
+			from scrapy.http import Request
+
+
+			obj1 = Request(url='http://www.baidu.com?a=1&b=2',headers={'Content-Type':'application/text'},callback=lambda x:x)
+			obj2 = Request(url='http://www.baidu.com?b=2&a=1',headers={'Content-Type':'application/json'},callback=lambda x:x)
+
+			v1 = request_fingerprint(obj1,include_headers=['Content-Type'])
+			print(v1)
+
+			v2 = request_fingerprint(obj2,include_headers=['Content-Type'])
+			print(v2)
+	
+		- 自定义命令
+			- 目录
+				xx.py
+					Class Foo(ScrapyCommand)
+						run方法
+						
+			- settings
+				COMMANDS_MODULE = "sp2.目录"
+			
+			- scrapy xx 
+						
+		- 下载中间件
+			- __init__
+			- from_crawler
+			- process_request
+				- None 
+				- response 
+				- request 
+			- process_response
+			- process_exception
+			
+			应用：
+				- 定制请求头（代理）
+				- HTTPS
+				
+				注意：
+					默认代理规则：from scrapy.downloadermiddlewares.httpproxy import HttpProxyMiddleware
+					设置代理两种方式
+					- 环境变量
+						os.environ['xxxxxxxxxxx_proxy']
+						os.environ['xxxxxxxxxxx_proxy']
+						os.environ['xxxxxxxxxxx_proxy']
+						os.environ['xxxxxxxxxxx_proxy']
+						程序启动之前，先设置
+						import os
+						os.environ['xxxxxxxxxxx_proxy'] = "sdfsdfsdfsdfsdf"
+					- 中间件
+						...
+		
+		- 爬虫中间件
+			class SpiderMiddleware(object):
+	
+				def __init__(self):
+					pass
+					
+				@classmethod
+				def from_cralwer(cls,cralwer):
+					return cls()
+				
+				def process_spider_input(self,response, spider):
+					"""
+					下载完成，执行，然后交给parse处理
+					:param response: 
+					:param spider: 
+					:return: 
+					"""
+					pass
+
+				def process_spider_output(self,response, result, spider):
+					"""
+					spider处理完成，返回时调用
+					:param response:
+					:param result:
+					:param spider:
+					:return: 必须返回包含 Request 或 Item 对象的可迭代对象(iterable)
+					"""
+					return result
+
+				def process_spider_exception(self,response, exception, spider):
+					"""
+					异常调用
+					:param response:
+					:param exception:
+					:param spider:
+					:return: None,继续交给后续中间件处理异常；含 Response 或 Item 的可迭代对象(iterable)，交给调度器或pipeline
+					"""
+					return None
+
+				def process_start_requests(self,start_requests, spider):
+					"""
+					爬虫启动时调用
+					:param start_requests:
+					:param spider:
+					:return: 包含 Request 对象的可迭代对象
+					"""
+					return start_requests
+					# return [Request(url='http://www.baidu.com'),]
+		
+		- 自定义扩展 
+			from scrapy import signals
+
+
+			class MyExtension(object):
+				def __init__(self):
+					pass
+
+				@classmethod
+				def from_crawler(cls, crawler):
+					obj = cls()
+
+					crawler.signals.connect(obj.xxxxxx, signal=signals.engine_started)
+					crawler.signals.connect(obj.rrrrr, signal=signals.spider_closed)
+
+					return obj
+
+				def xxxxxx(self, spider):
+					print('open')
+
+				def rrrrr(self, spider):
+					print('open')
+					
+					
+			EXTENSIONS = {
+			   'sp2.extend.MyExtension': 500,
+			}
+		
+			
+		- Https证书，自定义证书
+			默认：
+				DOWNLOADER_HTTPCLIENTFACTORY = "scrapy.core.downloader.webclient.ScrapyHTTPClientFactory"
+				DOWNLOADER_CLIENTCONTEXTFACTORY = "scrapy.core.downloader.contextfactory.ScrapyClientContextFactory"
+			
+			自定义：
+				DOWNLOADER_HTTPCLIENTFACTORY = "scrapy.core.downloader.webclient.ScrapyHTTPClientFactory"
+				DOWNLOADER_CLIENTCONTEXTFACTORY = "sp2.https.MySSLFactory"
+				
+				
+				from scrapy.core.downloader.contextfactory import ScrapyClientContextFactory
+				from twisted.internet.ssl import (optionsForClientTLS, CertificateOptions, PrivateCertificate)
+
+
+				class MySSLFactory(ScrapyClientContextFactory):
+					def getCertificateOptions(self):
+						from OpenSSL import crypto
+						v1 = crypto.load_privatekey(crypto.FILETYPE_PEM, open('/Users/wupeiqi/client.key.unsecure', mode='r').read())
+						v2 = crypto.load_certificate(crypto.FILETYPE_PEM, open('/Users/wupeiqi/client.pem', mode='r').read())
+						return CertificateOptions(
+							privateKey=v1,  # pKey对象
+							certificate=v2,  # X509对象
+							verify=False,
+							method=getattr(self, 'method', getattr(self, '_ssl_method', None))
+						)
+			
+	
+		- 其他：配置
+		
+		参考地址：http://www.cnblogs.com/wupeiqi/articles/6229292.html
+			
+	2. pip3 install scrapy-redis 
+			需求：10个爬虫
+			组件： scrapy-redis，将去重规则和调度器放置到redis中。
+			流程：连接redis，指定调度器时，调用去重规则.request_seen方法
+			
+			# 连接redis 
+			# REDIS_HOST = 'localhost'                            # 主机名
+			# REDIS_PORT = 6379                                   # 端口
+			REDIS_URL = 'redis://user:pass@hostname:9001'       # 连接URL（优先于以上配置）
+			# REDIS_PARAMS  = {}                                  # Redis连接参数             默认：REDIS_PARAMS = {'socket_timeout': 30,'socket_connect_timeout': 30,'retry_on_timeout': True,'encoding': REDIS_ENCODING,}）
+			# REDIS_PARAMS['redis_cls'] = 'myproject.RedisClient' # 指定连接Redis的Python模块  默认：redis.StrictRedis
+			# REDIS_ENCODING = "utf-8"                            # redis编码类型             默认：'utf-8'
+			
+			# 去重规则（redis中的set集合）
+			DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+			
+			
+			
+			# 调度器
+			SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+			
+			SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.PriorityQueue'          # 默认使用优先级队列（默认），其他：PriorityQueue（有序集合），FifoQueue（列表）、LifoQueue（列表）
+			SCHEDULER_QUEUE_KEY = '%(spider)s:requests'                         # 调度器中请求存放在redis中的key
+			SCHEDULER_SERIALIZER = "scrapy_redis.picklecompat"                  # 对保存到redis中的数据进行序列化，默认使用pickle
+			SCHEDULER_PERSIST = True                                            # 是否在关闭时候保留原来的调度器和去重记录，True=保留，False=清空
+			SCHEDULER_FLUSH_ON_START = True                                     # 是否在开始之前清空 调度器和去重记录，True=清空，False=不清空
+			SCHEDULER_IDLE_BEFORE_CLOSE = 10                                    # 去调度器中获取数据时，如果为空，最多等待时间（最后没数据，未获取到）。
+			SCHEDULER_DUPEFILTER_KEY = '%(spider)s:dupefilter'                  # 去重规则，在redis中保存时对应的key
+
+			
+			REDIS_START_URLS_AS_SET = False
+			REDIS_START_URLS_KEY = '%(name)s:start_urls'
+			
+			
+			
+			
+			方式一：
+				REDIS_URL = 'redis://user:pass@hostname:9001'       # 连接URL（优先于以上配置）
+				# REDIS_PARAMS  = {}                                  # Redis连接参数             默认：REDIS_PARAMS = {'socket_timeout': 30,'socket_connect_timeout': 30,'retry_on_timeout': True,'encoding': REDIS_ENCODING,}）
+				# REDIS_PARAMS['redis_cls'] = 'myproject.RedisClient' # 指定连接Redis的Python模块  默认：redis.StrictRedis
+				# REDIS_ENCODING = "utf-8"                            # redis编码类型             默认：'utf-8'
+				
+				# 去重规则（redis中的set集合）
+				DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+				
+				
+				
+				# 调度器
+				SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+				
+				SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.PriorityQueue'          # 默认使用优先级队列（默认），其他：PriorityQueue（有序集合），FifoQueue（列表）、LifoQueue（列表）
+				SCHEDULER_QUEUE_KEY = '%(spider)s:requests'                         # 调度器中请求存放在redis中的key
+				SCHEDULER_SERIALIZER = "scrapy_redis.picklecompat"                  # 对保存到redis中的数据进行序列化，默认使用pickle
+				SCHEDULER_PERSIST = True                                            # 是否在关闭时候保留原来的调度器和去重记录，True=保留，False=清空
+				SCHEDULER_FLUSH_ON_START = True                                     # 是否在开始之前清空 调度器和去重记录，True=清空，False=不清空
+				SCHEDULER_IDLE_BEFORE_CLOSE = 10                                    # 去调度器中获取数据时，如果为空，最多等待时间（最后没数据，未获取到）。
+				SCHEDULER_DUPEFILTER_KEY = '%(spider)s:dupefilter'                  # 去重规则，在redis中保存时对应的key
+				
+				
+				class ChoutiSpider(scrapy.Spider):
+					name = 'chouti'
+					allowed_domains = ['chouti.com']
+					cookies = None
+					cookie_dict = {}
+					start_urls = ['http://dig.chouti.com/',]
+					
+					def index(self, response):
+						print('爬虫返回结果',response,response.url)
+						
+			方式二：
+				
+					REDIS_START_URLS_AS_SET = False
+					REDIS_START_URLS_KEY = '%(name)s:start_urls'
+					
+					
+					
+					from scrapy_redis.spiders import RedisSpider
+					class ChoutiSpider(RedisSpider):
+						name = 'chouti'
+						allowed_domains = ['chouti.com']
+
+						def index(self, response):
+							print('爬虫返回结果',response,response.url)
+									
+					
+					
+			********************* 基本使用 *********************
+			类，继承scrapy_redis
+			
+			
+			参考博客：http://www.cnblogs.com/wupeiqi/articles/6912807.html
+			
+			
+	3. Flask Web框架
+		- pip3 install flask
+		- Web框架：
+			- 路由
+			- 视图
+			- 模板渲染
+			
+		- flask中无socket，依赖 实现wsgi协议的模块： werkzeug
+		- URL两种添加方式：
+			方式一：
+				@app.route('/xxxxxxx')
+				def hello_world():
+					return 'Hello World!'
+			方式二：
+				def index():
+					return "Index"
+
+				app.add_url_rule('/index',view_func=index)
+		- 路由系统：
+			- 固定
+				@app.route('/x1/')
+				def hello_world():
+					return 'Hello World!'
+
+			- 不固定
+				@app.route('/user/<username>')
+				@app.route('/post/<int:post_id>')
+				@app.route('/post/<float:post_id>')
+				@app.route('/post/<path:path>')
+				@app.route('/login', methods=['GET', 'POST'])
+
+				@app.route('/xx/<int:nid>')
+				def hello_world(nid):
+					return 'Hello World!'+ str(nid)
+			
+			- 自定制正则
+				@app.route('/index/<regex("\d+"):nid>')
+				def index(nid):
+					return 'Index'
+					
+		- 视图 
+		
+		- 模板 
+		
+		- message
+		
+		- 中间件
+		
+		- Session
+			- 默认：加密cookie实现
+			- 第三方：Flask-Session
+				redis: RedisSessionInterface
+				memcached: MemcachedSessionInterface
+				filesystem: FileSystemSessionInterface
+				mongodb: MongoDBSessionInterface
+				sqlalchemy: SqlAlchemySessionInterface
+				
+		- 蓝图（文件夹的堆放）
+		
+		- 安装第三方组件：
+			- Session: Flask-Session
+			- 表单验证：WTForms
+			- ORM： SQLAchemy
+		参考博客：http://www.cnblogs.com/wupeiqi/articles/7552008.html
+	4. Tornado
+		- pip3 install tornado
+		
+		
+		参考博客：http://www.cnblogs.com/wupeiqi/articles/5702910.html
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

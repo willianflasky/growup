@@ -1,0 +1,39 @@
+# -*- coding: utf-8 -*-
+import scrapy
+from scrapy.http import Request
+from scrapy.selector import HtmlXPathSelector
+from ..items import Sp2Item
+
+class ChoutiSpider(scrapy.Spider):
+    name = 'chouti'
+    allowed_domains = ['chouti.com']
+    start_urls = ['http://chouti.com/']
+
+    # start_requests方法
+    def start_requests(self):
+        for url in self.start_urls:
+            yield Request(url=url,callback=self.parse)
+            # return [Request(url=url,callback=self.parse),]
+
+    def parse(self, response):
+        hxs = HtmlXPathSelector(response)
+        # result = hxs.select('//div[@id="yellow-msg-box-intohot"]')
+        item_list = hxs.select('//div[@id="content-list"]/div[@class="item"]')
+        for item in item_list:
+            # item.select('./div[@class="news-content"]/div[@class="part2"]/text()').extract()
+            # item.select('./div[@class="news-content"]/div[@class="part2"]/text()').extract_first()
+            title = item.select('./div[@class="news-content"]/div[@class="part2"]/@share-title').extract_first()
+            url = item.select('./div[@class="news-content"]/div[@class="part2"]/@share-pic').extract_first()
+            # v = item.select('./div[@class="news-content"]/div[@class="part2"]/@share-title').extract_first()
+            obj = Sp2Item(title=title, url=url)
+            yield obj
+
+        # 找到所有页码标签
+        hxs.select('//div[@id="dig_lcpage"]//a/@href').extract()
+        page_url_list = hxs.select('//div[@id="dig_lcpage"]//a[re:test(@href,"/all/hot/recent/\d+")]/@href').extract()
+        for url in page_url_list:
+            url = "http://dig.chouti.com" + url
+            if url in self.visited:
+                return None
+            obj = Request(url=url, callback=self.parse, headers={}, cookies={})
+            yield obj

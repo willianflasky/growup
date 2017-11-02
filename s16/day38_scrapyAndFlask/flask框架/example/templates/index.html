@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <ul>
+        {% for key,value in data_list.items() %}
+            <li><a href="/detail/{{key}}">{{value.0}}-{{value.1}}</a> </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
