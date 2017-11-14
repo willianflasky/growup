@@ -5,15 +5,18 @@
     <title>Title</title>
 </head>
 <body>
+    <!-- 第一步完成，拿到二维码并在页面展示 -->
     <img style="width: 200px;height: 200px;" id="image" src="https://login.weixin.qq.com/qrcode/{{ qcode }}">
 
     <script src="/static/jquery-3.1.1.js"></script>
     <script>
         TIP = 1;
+        // 页面加载完成后自动运行
         $(function () {
             checkLogin();
         });
-        
+
+        // 长轮训，不停的向后端取数据， 扫码，登录，
         function checkLogin() {
            $.ajax({
                url: '/check_login.html',
@@ -21,12 +24,15 @@
                data:{tip: TIP},
                dataType: 'JSON',
                success:function (arg) {
+                    //  201则表示扫码获取头像显示，没有登录
                     if(arg.code == 201){
                         $('#image').attr('src',arg.data);
                         TIP = 0;
                         checkLogin();
+                    // 没有数据
                     }else if(arg.code == 408){
                         checkLogin();
+                    // 登录成功，跳转页面
                     }else if(arg.code == 200){
                         location.href = "/index.html"
                     }

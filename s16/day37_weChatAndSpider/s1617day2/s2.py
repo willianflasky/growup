@@ -1,14 +1,17 @@
 import socket
 import select
 
+
 class Request(object):
     def __init__(self,sock,func,url):
         self.sock = sock
         self.func = func
         self.url = url
 
+    # 为什么用这个封装?为了传入更多的参数
     def fileno(self):
         return self.sock.fileno()
+
 
 def async_request(url_list):
 

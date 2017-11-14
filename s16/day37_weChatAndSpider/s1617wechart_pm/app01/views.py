@@ -8,14 +8,14 @@ from utils.ticket import get_ticket_dict
 
 
 def login(request):
+    # 去拿UUID，通过UUID获取二维码
     print('开始获取二维码')
     ctime = time.time()*1000
     login_url ="https://login.wx.qq.com/jslogin?appid=wx782c26e4c19acffb&redirect_uri=https%3A%2F%2Fwx.qq.com%2Fcgi-bin%2Fmmwebwx-bin%2Fwebwxnewloginpage&fun=new&lang=zh_CN&_={0}".format(ctime)
-
     response = requests.get(login_url)
     result = re.findall('window.QRLogin.uuid = "(.*)";',response.text)
     qcode = result[0] if result else ""
-
+    # UUID and 时间戳存入SESSION，
     request.session['qcode'] = qcode
     request.session['ctime'] = ctime
 
@@ -24,6 +24,7 @@ def login(request):
 def check_login(request):
     ret = {'code':408, 'data':None}
     tip = request.GET.get('tip')
+    # 长轮训
     check_login_url = "https://login.wx.qq.com/cgi-bin/mmwebwx-bin/login?loginicon=true&uuid={0}&tip={1}&_={2}"
     check_login_url = check_login_url.format(request.session['qcode'],tip,time.time()*1000)
     response = requests.get(check_login_url)
@@ -41,7 +42,7 @@ def check_login(request):
 
         login_cookie_dict = response.cookies.get_dict()
         request.session['login_cookie_dict'] = login_cookie_dict
-
+        # 拿到redirect_uri  + fun and verison
         redirect_url = re.findall('window.redirect_uri="(.*)";',response.text)
         redirect_url = redirect_url[0] if redirect_url else ""
         func_version = "&fun=new&version=v2"
@@ -65,6 +66,7 @@ def check_login(request):
 
 
 def index(request):
+    # 判断如果cookie中没有ticket_dict 重定向到login.html
     if not request.session.get('ticket_dict'):
         return redirect('/login.html')
 
@@ -89,18 +91,12 @@ def index(request):
     # requests.post(init_url,json=post_data)
     response = requests.post(init_url,data=json.dumps(post_data),headers={'Content-Type':'application/json;charset=utf-8'})
     response.encoding = "utf-8"
+    # 获得最近联系人，转成字典
     init_dict = json.loads(response.text)
-
     sync_key = init_dict.pop('SyncKey')
-
     request.session['sync_key'] = sync_key
     request.session['init_dict'] = init_dict
-
-
-
     request.session['init_cookie_dict'] = response.cookies.get_dict()
-
-
     return render(request,'index.html',{'init_dict':init_dict})
 
 
@@ -259,5 +255,3 @@ def api(request):
     name = request.GET.get('name')
     msg = request.GET.get('msg')
     return HttpResponse('...')
-
-
