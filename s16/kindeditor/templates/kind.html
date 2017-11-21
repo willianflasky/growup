@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div style="width: 500px; margin: 0 auto">
+        <textarea id="content"></textarea>
+    </div>
+
+    <script src="/static/jquery-1.12.4.js"></script>
+    <script src="/static/kindeditor-4.1.10/kindeditor-all.js"></script>
+
+    <script>
+        //自动启动
+        $(function () {
+            KindEditor.create('#content',{
+{#                items:['superscript', 'clearhtml']    要打开的功能#}
+
+{#                noDisableItems:['source', 'fullscreen'],  打开关闭功能#}
+{#                designMode: false#}
+            uploadJson:"/upload_img/",
+{#                allowImageUpload: false, 不允许本地上传#}
+{#                allowImageRemote: false, 不允许网络上传#}
+{#                  allowImageUpload: true, 自动增高#}
+                    fileManagerJson: '/file_manager/',
+{#                    allowFileManager: true, 像百度云一样管理文件#}
+
+{#                extraFileUploadParams:{   解决CSRF问题 #}
+{#                    csrfmiddlewaretoken: "{{ csrf_token }}"  #}
+{#                }#}
+
+{#                filePostName:"fafafa"  设置接收文件的名字 #}
+            })
+
+        })
+
+
+
+
+    </script>
+</body>
+</html>
