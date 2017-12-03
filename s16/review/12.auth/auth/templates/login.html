@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="/login/" method="post">
+    {% csrf_token %}
+    <p><input type="text" name="username"></p>
+    <p><input type="password" name="password"></p>
+    {% if error %}
+        <p style="color: red">{{ error }}</p>
+    {% endif %}
+    <input type="submit">
+</form>
+</body>
+</html>
