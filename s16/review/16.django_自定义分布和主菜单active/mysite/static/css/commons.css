@@ -1,0 +1,22 @@
+/* 分页开始 */
+.pagination{
+    padding: 10px 0;
+}
+.pagination a{
+    display: inline-block;
+    color: #369;
+    padding: 6px 10px;
+    text-align: center;
+    border: 1px solid #e1e1e1;
+    margin-right: 6px;
+    text-decoration: none;
+}
+.pagination a.active{
+    border: 0;
+}
+.pagination a:hover{
+    background-color: #369;
+    color: #ffffff;
+}
+
+/* 分页结束 */

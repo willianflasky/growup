@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/commons.css" />
+    <!-- <script src="/static/js/jquery-1.12.4.js"></script> -->
+</head>
+<body>
+
+<!-- 1. 自定义分页 -->
+<div class="pagination">
+    {{ page_info.page_str|safe }}
+</div>
+
+<!-- 2. 主菜单active-->
+<script>
+      $(function () {
+            $('#menu_main').addClass('active').siblings().removeClass('active');
+        });
+</script>
+
+
+</body>
+</html>
