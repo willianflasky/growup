@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- <link rel="stylesheet" href="/static/css/commons.css" /> -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/commons.css') }}" />
+
+    {% block css %}{% endblock %}
+</head>
+<body>
+    <div class="pg-header"></div>
+    <div class="pg-body">
+        {% block body %}{% endblock %}
+    </div>
+
+    {% block js %}{% endblock %}
+</body>
+</html>

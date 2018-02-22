@@ -32,31 +32,31 @@ def cmd(name, url):
     print(name, url)
 
 
-@manager.command
-def import_news(path):
-    """
-    批量导入
-    :param name:
-    :param url:
-    :return:
-    """
-    import xlrd
-    from xlrd.book import Book
-    from xlrd.sheet import Sheet
-    from xlrd.sheet import Cell
-    workbook = xlrd.open_workbook(path)
-    sheet_names = workbook.sheet_names()
-    # sheet = workbook.sheet_by_name('工作表1')
-    sheet = workbook.sheet_by_index(0)
-
-    # 循环Excel文件的所有行
-    for row in sheet.get_rows():
-        # print(row)
-        # 循环一行的所有列
-        for col in row:
-            # 获取一个单元格中的值
-            print(col.value,end=';')
-        print('')
+# @manager.command
+# def import_news(path):
+#     """
+#     批量导入
+#     :param name:
+#     :param url:
+#     :return:
+#     """
+#     import xlrd
+#     from xlrd.book import Book
+#     from xlrd.sheet import Sheet
+#     from xlrd.sheet import Cell
+#     workbook = xlrd.open_workbook(path)
+#     sheet_names = workbook.sheet_names()
+#     # sheet = workbook.sheet_by_name('工作表1')
+#     sheet = workbook.sheet_by_index(0)
+#
+#     # 循环Excel文件的所有行
+#     for row in sheet.get_rows():
+#         # print(row)
+#         # 循环一行的所有列
+#         for col in row:
+#             # 获取一个单元格中的值
+#             print(col.value,end=';')
+#         print('')
 
 # 自定义命令
 manager.add_command("runserver", Server())

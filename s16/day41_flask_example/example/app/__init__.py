@@ -22,13 +22,9 @@ def create_app():
     app.register_blueprint(account)
     app.register_blueprint(user)
     app.register_blueprint(main)
-    #
-    # @app.before_request
-    # def check_login():
-    #     print('定义验证方法')
 
     # 注册组件
-    Session(app)
-    # Auth(app)
+    # Session(app)
+    Auth(app)
 
     return app

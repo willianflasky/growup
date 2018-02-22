@@ -6,9 +6,9 @@
 </head>
 <body>
 <form method="post">
-    {{ session['user'] }}
-    {{ current_user }}
+    <p>当前用户:{{ current_user }}</p>
     <input type="text" name="user">
+    <input type="password" name="pwd">
     <input type="submit" value="提交">
 </form>
 </body>

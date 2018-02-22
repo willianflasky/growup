@@ -1,13 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<table>
-    欢迎登录：{{ session.get('user') }}
-    欢迎登录：{{ current_user }}
-</table>
-</body>
-</html>
+{% extends 'layout.html' %}
+
+{% block title %}首页{% endblock %}
+
+{% block body %}
+    <h1>
+        欢迎登录：{{ session.get('user') }}
+        欢迎登录：{{ current_user }}
+    </h1>
+
+    <ul>
+        {% for user in user_list %}
+            <li>{{ user }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
