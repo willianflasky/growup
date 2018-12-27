@@ -8,6 +8,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, UniqueConstraint, Index
 from sqlalchemy.orm import relationship
+from sqlalchemy_utils import ChoiceType
 
 Base = declarative_base()
 
@@ -37,6 +38,25 @@ class Hosts(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(32), index=True)
     ctime = Column(DateTime, default=datetime.datetime.now)
+
+
+class Choice(Base):
+    __tablename__ = 'choice'
+
+    types_choices = (
+        (1, "apple"),
+        (2, "banana"),
+        (3, "mango")
+    )
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String(64))
+    # types = Column(Integer(), ChoiceType(types_choices))
+    types = Column(ChoiceType(types_choices, Integer()))
+
+    __table_args__ = {
+        'mysql_engine': 'Innodb',
+        'mysql_charset': "utf8",
+    }
 
 
 # ##################### 一对多示例 #########################

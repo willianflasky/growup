@@ -13,7 +13,7 @@ from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy import create_engine
 from sqlalchemy.sql import text
 
-from models import UserInfo, Hosts
+from models import Choice
 
 engine = create_engine("mysql+pymysql://s6:s6@127.0.0.1:3306/s6", max_overflow=0, pool_size=5)
 Session = sessionmaker(bind=engine)
@@ -34,6 +34,12 @@ session.add_all([
 ])
 session.commit()
 """
+# session.add(Choice(name="alex", types=1))
+# session.commit()
+
+# ret = session.query(Choice).all()
+# for i in ret:
+#     print(i.types.code, i.types.value)
 
 # ################ 删除 ################
 """
@@ -60,5 +66,7 @@ r5 = session.query(UserInfo).filter_by(name='alex099').first()
 r6 = session.query(UserInfo).filter(text("id<:value and name=:name")).params(value=3, name='alex099').order_by(UserInfo.id).all()
 r7 = session.query(UserInfo).from_statement(text("SELECT * FROM UserInfo where name=:name")).params(name='alex099').all()
 """
+
+
 
 session.close()

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>循环取值</h1>
+    <ul>
+        {% for item in user_list %}
+            <li>{{ item }}</li>
+        {% end %}
+    </ul>
+
+
+    <h1>索引</h1>
+    <ul>
+        {{ user_list[0] }}
+    </ul>
+
+    <h1>字典</h1>
+    <ul>
+        <li>{{ user_dict['id'] }}</li>
+        <li>{{ user_dict.get('name') }}</li>
+    </ul>
+</body>
+</html>
