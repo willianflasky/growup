@@ -2,4 +2,5 @@
 
 ##	学习笔记
 
->	python全栈工程师
+-	python note
+-	golang note
