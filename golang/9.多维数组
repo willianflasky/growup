@@ -1,0 +1,43 @@
+package  main
+
+import "fmt"
+// 多维数组
+func main(){
+	// 定义数组
+	var a = [...]int{1,2,3}
+	// 定义多维数组
+	var b = [...][2]string{
+		{"11","22"},
+		{"33","44"},
+	}
+
+	// 查看多维数组：方法一
+	fmt.Println(a)	
+	fmt.Println(b)	
+	fmt.Println(b[1][1])	
+	// 查看多维数组：方法二
+	for i:=0;i<len(b);i++{
+		for j:=0;j<len(b[i]);j++{
+			fmt.Println(b[i][j])
+		}
+	}
+
+	// 查看多维数组：方法三
+	for _,v1 := range b{
+		for _, v2 := range v1{
+			fmt.Println(v2)
+		}
+	}
+
+	// 数组是值类型，都是直接Copy, 不管多少层。
+	var c  = [...][2]int{
+		{1,2},
+		{3,4},
+	}
+	d := c
+	d[0][0]=100
+
+	fmt.Println(c)
+	fmt.Println(d)
+
+}
