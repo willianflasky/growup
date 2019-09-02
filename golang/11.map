@@ -1,0 +1,117 @@
+#### 1. map
+
+
+```
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	// 1. 声明默认是nil,但是没有初始化
+	// var a map[string]int
+	// fmt.Println(a == nil)
+	// // map的初始化
+	// a = make(map[string]int, 8)
+	// // map中如何增加K,V
+	// a["age"] = 100
+	// a["city"] = 200
+	// fmt.Println(a)
+	// fmt.Printf("%T\n", a)
+
+	// // 2. 同时声明完成初始化
+	// b := map[int]bool{1: true, 2: false}
+	// fmt.Println(b)
+
+	// 3. 判断某键值是否存在
+	// var scoreMap = make(map[string]int, 8)
+	// scoreMap["tom"] = 100
+	// scoreMap["tony"] = 99
+
+	// v, ok := scoreMap["tom"]
+	// if ok {
+	// 	fmt.Println("小明分数:", v)
+	// } else {
+	// 	fmt.Println("查无此人!", v)
+	// }
+
+	// 4. 遍历
+	// map是个无序的
+	// for k, v := range scoreMap {
+	// 	fmt.Println(k, v)
+	// }
+
+	// for k := range scoreMap {
+	// 	fmt.Println(k)
+	// }
+
+	// for _, v := range scoreMap {
+	// 	fmt.Println(v)
+	// }
+
+	// 5. 删除KV,
+	// delete(scoreMap, "tom")
+	// fmt.Println(scoreMap)
+
+	// 6. 顺序遍历map
+	// var scoreMap = make(map[string]int, 100)
+	// for i := 0; i < 50; i++ {
+	// 	key := fmt.Sprintf("stu%02d", i)
+	// 	value := rand.Intn(100)
+	// 	scoreMap[key] = value
+	// }
+
+	// keys := make([]string, 0, 100)
+	// for k := range scoreMap {
+	// 	keys = append(keys, k)
+	// }
+	// sort.Strings(keys)
+
+	// for _, k := range keys {
+	// 	fmt.Println(k, scoreMap[k])
+	// }
+
+	// 7. 元素类型为map的切片
+	// var mapSlice = make([]map[string]int, 8, 8) // 切片的初始化
+	// mapSlice[0] = make(map[string]int, 8)
+	// mapSlice[0]["tom"] = 100
+	// fmt.Println(mapSlice)
+
+	// 8. 值为切片类型的map
+	// var sliceMap = make(map[string][]int, 8)
+	// v, ok := sliceMap["中国"]
+	// if ok {
+	// 	fmt.Println("===", v)
+	// } else {
+	// 	sliceMap["中国"] = make([]int, 8)
+	// 	sliceMap["中国"][0] = 100
+	// 	sliceMap["中国"][1] = 200
+	// 	sliceMap["中国"][2] = 300
+	// }
+
+	// for k, v := range sliceMap {
+	// 	fmt.Println(k, v)
+	// }
+
+	// 9. 统计每个字母出现的次数
+	s := "how do you do"
+	var count = make(map[string]int, 10)
+	words := strings.Split(s, " ")
+	for _, word := range words {
+		v, ok := count[word]
+		if ok {
+			count[word] = v + 1
+		} else {
+			count[word] = 1
+		}
+	}
+	fmt.Println(count)
+}
+
+
+```
+
+参考：
+>  https://www.liwenzhou.com/posts/Go/08_map/
